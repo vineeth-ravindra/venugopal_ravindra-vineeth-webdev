@@ -1,27 +1,91 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" ng-app="registerApp">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
-    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"/>
-    <link href="css/style.css" rel="stylesheet"/>
+    <meta name="viewport" content="width=device-width">
+    <title>My App</title>
+    <script src="./bower_components/angular/angular.js"></script>
+    <script src="./bower_components/angular-aria/angular-aria.js"></script>
+    <script src="./bower_components/angular-animate/angular-animate.js"></script>
+    <script src="./bower_components/angular-material/angular-material.js"></script>
+    <link rel="stylesheet" href="./bower_components/angular-material/angular-material.css">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400" rel="stylesheet">
+    <link rel="stylesheet" href="resources/CSS/app.css">
+    <script>
+        angular.module("registerApp",['ngMaterial'])
+                .controller("xyz",function ($scope) {
+                    $scope.user = {};
+                    $scope.validateEmail = function() {
+                        if ($scope.user.password != $scope.user.password2) {
+                            $scope.IsMatch=true;
+                            return false;
+                        }
+                        $scope.IsMatch=false;
+                    }
+                }).
+                config(function($mdThemingProvider) {
+                    $mdThemingProvider.theme('docs-dark', 'default')
+                            .primaryPalette('orange')
+                            .accentPalette('green')
+                            .dark();
+
+                }).
+                directive("passwordVerify", function() {
+                    return {
+                        require: "ngModel",
+                        scope: {
+                            passwordVerify: '='
+                        },
+                        link: function(scope, element, attrs, ctrl) {
+                            scope.$watch(function() {
+                                var combined;
+
+                                if (scope.passwordVerify || ctrl.$viewValue) {
+                                    combined = scope.passwordVerify + '_' + ctrl.$viewValue;
+                                }
+                                return combined;
+                            }, function(value) {
+                                if (value) {
+                                    ctrl.$parsers.unshift(function(viewValue) {
+                                        var origin = scope.passwordVerify;
+                                        if (origin !== viewValue) {
+                                            ctrl.$setValidity("passwordVerify", false);
+                                            return undefined;
+                                        } else {
+                                            ctrl.$setValidity("passwordVerify", true);
+                                            return viewValue;
+                                        }
+                                    });
+                                }
+                            });
+                        }
+                    };
+                });
+    </script>
 </head>
-<body>
-    <div class="container">
-        <h1>Register</h1>
-        <input type="text"
-               class="form-control"
-               placeholder="username"/>
-        <input type="password"
-               class="form-control"
-               placeholder="password"/>
-        <input type="password"
-               class="form-control"
-               placeholder="very password"/>
-        <a class="btn btn-primary btn-block"
-           href="profile.html">Register</a>
-        <a class="btn btn-danger  btn-block"
-           href="login.html">Cancel</a>
-    </div>
+<body ng-controller="xyz" layout="column">>
+    <md-content md-theme="docs-dark" class="signup-box"  layout-gt-xs="column" layout-xs="column" layout-padding>
+        <h1>REGISTER</h1>
+        <form name="form"  layout-gt-xs="column" layout-xs="column">
+            <md-input-container>
+                <label class="align-left">User Name</label>
+                <input ng-model="user.username"  required>
+            </md-input-container>
+
+            <md-input-container>
+                <label class="align-left">Password</label>
+                <input ng-model="user.password"  type="password" name="password" required>
+            </md-input-container>
+
+            <md-input-container>
+                <label class="align-left">Verify Password</label>
+                <input ng-model="user.password_verify" type="password" name="confirm" pw-check='pw1'
+                       required data-password-verify="user.password">
+            </md-input-container>
+            <md-button ng-show='!form.confirm.$error.passwordVerify'
+                       class="md-accent md-raised"  href="#"> Register </md-button>
+            <md-button class="md-warn md-raised" href="#"> Cancel </md-button>
+        </form>
+    </md-content>
 </body>
 </html>

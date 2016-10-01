@@ -2,3 +2,5 @@ node_modules
 .DS_Store
 .gitignore
 README.md
+bower.json
+bower_components
