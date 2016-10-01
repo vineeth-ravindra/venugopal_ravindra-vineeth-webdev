@@ -8,6 +8,7 @@ body {
     font-family: 'Open Sans', sans-serif;
 }
 h1 {
+    display: inline-block;
     font-size: 100%;
     font-weight: 400;
 }
@@ -22,16 +23,81 @@ p {
 md-input-container label{
     font-size: 70%;
 }
+md-content {
+    padding: 0px !important;
+    background-color: #263238!important;
+
+}
+.ics {
+    /*ics - icon specific styling*/
+    display: inline-block;
+    width: 20px;
+    text-align: left;
+    color:#fff;
+    font-size: 120%;
+    line-height: 160%;
+    vertical-align: middle;
+    margin-top: -4px;
+    margin-right: 20px;
+
+}
+.ics-right{
+    float: right;
+}
+.line {
+    display: inline-block;
+    width: 50%;
+    border-top: 1px solid #ffffff;
+    margin: 0 auto;
+}
+/****************
+Custom tool bar
+****************/
+.tool-bar-color{
+    background-color: #009292 !important;
+    box-shadow: 0 1px 6px rgba(0,0,0,.3)!important;
+    display: inline-block;
+    height: 10px !important;
+    padding-left: 10px!important;
+    color:#fff;
+}
+.bottom-bar{
+    bottom: 0!important;
+}
+
 /****************
 Sign Up Box
-Login Screen
+Login Screen to center
+the box
 ****************/
-.signup-box{
-    box-shadow: 0 1px 6px rgba(0,0,0,.3);
+.center-box{
     top:-10%;
     text-align: center;
+    width: 70%;
     margin: auto;
 }
 md-button {
-    width: 100%;
+    width: 80%;
+}
+
+/****************
+Profile.html
+****************/
+.large-box {
+    width: 70%;
+    min-height: calc(100vh - 20px);
+    margin: auto;
+    padding: 20px;
+}
+.large-box-more-padding{
+    padding: 5%;
+}
+
+/****************
+Side nav
+****************/
+.side-nav{
+    background-color: rgba(20, 57, 79, 0.35) !important;
+    color:#fff !important;
+
 }

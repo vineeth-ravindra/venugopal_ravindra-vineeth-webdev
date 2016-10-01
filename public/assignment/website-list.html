@@ -28,37 +28,43 @@
 </head>
 <body ng-controller="xyz"  md-theme="docs-dark" layout-gt-xs="column" layout-xs="column">
     <md-toolbar class="tool-bar-color">
+        <i class="icon ion-ios-arrow-back ics"></i>
         <h1>Profile</h1>
         <i class = "icon ion-checkmark ics ics-right"></i>
     </md-toolbar>
     <md-content>
         <div class="large-box" layout-gt-xs="column" layout-xs="column" >
-            <form name="form"  layout-gt-xs="column" layout-xs="column">
-                <md-input-container layout-gt-xs="column" layout-xs="column">
-                    <label class="align-left">User Name</label>
-                    <input ng-model="user.username">
-                </md-input-container>
-
-                <md-input-container layout-gt-xs="column" layout-xs="column">
-                    <label class="align-left">Email</label>
-                    <input ng-model="user.email">
-                </md-input-container>
-
-                <md-input-container layout-gt-xs="column" layout-xs="column">
-                    <label class="align-left">First Name</label>
-                    <input ng-model="user.first_name">
-                </md-input-container>
-                <md-input-container layout-gt-xs="column" layout-xs="column">
-                    <label class="align-left">Last Name</label>
-                    <input ng-model="user.last_name">
-                </md-input-container>
-                <md-button class="md-accent md-raised"  href="#"> Website </md-button>
-                <md-button class="md-warn md-raised" href="#"> Logout </md-button>
-            </form>
+            <md-list>
+                <md-list-item>
+                    <p>Address book app</p>
+                    <md-button>
+                        <i class="icon ion-gear-a ics"></i>
+                    </md-button>
+                </md-list-item>
+                <md-list-item>
+                    <p>Blogger</p>
+                    <md-button>
+                        <i class="icon ion-gear-a ics"></i>
+                    </md-button>
+                </md-list-item>
+                <md-list-item>
+                    <p>Blogging App</p>
+                    <md-button>
+                        <i class="icon ion-gear-a ics"></i>
+                    </md-button>
+                </md-list-item>
+                <md-list-item>
+                    <p>Script Testing</p>
+                    <md-button>
+                        <i class="icon ion-gear-a ics"></i>
+                    </md-button>
+                </md-list-item>
+            </md-list>
         </div>
     </md-content>
     <md-toolbar   class="tool-bar-color bottom-bar " >
         <i class = "icon ion-android-person ics ics-right"></i>
     </md-toolbar>
+
 </body>
 </html>

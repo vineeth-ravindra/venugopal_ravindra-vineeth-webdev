@@ -10,7 +10,7 @@
     <script src="./bower_components/angular-material/angular-material.js"></script>
     <link rel="stylesheet" href="./bower_components/angular-material/angular-material.css">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400" rel="stylesheet">
-    <link rel="stylesheet" href="resources/CSS/app.css">
+    <link rel="stylesheet" href="./css/app.css">
     <script>
         angular.module("registerApp",['ngMaterial'])
                 .controller("xyz",function ($scope) {
@@ -25,7 +25,7 @@
                 }).
                 config(function($mdThemingProvider) {
                     $mdThemingProvider.theme('docs-dark', 'default')
-                            .primaryPalette('orange')
+                            .primaryPalette('pink')
                             .accentPalette('green')
                             .dark();
 
@@ -63,29 +63,32 @@
                 });
     </script>
 </head>
-<body ng-controller="xyz" layout="column">>
-    <md-content md-theme="docs-dark" class="signup-box"  layout-gt-xs="column" layout-xs="column" layout-padding>
-        <h1>REGISTER</h1>
-        <form name="form"  layout-gt-xs="column" layout-xs="column">
-            <md-input-container>
-                <label class="align-left">User Name</label>
-                <input ng-model="user.username"  required>
-            </md-input-container>
+<body ng-controller="xyz"  md-theme="docs-dark" layout-gt-xs="column" layout-xs="column">
+    <md-content>
+        <div  class = "center-box" layout-gt-xs="column" layout-xs="column" layout-padding>
+            <h1>REGISTER</h1>
+            <md-divider></md-divider>
+            <form name="form"  layout-gt-xs="column" layout-xs="column">
+                <md-input-container>
+                    <label class="align-left">User Name</label>
+                    <input ng-model="user.username"  required>
+                </md-input-container>
 
-            <md-input-container>
-                <label class="align-left">Password</label>
-                <input ng-model="user.password"  type="password" name="password" required>
-            </md-input-container>
+                <md-input-container>
+                    <label class="align-left">Password</label>
+                    <input ng-model="user.password"  type="password" name="password" required>
+                </md-input-container>
 
-            <md-input-container>
-                <label class="align-left">Verify Password</label>
-                <input ng-model="user.password_verify" type="password" name="confirm" pw-check='pw1'
-                       required data-password-verify="user.password">
-            </md-input-container>
-            <md-button ng-show='!form.confirm.$error.passwordVerify'
-                       class="md-accent md-raised"  href="#"> Register </md-button>
-            <md-button class="md-warn md-raised" href="#"> Cancel </md-button>
-        </form>
+                <md-input-container>
+                    <label class="align-left">Verify Password</label>
+                    <input ng-model="user.password_verify" type="password" name="confirm" pw-check='pw1'
+                           required data-password-verify="user.password">
+                </md-input-container>
+                <md-button ng-show='!form.confirm.$error.passwordVerify'
+                           class="md-accent md-raised"  href="#"> Register </md-button>
+                <md-button class="md-warn md-raised" href="#"> Cancel </md-button>
+            </form>
+        </div>
     </md-content>
 </body>
 </html>

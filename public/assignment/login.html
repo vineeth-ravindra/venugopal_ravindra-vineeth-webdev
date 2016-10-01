@@ -18,17 +18,20 @@
             }).
             config(function($mdThemingProvider) {
                 $mdThemingProvider.theme('docs-dark', 'default')
-                        .primaryPalette('green')
+                        .primaryPalette('pink')
+                        .accentPalette('green')
                         .dark();
 
             });
+
     </script>
 </head>
-<body ng-controller="xyz" layout="column">
-
-
-        <md-content md-theme="docs-dark" class="signup-box" layout-gt-xs="column" layout-xs="column" layout-padding>
+<body ng-controller="xyz"  md-theme="docs-dark" layout-gt-xs="column" layout-xs="column">
+        <md-content>
+        <div  class = "center-box" layout-gt-xs="column" layout-xs="column" layout-padding>
             <h1> LOG IN</h1>
+            <!--<div class="line"></div>-->
+            <md-divider></md-divider>
             <form  layout-gt-xs="column" layout-xs="column">
                 <div layout-gt-xs="column" layout-xs="column">
                     <md-input-container>
@@ -45,6 +48,7 @@
                 </div>
 
             </form>
+        </div>
         </md-content>
 
 
