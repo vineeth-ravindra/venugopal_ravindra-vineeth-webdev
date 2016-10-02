@@ -16,6 +16,9 @@ p {
     font-size: 70%;
     font-weight: 400;
 }
+a{
+    text-decoration: none;
+}
 .align-left{
     text-align: left;
 }
@@ -38,17 +41,24 @@ md-content {
     line-height: 160%;
     vertical-align: middle;
     margin-top: -4px;
-    margin-right: 20px;
-
 }
 .ics-right{
     float: right;
+    margin-top:5px;
+    vertical-align:middle!important;
+    margin-right:15px!important;
+}
+.ics-left{
+    float: left;
 }
 .line {
     display: inline-block;
     width: 50%;
     border-top: 1px solid #ffffff;
     margin: 0 auto;
+}
+.font-size-adjust{
+    font-size: 75%;
 }
 /****************
 Custom tool bar
@@ -59,6 +69,7 @@ Custom tool bar
     display: inline-block;
     height: 10px !important;
     padding-left: 10px!important;
+    padding-right: 0px!important;
     color:#fff;
 }
 .bottom-bar{
@@ -79,19 +90,22 @@ the box
 md-button {
     width: 80%;
 }
+.transform-text{
+    text-transform: capitalize!important;
+    text-align: left;
+}
 
 /****************
 Profile.html
 ****************/
 .large-box {
-    width: 70%;
     min-height: calc(100vh - 20px);
     margin: auto;
-    padding: 20px;
+    padding: 10px;
 }
-.large-box-more-padding{
-    padding: 5%;
-}
+/*.large-box-more-padding{*/
+    /*padding: 5%;*/
+/*}*/
 
 /****************
 Side nav

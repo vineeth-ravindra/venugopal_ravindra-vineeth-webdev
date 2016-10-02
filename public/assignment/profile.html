@@ -29,7 +29,9 @@
 <body ng-controller="xyz"  md-theme="docs-dark" layout-gt-xs="column" layout-xs="column">
     <md-toolbar class="tool-bar-color">
         <h1>Profile</h1>
-        <i class = "icon ion-checkmark ics ics-right"></i>
+        <md-button class="ics-right" href="profile.html">
+            <i class = "icon ion-checkmark ics"></i>
+        </md-button>
     </md-toolbar>
     <md-content>
         <div class="large-box" layout-gt-xs="column" layout-xs="column" >
@@ -52,13 +54,15 @@
                     <label class="align-left">Last Name</label>
                     <input ng-model="user.last_name">
                 </md-input-container>
-                <md-button class="md-accent md-raised"  href="#"> Website </md-button>
-                <md-button class="md-warn md-raised" href="#"> Logout </md-button>
+                <md-button class="md-accent md-raised"  href="website-list.html"> Websites </md-button>
+                <md-button class="md-warn md-raised" href="login.html"> Logout </md-button>
             </form>
         </div>
     </md-content>
     <md-toolbar   class="tool-bar-color bottom-bar " >
-        <i class = "icon ion-android-person ics ics-right"></i>
+        <a href="profile.html">
+            <i class = "icon ion-android-person ics ics-right"></i>
+        </a>
     </md-toolbar>
 </body>
 </html>

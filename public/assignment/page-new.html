@@ -28,24 +28,30 @@
 </head>
 <body ng-controller="xyz"  md-theme="docs-dark" layout-gt-xs="column" layout-xs="column">
 <md-toolbar class="tool-bar-color">
-    <i class="icon ion-ios-arrow-back ics"></i>
-    <h1>Profile</h1>
-    <i class = "icon ion-checkmark ics ics-right"></i>
+    <a href="profile.html">
+        <i class="icon ion-ios-arrow-back ics"></i>
+    </a>
+    <h1>New Page</h1>
+    <a href="page-list.html">
+        <i class = "icon ion-checkmark ics ics-right"></i>
+    </a>
 </md-toolbar>
 <md-content>
     <div class="large-box" layout-gt-xs="column" layout-xs="column" >
         <md-input-container>
             <label>Name</label>
-            <input ng-model="name" placeholder="Page Name">
+            <input ng-model="name" placeholder="Page Name" class="font-size-adjust">
         </md-input-container>
         <md-input-container>
             <label>Title</label>
-            <input ng-model="title" placeholder="Page Title">
+            <input ng-model="title" placeholder="Page Title" class="font-size-adjust">
         </md-input-container>
     </div>
 </md-content>
 <md-toolbar   class="tool-bar-color bottom-bar " >
-    <i class = "icon ion-android-person ics ics-right"></i>
+    <a href="profile.html">
+        <i class = "icon ion-android-person ics ics-right"></i>
+    </a>
 </md-toolbar>
 
 </body>
