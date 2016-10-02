@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="profileApp">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width">
+    <title>My App</title>
+    <script src="./bower_components/angular/angular.js"></script>
+    <script src="./bower_components/angular-aria/angular-aria.js"></script>
+    <script src="./bower_components/angular-animate/angular-animate.js"></script>
+    <script src="./bower_components/angular-material/angular-material.js"></script>
+    <link rel="stylesheet" href="./bower_components/angular-material/angular-material.css">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400" rel="stylesheet">
+    <link rel="stylesheet" href="./css/app.css">
+    <link rel="stylesheet" href="http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+    <script>
+        angular.module("profileApp",['ngMaterial'])
+                .controller("xyz",function ($scope) {
+                    console.log("Hello world");
+                }).
+        config(function($mdThemingProvider) {
+            $mdThemingProvider.theme('docs-dark', 'default')
+                    .primaryPalette('pink')
+                    .accentPalette('green')
+                    .dark();
+
+        });
+    </script>
+</head>
+<body ng-controller="xyz"  md-theme="docs-dark" layout-gt-xs="column" layout-xs="column">
+<md-toolbar class="tool-bar-color">
+    <a href="widget-list.html">
+        <i class="icon ion-ios-arrow-back ics"></i>
+    </a>
+    <h1>Choose Widget</h1>
+</md-toolbar>
+<md-content>
+    <div class="large-box" layout-gt-xs="column" layout-xs="column" >
+        <md-list>
+            <md-list-item>
+                <p>
+                    <md-button class="transform-text" href="widget-heading.html">
+                        Header
+                    </md-button>
+                </p>
+            </md-list-item>
+            <md-list-item>
+                <p>
+                    <md-button class="transform-text" href="widget-heading.html">
+                        Label
+                    </md-button>
+                </p>
+            </md-list-item>
+            <md-list-item>
+                <p>
+                    <md-button class="transform-text" href="widget-heading.html">
+                        HTML
+                    </md-button>
+                </p>
+            </md-list-item>
+            <md-list-item>
+                <p>
+                    <md-button class="transform-text" href="widget-heading.html">
+                        Text Input
+                    </md-button>
+                </p>
+            </md-list-item>
+            <md-list-item>
+                <p>
+                    <md-button class="transform-text" href="widget-heading.html">
+                        Link
+                    </md-button>
+                </p>
+            </md-list-item>
+            <md-list-item>
+                <p>
+                    <md-button class="transform-text" href="widget-heading.html">
+                        Button
+                    </md-button>
+                </p>
+            </md-list-item>
+            <md-list-item>
+                <p>
+                    <md-button class="transform-text" href="widget-image.html">
+                        Image
+                    </md-button>
+                </p>
+            </md-list-item>
+            <md-list-item>
+                <p>
+                    <md-button class="transform-text" href="widget-youtube.html">
+                        You Tube
+                    </md-button>
+                </p>
+            </md-list-item>
+            <md-list-item>
+                <p>
+                    <md-button class="transform-text" href="widget-heading.html">
+                        Data Table
+                    </md-button>
+                </p>
+            </md-list-item>
+            <md-list-item>
+                <p>
+                    <md-button class="transform-text" href="widget-heading.html">
+                        Repeater
+                    </md-button>
+                </p>
+            </md-list-item>
+        </md-list>
+    </div>
+</md-content>
+<md-toolbar   class="tool-bar-color bottom-bar " >
+    <a href="profile.html">
+        <i class = "icon ion-android-person ics ics-right"></i>
+    </a>
+</md-toolbar>
+
+</body>
+</html>
