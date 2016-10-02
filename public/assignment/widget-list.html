@@ -28,13 +28,13 @@
 </head>
 <body ng-controller="xyz"  md-theme="docs-dark" layout-gt-xs="column" layout-xs="column">
 <md-toolbar class="tool-bar-color">
-    <a href="page list.html">
+    <md-button class="button-with-icon-fix button-with-icon-fix-left"  href="page-list.html">
         <i class="icon ion-ios-arrow-back ics"></i>
-    </a>
+    </md-button>
     <h1>Widgets</h1>
-    <a href="widget-chooser.html">
-        <i class = "icon ion-plus ics ics-right"></i>
-    </a>
+    <md-button class="ics-right button-with-icon-fix" href="widget-chooser.html">
+        <i class = "icon ion-plus ics"></i>
+    </md-button>
 </md-toolbar>
 <md-content>
     <div class="large-box" layout-gt-xs="column" layout-xs="column">
@@ -95,8 +95,7 @@
                 </md-button>
             </div>
             <h1>
-                Man walks straight through ring of fire
-
+                Deadpool News
             </h1>
         </div>
         <div class="widget-box" layout-gt-xs="column" layout-xs="column" >
@@ -108,6 +107,14 @@
             </div>
             <iframe class="responsive-image" src="https://www.youtube.com/embed/pewUuJeIf_g" frameborder="0"
                     allowfullscreen></iframe>
+        </div>
+        <div class="widget-box" layout-gt-xs="column" layout-xs="column" >
+            <div class="myButton">
+                <md-button class="button-with-icon-fix" href="#">
+                    <i class="icon ion-navicon ics"></i>
+                    <i class="icon ion-gear-a ics"></i>
+                </md-button>
+            </div>
             <p>
                 From the zany misadventures of his solo series to numerous awkward guest spots, there's hardly a stone
                 or enchanted realm Deadpool's antics have left unturned. With that in mind, we've decided to compile
@@ -118,9 +125,13 @@
     </div>
 </md-content>
 <md-toolbar   class="tool-bar-color bottom-bar " >
-    <a href="profile.html">
-        <i class = "icon ion-android-person ics ics-right"></i>
-    </a>
+    <md-button class="button-with-icon-fix button-with-icon-fix-left"  href="profile.html">
+        <i class="icon ics ion-ios-eye"></i>
+        <i class="icon ics ion-ios-play-outline"></i>
+    </md-button>
+    <md-button class="ics-right button-with-icon-fix" href="profile.html">
+        <i class = "icon ion-android-person ics "></i>
+    </md-button>
 </md-toolbar>
 
 </body>
