@@ -29,8 +29,8 @@
 <body ng-controller="xyz"  md-theme="docs-dark" layout-gt-xs="column" layout-xs="column">
     <md-toolbar class="tool-bar-color">
         <h1>Profile</h1>
-        <md-button class="ics-right" href="profile.html">
-            <i class = "icon ion-checkmark ics"></i>
+        <md-button class="ics-right button-with-icon-fix" href="profile.html">
+            <i class = "icon ics ion-checkmark"></i>
         </md-button>
     </md-toolbar>
     <md-content>
@@ -38,31 +38,32 @@
             <form name="form"  layout-gt-xs="column" layout-xs="column">
                 <md-input-container layout-gt-xs="column" layout-xs="column">
                     <label class="align-left">User Name</label>
-                    <input ng-model="user.username">
+                    <input ng-model="user.username" class="font-size-adjust">
                 </md-input-container>
 
                 <md-input-container layout-gt-xs="column" layout-xs="column">
                     <label class="align-left">Email</label>
-                    <input ng-model="user.email">
+                    <input ng-model="user.email" class="font-size-adjust">
                 </md-input-container>
 
                 <md-input-container layout-gt-xs="column" layout-xs="column">
                     <label class="align-left">First Name</label>
-                    <input ng-model="user.first_name">
+                    <input ng-model="user.first_name" class="font-size-adjust">
                 </md-input-container>
                 <md-input-container layout-gt-xs="column" layout-xs="column">
                     <label class="align-left">Last Name</label>
-                    <input ng-model="user.last_name">
+                    <input ng-model="user.last_name" class="font-size-adjust">
                 </md-input-container>
                 <md-button class="md-accent md-raised"  href="website-list.html"> Websites </md-button>
                 <md-button class="md-warn md-raised" href="login.html"> Logout </md-button>
             </form>
         </div>
     </md-content>
-    <md-toolbar   class="tool-bar-color bottom-bar " >
-        <a href="profile.html">
-            <i class = "icon ion-android-person ics ics-right"></i>
-        </a>
+    <md-toolbar   class="tool-bar-color bottom-bar" >
+        <md-button href="profile.html" class="ics-right button-with-icon-fix">
+            <i class = "icon ics ion-android-person"></i>
+        </md-button>
     </md-toolbar>
 </body>
 </html>
+

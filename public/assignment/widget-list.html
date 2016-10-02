@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="profileApp">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width">
+    <title>My App</title>
+    <script src="./bower_components/angular/angular.js"></script>
+    <script src="./bower_components/angular-aria/angular-aria.js"></script>
+    <script src="./bower_components/angular-animate/angular-animate.js"></script>
+    <script src="./bower_components/angular-material/angular-material.js"></script>
+    <link rel="stylesheet" href="./bower_components/angular-material/angular-material.css">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400" rel="stylesheet">
+    <link rel="stylesheet" href="./css/app.css">
+    <link rel="stylesheet" href="http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+    <script>
+        angular.module("profileApp",['ngMaterial'])
+                .controller("xyz",function ($scope) {
+                    console.log("Hello world");
+                }).
+        config(function($mdThemingProvider) {
+            $mdThemingProvider.theme('docs-dark', 'default')
+                    .primaryPalette('pink')
+                    .accentPalette('green')
+                    .dark();
+
+        });
+    </script>
+</head>
+<body ng-controller="xyz"  md-theme="docs-dark" layout-gt-xs="column" layout-xs="column">
+<md-toolbar class="tool-bar-color">
+    <a href="page list.html">
+        <i class="icon ion-ios-arrow-back ics"></i>
+    </a>
+    <h1>Widgets</h1>
+    <a href="widget-chooser.html">
+        <i class = "icon ion-plus ics ics-right"></i>
+    </a>
+</md-toolbar>
+<md-content>
+    <div class="large-box" layout-gt-xs="column" layout-xs="column">
+        <div class="widget-box" layout-gt-xs="column" layout-xs="column" >
+            <div class="myButton">
+                <md-button class="button-with-icon-fix" href="widget-heading.html">
+                    <i class="icon ion-navicon ics"></i>
+                    <i class="icon ion-gear-a ics"></i>
+                </md-button>
+            </div>
+            <h1> Superman</h1>
+        </div>
+        <div class="widget-box" layout-gt-xs="column" layout-xs="column" >
+            <div class="myButton">
+                <md-button class="button-with-icon-fix" href="#">
+                    <i class="icon ion-navicon ics"></i>
+                    <i class="icon ion-gear-a ics"></i>
+                </md-button>
+            </div>
+            <p>
+                Comic books and the worlds that they depict seem perfectly suited for collectors. With various artists,
+                filmmakers, and writers constantly putting new spins on iconic characters, there's no shortage of
+                awesome memorabilia to go along with anyone's favorite superhero mythos. Now it's time to definitely
+                get excited once again, DC collectors, because a seriously awesome Limited Edition of Batman V Superman:
+                Dawn of Justice is going to hit shelves this holiday season. Trust me, it's even cooler than you would expect.
+
+            </p>
+        </div>
+        <div class="widget-box" layout-gt-xs="column" layout-xs="column" >
+            <div class="myButton">
+                <md-button class="button-with-icon-fix" href="widget-image.html">
+                    <i class="icon ion-navicon ics"></i>
+                    <i class="icon ion-gear-a ics"></i>
+                </md-button>
+            </div>
+            <img src="http://media.dcentertainment.com/sites/default/files/DCVol2Marquee_57466713405381.60938022.jpg"
+                 alt="DC Universe" class="responsive-image"/>
+        </div>
+        <div class="widget-box" layout-gt-xs="column" layout-xs="column" >
+            <div class="myButton">
+                <md-button class="button-with-icon-fix" href="#">
+                    <i class="icon ion-navicon ics"></i>
+                    <i class="icon ion-gear-a ics"></i>
+                </md-button>
+            </div>
+            <p>
+                Superman is a fictional superhero appearing in American comic books
+                published by DC Comics. The character was created by writer Jerry Siegel and artist Joe Shuster,
+                high school students living in Cleveland, Ohio, in 1933.
+
+            </p>
+        </div>
+        <div class="widget-box" layout-gt-xs="column" layout-xs="column" >
+            <div class="myButton">
+                <md-button class="button-with-icon-fix" href="#">
+                    <i class="icon ion-navicon ics"></i>
+                    <i class="icon ion-gear-a ics"></i>
+                </md-button>
+            </div>
+            <h1>
+                Man walks straight through ring of fire
+
+            </h1>
+        </div>
+        <div class="widget-box" layout-gt-xs="column" layout-xs="column" >
+            <div class="myButton">
+                <md-button class="button-with-icon-fix" href="widget-youtube.html">
+                    <i class="icon ion-navicon ics"></i>
+                    <i class="icon ion-gear-a ics"></i>
+                </md-button>
+            </div>
+            <iframe class="responsive-image" src="https://www.youtube.com/embed/pewUuJeIf_g" frameborder="0"
+                    allowfullscreen></iframe>
+            <p>
+                From the zany misadventures of his solo series to numerous awkward guest spots, there's hardly a stone
+                or enchanted realm Deadpool's antics have left unturned. With that in mind, we've decided to compile
+                27 of the weirdest,most ludicrous, most Deadpool-ish covers in existence. Some are twisted, most are
+                ridiculous, but all are really, really fun.
+            </p>
+        </div>
+    </div>
+</md-content>
+<md-toolbar   class="tool-bar-color bottom-bar " >
+    <a href="profile.html">
+        <i class = "icon ion-android-person ics ics-right"></i>
+    </a>
+</md-toolbar>
+
+</body>
+</html>

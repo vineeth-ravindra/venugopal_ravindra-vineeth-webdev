@@ -28,13 +28,13 @@
 </head>
 <body ng-controller="xyz"  md-theme="docs-dark" layout="column">
 <md-toolbar class="tool-bar-color">
-    <a href="website-list.html">
-        <i class="icon ion-ios-arrow-back ics"></i>
-    </a>
+    <md-button class="button-with-icon-fix button-with-icon-fix-left" href="website-list.html">
+        <i class="icon ics ion-ios-arrow-back "></i>
+    </md-button>
     <h1>New Website</h1>
-    <a href="website-list.html">
-        <i class = "icon ion-checkmark ics ics-right"></i>
-    </a>
+    <md-button class="ics-right button-with-icon-fix"  href="website-list.html">
+        <i class = "icon ion-checkmark ics"></i>
+    </md-button>
 </md-toolbar>
 <div layout="row" flex>
     <md-sidenav md-is-locked-open="$mdMedia('gt-sm')" class="side-nav">
@@ -86,20 +86,20 @@
             <div class="large-box" layout-gt-xs="column" layout-xs="column" >
                 <md-input-container>
                 <label>Name</label>
-                <input>
+                <input type="text" class="font-size-adjust">
                 </md-input-container>
                 <md-input-container class="md-block">
                     <label>Biography</label>
-                    <textarea rows="5" md-select-on-focus=""></textarea>
+                    <textarea rows="5" md-select-on-focus="" class="font-size-adjust"></textarea>
                 </md-input-container>
             </div>
         </md-content>
     </md-content>
 </div>
 <md-toolbar   class="tool-bar-color bottom-bar " >
-    <a href="profile.html">
-        <i class = "icon ion-android-person ics ics-right"></i>
-    </a>
+    <md-button class="ics-right button-with-icon-fix" href="profile.html">
+        <i class = "icon  ics ion-android-person"></i>
+    </md-button>
 </md-toolbar>
 </body>
 </html>

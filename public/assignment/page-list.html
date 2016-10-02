@@ -28,13 +28,13 @@
 </head>
 <body ng-controller="xyz"  md-theme="docs-dark" layout-gt-xs="column" layout-xs="column">
 <md-toolbar class="tool-bar-color">
-    <a href="website-list.html">
+    <md-button class="button-with-icon-fix button-with-icon-fix-left" href="website-list.html">
         <i class="icon ion-ios-arrow-back ics"></i>
-    </a>
-    <h1>Page List</h1>
-    <a href="page-new.html">
-        <i class = "icon ion-plus ics ics-right"></i>
-    </a>
+    </md-button>
+    <h1>Pages</h1>
+    <md-button class="ics-right button-with-icon-fix" href="page-new.html">
+        <i class = "icon ion-plus ics"></i>
+    </md-button>
 </md-toolbar>
 <md-content>
     <div class="large-box" layout-gt-xs="column" layout-xs="column" >
@@ -93,9 +93,9 @@
     </div>
 </md-content>
 <md-toolbar   class="tool-bar-color bottom-bar " >
-    <a href="profile.html">
-        <i class = "icon ion-android-person ics ics-right"></i>
-    </a>
+    <md-button href="profile.html" class="ics-right button-with-icon-fix">
+        <i class = "icon ion-android-person ics"></i>
+    </md-button>
 </md-toolbar>
 
 </body>

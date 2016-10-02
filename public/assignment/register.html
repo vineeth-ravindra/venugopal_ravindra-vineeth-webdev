@@ -71,17 +71,17 @@
             <form name="form"  layout-gt-xs="column" layout-xs="column">
                 <md-input-container>
                     <label class="align-left">User Name</label>
-                    <input ng-model="user.username"  required>
+                    <input ng-model="user.username" class="font-size-adjust" required>
                 </md-input-container>
 
                 <md-input-container>
                     <label class="align-left">Password</label>
-                    <input ng-model="user.password"  type="password" name="password" required>
+                    <input ng-model="user.password"  type="password" class="font-size-adjust" name="password" required>
                 </md-input-container>
 
                 <md-input-container>
                     <label class="align-left">Verify Password</label>
-                    <input ng-model="user.password_verify" type="password" name="confirm" pw-check='pw1'
+                    <input ng-model="user.password_verify" type="password" class="font-size-adjust" name="confirm" pw-check='pw1'
                            required data-password-verify="user.password">
                 </md-input-container>
                 <md-button ng-show='!form.confirm.$error.passwordVerify'

@@ -14,7 +14,7 @@
     <script>
         angular.module("loginApp",['ngMaterial'])
             .controller("xyz",function ($scope) {
-                console.log("Hello world");
+
             }).
             config(function($mdThemingProvider) {
                 $mdThemingProvider.theme('docs-dark', 'default')
@@ -30,18 +30,17 @@
         <md-content>
         <div  class = "center-box" layout-gt-xs="column" layout-xs="column" layout-padding>
             <h1> LOG IN</h1>
-            <!--<div class="line"></div>-->
             <md-divider></md-divider>
             <form  layout-gt-xs="column" layout-xs="column">
                 <div layout-gt-xs="column" layout-xs="column">
                     <md-input-container>
                         <label class="align-left">User Name</label>
-                        <input ng-model="user.title">
+                        <input ng-model="user.title" class="font-size-adjust">
                     </md-input-container>
 
                     <md-input-container>
                         <label class="align-left">Password</label>
-                        <input ng-model="user.email" type="password">
+                        <input ng-model="user.email" type="password" class="font-size-adjust">
                     </md-input-container>
                     <md-button class="md-accent md-raised" layout-gt-xs="column" layout-xs="column" href="profile.html">
                         Login
