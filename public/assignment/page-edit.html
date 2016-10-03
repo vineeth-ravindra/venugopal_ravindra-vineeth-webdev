@@ -8,7 +8,7 @@
     <script src="https://code.angularjs.org/1.5.0-rc.2/angular-animate.min.js"></script>
     <script src="https://code.angularjs.org/1.5.0-rc.2/angular-aria.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-material/1.1.1/angular-material.min.js"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/angular-material/1.1.1/angular-material.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/angular-material/1.1.1/angular-material.min.css"><link rel="stylesheet" href="./bower_components/angular-material/angular-material.css">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400" rel="stylesheet">
     <link rel="stylesheet" href="./css/app.css">
     <link rel="stylesheet" href="http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
@@ -26,34 +26,101 @@
         });
     </script>
 </head>
-<body ng-controller="xyz"  md-theme="docs-dark" layout-gt-xs="column" layout-xs="column">
-<md-toolbar class="tool-bar-color">
-    <md-button class="button-with-icon-fix button-with-icon-fix-left" href="page-list.html">
-        <i class="icon ics ion-ios-arrow-back"></i>
-    </md-button>
-    <h1>Edit Page</h1>
-    <md-button class="ics-right button-with-icon-fix" href="page-list.html">
-        <i class = "icon ion-checkmark ics ics-right"></i>
-    </md-button>
-</md-toolbar>
-<md-content>
-    <div class="large-box" layout-gt-xs="column" layout-xs="column" >
-        <md-input-container>
-            <label>Name</label>
-            <input ng-model="name" placeholder="Page Name" class="font-size-adjust">
-        </md-input-container>
-        <md-input-container>
-            <label>Title</label>
-            <input ng-model="title" placeholder="Page Title" class="font-size-adjust">
-        </md-input-container>
-        <md-button class="md-warn md-raised" href="page-list.html"> Delete </md-button>
+<body ng-controller="xyz" md-theme="docs-dark"  layout="column">
+<div layout="row"  flex>
+    <md-sidenav md-component-id="left" class="side-nav" md-is-locked-open="$mdMedia('gt-sm')" md-component-id="left" class="md-whiteframe-4dp" >
+        <md-toolbar class="tool-bar-color bottom-bar">
+            <md-button class="button-with-icon-fix button-with-icon-fix-left" href="page-list.html">
+                <i class="icon ics ion-ios-arrow-back "></i>
+            </md-button>
+            <h1>Pages</h1>
+            <md-button class="ics-right button-with-icon-fix"  href="page-new.html">
+                <i class = "icon ion-plus ics"></i>
+            </md-button>
+        </md-toolbar>
+        <md-list>
+            <md-list>
+                <md-list-item>
+                    <p>
+                        <md-button class="transform-text" href="widget-list.html">
+                            Blog Post
+                        </md-button>
+                    </p>
+                    <md-button href="page-edit.html">
+                        <i class="icon ion-gear-a ics ics-right"></i>
+                    </md-button>
+                </md-list-item>
+                <md-list-item>
+                    <p>
+                        <md-button class="transform-text" href="widget-list.html">
+                            Blogs
+                        </md-button>
+                    </p>
+                    <md-button href="page-edit.html">
+                        <i class="icon ion-gear-a ics ics-right"></i>
+                    </md-button>
+                </md-list-item>
+                <md-list-item>
+                    <p>
+                        <md-button class="transform-text" href="widget-list.html">
+                            Home
+                        </md-button>
+                    </p>
+                    <md-button href="page-edit.html">
+                        <i class="icon ion-gear-a ics ics-right"></i>
+                    </md-button>
+                </md-list-item>
+                <md-list-item>
+                    <p>
+                        <md-button class="transform-text" href="widget-list.html">
+                            About Us
+                        </md-button>
+                    </p>
+                    <md-button href="page-edit.html">
+                        <i class="icon ion-gear-a ics ics-right"></i>
+                    </md-button>
+                </md-list-item>
+                <md-list-item>
+                    <p>
+                        <md-button class="transform-text" href="widget-list.html">
+                            Contact Us
+                        </md-button>
+                    </p>
+                    <md-button href="page-edit.html">
+                        <i class="icon ion-gear-a ics ics-right"></i>
+                    </md-button>
+                </md-list-item>
+            </md-list>
+    </md-sidenav>
+    <div layout="column" flex>
+        <md-toolbar class="tool-bar-color">
+            <md-button class="button-with-icon-fix button-with-icon-fix-left" href="page-list.html"  hide-gt-sm>
+                <i class="icon ion-ios-arrow-back ics"></i>
+            </md-button>
+            <h1>Edit Page</h1>
+            <md-button class="ics-right button-with-icon-fix" href="page-list.html">
+                <i class = "icon ion-checkmark ics"></i>
+            </md-button>
+        </md-toolbar>
+        <md-content id="content" flex>
+            <div class="large-box" layout-gt-xs="column" layout-xs="column" >
+                <md-input-container>
+                    <label>Name</label>
+                    <input ng-model="name" placeholder="Page Name" class="font-size-adjust">
+                </md-input-container>
+                <md-input-container>
+                    <label>Title</label>
+                    <input ng-model="title" placeholder="Page Title" class="font-size-adjust">
+                </md-input-container>
+                <md-button class="md-warn md-raised" href="page-list.html"> Delete </md-button>
+            </div>
+        </md-content>
     </div>
-</md-content>
+</div>
 <md-toolbar   class="tool-bar-color bottom-bar " >
     <md-button class="ics-right button-with-icon-fix" href="profile.html">
-        <i class = "icon ion-android-person ics ics-right"></i>
+        <i class = "icon  ics ion-android-person"></i>
     </md-button>
 </md-toolbar>
-
 </body>
 </html>
