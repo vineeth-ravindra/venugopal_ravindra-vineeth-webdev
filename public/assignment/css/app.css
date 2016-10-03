@@ -74,9 +74,11 @@ Custom tool bar
     width: 100%;
 }
 .bottom-bar{
+    position: absolute;
     bottom: 0!important;
     left: 0;
     width: 100%;
+    z-index: 1000;
 }
 
 /****************
@@ -102,9 +104,10 @@ md-button {
 Profile.html
 ****************/
 .large-box {
-    min-height: calc(100vh - 20px);
+    /*min-height: calc(100vh - 20px);*/
     margin: auto;
     padding: 10px;
+    margin-bottom: 15% ;
 }
 
 /****************
