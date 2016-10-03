@@ -71,6 +71,7 @@ Custom tool bar
     padding-left: 10px!important;
     padding-right: 0px!important;
     color:#fff;
+    width: 100%;
 }
 .bottom-bar{
     bottom: 0!important;
