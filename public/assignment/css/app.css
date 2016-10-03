@@ -147,3 +147,14 @@ widget list
 .button-with-icon-fix-left{
     text-align: left!important;
 }
+
+/******************/
+/*custom side nav*/
+/******************/
+.fix-header {
+    position: fixed;!important;
+}
+.padd-div-content{
+    position: relative;
+    margin-top: 70px;
+}
