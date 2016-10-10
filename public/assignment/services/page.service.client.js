@@ -4,53 +4,50 @@
 (function(){
     angular
         .module("WebAppMaker")
-        .factory("WebsiteService",WebsiteService);
-    function WebsiteService(){
-        var website = [
-            { "_id": "123", "name": "Facebook",    "developerId": "456" },
-            { "_id": "234", "name": "Tweeter",     "developerId": "456" },
-            { "_id": "456", "name": "Gizmodo",     "developerId": "456" },
-            { "_id": "567", "name": "Tic Tac Toe", "developerId": "123" },
-            { "_id": "678", "name": "Checkers",    "developerId": "123" },
-            { "_id": "789", "name": "Chess",       "developerId": "234" }
+        .factory("PageService",WebsiteService);
+    function PageService(){
+        var pages = [
+            { "_id": "321", "name": "Post 1", "websiteId": "456" },
+            { "_id": "432", "name": "Post 2", "websiteId": "456" },
+            { "_id": "543", "name": "Post 3", "websiteId": "456" }
         ];
         var api = {
-            "createWebsite" : "createWebsite",
-            "findWebsitesByUser" : "findWebsitesByUser",
-            "findWebsiteById":"findWebsiteById",
-            "updateWebsite":"updateWebsite",
-            "deleteWebsite":"deleteWebsite"
-        }
+            "createPage" : "createPage",
+            "findPageByWebsiteId" : "findPageByWebsiteId",
+            "findPageById":"findPageById",
+            "updatePage":"updatePage",
+            "deletePage":"deletePage"
+        };
         return api;
-        function createWebsite(userId,site){
-            site.developedId = userId;
-            website.push(site);
+        function createPage(websiteId,page){
+            page.websiteId = websiteId;
+            pages.push(page);
         }
-        function findWebsitesByUser(userId){
-            for(var i=0;i<website.length;i++){
-                if(website[i]._id == userId)
-                    return website[i];
+        function findPageByWebsiteId(websiteId){
+            for(var i=0;i<pages.length;i++){
+                if(pages[i].websiteId == websiteId)
+                    return pages[i];
             }
             return false;
         }
-        function findWebsiteById(websiteId){
-            for(var i=0;i<website.length;i++){
-                if(website[i]._id == websiteId)
-                    return website[i];
+        function findPageById(pageId){
+            for(var i=0;i<page.length;i++){
+                if(page[i]._id == pageId)
+                    return pages[i];
             }
             return false;
         }
-        function updateWebsite(websiteId,website) {
-            var w = findWebsiteById(websiteId);
+        function updatePage(pageId,page) {
+            var w = findPageByWebsiteId(pageId);
             if(w) {
-                w = website;
+                w = page;
             }
             return false;
         }
-        function deleteWebsite(websiteId) {
-            for(var i=0;i<website.length;i++){
-                if(website[i]._id == websiteId)
-                    website.splice(i,1);
+        function deletePage(pageId) {
+            for(var i=0;i<pages.length;i++){
+                if(pages[i]._id == pageId)
+                    pages.splice(i,1);
             }
         }
     }
