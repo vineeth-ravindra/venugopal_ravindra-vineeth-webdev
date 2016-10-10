@@ -1,92 +1,60 @@
-<!DOCTYPE html>
-<html lang="en" ng-app="profileApp">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width">
-    <title>My App</title>
-    <script src="https://code.angularjs.org/1.5.0-rc.2/angular.min.js"></script>
-    <script src="https://code.angularjs.org/1.5.0-rc.2/angular-animate.min.js"></script>
-    <script src="https://code.angularjs.org/1.5.0-rc.2/angular-aria.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-material/1.1.1/angular-material.min.js"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/angular-material/1.1.1/angular-material.min.css">
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400" rel="stylesheet">
-    <link rel="stylesheet" href="./css/app.css">
-    <link rel="stylesheet" href="http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
-    <script>
-        angular.module("profileApp",['ngMaterial'])
-                .controller("xyz",function ($scope) {
-                    console.log("Hello world");
-                }).
-        config(function($mdThemingProvider) {
-            $mdThemingProvider.theme('docs-dark', 'default')
-                    .primaryPalette('pink')
-                    .accentPalette('green')
-                    .dark();
-
-        });
-    </script>
-</head>
-<body ng-controller="xyz"  md-theme="docs-dark" layout-gt-xs="column" layout-xs="column">
-    <md-toolbar class="tool-bar-color">
-        <md-button class="button-with-icon-fix button-with-icon-fix-left"  href="profile.html">
-            <i class="icon ics ion-ios-arrow-back"></i>
-        </md-button>
-        <h1>Websites</h1>
-        <md-button class="ics-right button-with-icon-fix" href="website-new.html">
-            <i class = "icon ion-plus-round ics"></i>
-        </md-button>
-    </md-toolbar>
-    <md-content>
-        <div class="large-box" layout-gt-xs="column" layout-xs="column" >
-            <md-list>
-                <md-list-item>
-                    <p>
-                        <md-button class="transform-text" href="page-list.html">
-                            Address book app
-                        </md-button>
-                    </p>
-                    <md-button href="website-edit.html">
-                        <i class="icon ion-gear-a ics ics-right"></i>
+<md-toolbar class="tool-bar-color">
+    <md-button class="button-with-icon-fix button-with-icon-fix-left"  href="profile.html">
+        <i class="icon ics ion-ios-arrow-back"></i>
+    </md-button>
+    <h1>Websites</h1>
+    <md-button class="ics-right button-with-icon-fix" href="website-new.html">
+        <i class = "icon ion-plus-round ics"></i>
+    </md-button>
+</md-toolbar>
+<md-content>
+    <div class="large-box" layout-gt-xs="column" layout-xs="column" >
+        <md-list>
+            <md-list-item>
+                <p>
+                    <md-button class="transform-text" href="page-list.html">
+                        Address book app
                     </md-button>
-                </md-list-item>
-                <md-list-item>
-                    <p>
-                        <md-button class="transform-text" href="page-list.html">
-                            Blogger
-                        </md-button>
-                    </p>
-                    <md-button href="website-edit.html">
-                        <i class="icon ion-gear-a ics ics-right"></i>
+                </p>
+                <md-button href="website-edit.html">
+                    <i class="icon ion-gear-a ics ics-right"></i>
+                </md-button>
+            </md-list-item>
+            <md-list-item>
+                <p>
+                    <md-button class="transform-text" href="page-list.html">
+                        Blogger
                     </md-button>
-                </md-list-item>
-                <md-list-item>
-                    <p>
-                        <md-button class="transform-text" href="page-list.html">
-                            Blogging App
-                        </md-button>
-                    </p>
-                    <md-button href="website-edit.html">
-                        <i class="icon ion-gear-a ics ics-right"></i>
+                </p>
+                <md-button href="website-edit.html">
+                    <i class="icon ion-gear-a ics ics-right"></i>
+                </md-button>
+            </md-list-item>
+            <md-list-item>
+                <p>
+                    <md-button class="transform-text" href="page-list.html">
+                        Blogging App
                     </md-button>
-                </md-list-item>
-                <md-list-item>
-                    <p>
-                        <md-button class="transform-text" href="page-list.html">
-                            Script Testing App
-                        </md-button>
-                    </p>
-                    <md-button href="website-edit.html">
-                        <i class="icon ion-gear-a ics ics-right"></i>
+                </p>
+                <md-button href="website-edit.html">
+                    <i class="icon ion-gear-a ics ics-right"></i>
+                </md-button>
+            </md-list-item>
+            <md-list-item>
+                <p>
+                    <md-button class="transform-text" href="page-list.html">
+                        Script Testing App
                     </md-button>
-                </md-list-item>
-            </md-list>
-        </div>
-    </md-content>
-    <md-toolbar   class="tool-bar-color bottom-bar " >
-        <md-button class="ics-right button-with-icon-fix" href="profile.html">
-            <i class = "icon ics ion-android-person"></i>
-        </md-button>
-    </md-toolbar>
-
-</body>
-</html>
+                </p>
+                <md-button href="website-edit.html">
+                    <i class="icon ion-gear-a ics ics-right"></i>
+                </md-button>
+            </md-list-item>
+        </md-list>
+    </div>
+</md-content>
+<md-toolbar   class="tool-bar-color bottom-bar " >
+    <md-button class="ics-right button-with-icon-fix" href="profile.html">
+        <i class = "icon ics ion-android-person"></i>
+    </md-button>
+</md-toolbar>

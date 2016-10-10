@@ -1,69 +1,38 @@
-<!DOCTYPE html>
-<html lang="en" ng-app="profileApp">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width">
-    <title>My App</title>
-    <script src="https://code.angularjs.org/1.5.0-rc.2/angular.min.js"></script>
-    <script src="https://code.angularjs.org/1.5.0-rc.2/angular-animate.min.js"></script>
-    <script src="https://code.angularjs.org/1.5.0-rc.2/angular-aria.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-material/1.1.1/angular-material.min.js"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/angular-material/1.1.1/angular-material.min.css">
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400" rel="stylesheet">
-    <link rel="stylesheet" href="./css/app.css">
-    <link rel="stylesheet" href="http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
-    <script>
-        angular.module("profileApp",['ngMaterial'])
-                .controller("xyz",function ($scope) {
-                    console.log("Hello world");
-                }).
-        config(function($mdThemingProvider) {
-            $mdThemingProvider.theme('docs-dark', 'default')
-                    .primaryPalette('pink')
-                    .accentPalette('green')
-                    .dark();
+<md-toolbar class="tool-bar-color">
+    <h1>Profile</h1>
+    <md-button class="ics-right button-with-icon-fix" href="profile.html">
+        <i class = "icon ics ion-checkmark"></i>
+    </md-button>
+</md-toolbar>
+<md-content>
+    <div class="large-box" layout-gt-xs="column" layout-xs="column" >
+        <form name="form"  layout-gt-xs="column" layout-xs="column">
+            <md-input-container layout-gt-xs="column" layout-xs="column">
+                <label class="align-left">User Name</label>
+                <input ng-model="user.username" class="font-size-adjust">
+            </md-input-container>
 
-        });
-    </script>
-</head>
-<body ng-controller="xyz"  md-theme="docs-dark" layout-gt-xs="column" layout-xs="column">
-    <md-toolbar class="tool-bar-color">
-        <h1>Profile</h1>
-        <md-button class="ics-right button-with-icon-fix" href="profile.html">
-            <i class = "icon ics ion-checkmark"></i>
-        </md-button>
-    </md-toolbar>
-    <md-content>
-        <div class="large-box" layout-gt-xs="column" layout-xs="column" >
-            <form name="form"  layout-gt-xs="column" layout-xs="column">
-                <md-input-container layout-gt-xs="column" layout-xs="column">
-                    <label class="align-left">User Name</label>
-                    <input ng-model="user.username" class="font-size-adjust">
-                </md-input-container>
+            <md-input-container layout-gt-xs="column" layout-xs="column">
+                <label class="align-left">Email</label>
+                <input ng-model="user.email" class="font-size-adjust">
+            </md-input-container>
 
-                <md-input-container layout-gt-xs="column" layout-xs="column">
-                    <label class="align-left">Email</label>
-                    <input ng-model="user.email" class="font-size-adjust">
-                </md-input-container>
-
-                <md-input-container layout-gt-xs="column" layout-xs="column">
-                    <label class="align-left">First Name</label>
-                    <input ng-model="user.first_name" class="font-size-adjust">
-                </md-input-container>
-                <md-input-container layout-gt-xs="column" layout-xs="column">
-                    <label class="align-left">Last Name</label>
-                    <input ng-model="user.last_name" class="font-size-adjust">
-                </md-input-container>
-                <md-button class="md-accent md-raised"  href="website-list.html"> Websites </md-button>
-                <md-button class="md-warn md-raised" href="login.html"> Logout </md-button>
-            </form>
-        </div>
-    </md-content>
-    <md-toolbar   class="tool-bar-color bottom-bar" >
-        <md-button href="profile.html" class="ics-right button-with-icon-fix">
-            <i class = "icon ics ion-android-person"></i>
-        </md-button>
-    </md-toolbar>
-</body>
-</html>
+            <md-input-container layout-gt-xs="column" layout-xs="column">
+                <label class="align-left">First Name</label>
+                <input ng-model="user.first_name" class="font-size-adjust">
+            </md-input-container>
+            <md-input-container layout-gt-xs="column" layout-xs="column">
+                <label class="align-left">Last Name</label>
+                <input ng-model="user.last_name" class="font-size-adjust">
+            </md-input-container>
+            <md-button class="md-accent md-raised"  href="website-list.html"> Websites </md-button>
+            <md-button class="md-warn md-raised" href="login.html"> Logout </md-button>
+        </form>
+    </div>
+</md-content>
+<md-toolbar   class="tool-bar-color bottom-bar" >
+    <md-button href="profile.html" class="ics-right button-with-icon-fix">
+        <i class = "icon ics ion-android-person"></i>
+    </md-button>
+</md-toolbar>
 

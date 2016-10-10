@@ -1,32 +1,3 @@
-<!DOCTYPE html>
-<html lang="en" ng-app="profileApp">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width">
-    <title>My App</title>
-    <script src="https://code.angularjs.org/1.5.0-rc.2/angular.min.js"></script>
-    <script src="https://code.angularjs.org/1.5.0-rc.2/angular-animate.min.js"></script>
-    <script src="https://code.angularjs.org/1.5.0-rc.2/angular-aria.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-material/1.1.1/angular-material.min.js"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/angular-material/1.1.1/angular-material.min.css">
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400" rel="stylesheet">
-    <link rel="stylesheet" href="./css/app.css">
-    <link rel="stylesheet" href="http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
-    <script>
-        angular.module("profileApp",['ngMaterial'])
-                .controller("xyz",function ($scope) {
-                    console.log("Hello world");
-                }).
-        config(function($mdThemingProvider) {
-            $mdThemingProvider.theme('docs-dark', 'default')
-                    .primaryPalette('pink')
-                    .accentPalette('green')
-                    .dark();
-
-        });
-    </script>
-</head>
-<body ng-controller="xyz"  md-theme="docs-dark" layout-gt-xs="column" layout-xs="column">
 <md-toolbar class="tool-bar-color">
     <md-button class="button-with-icon-fix button-with-icon-fix-left" href="widget-list.html">
         <i class="icon ion-ios-arrow-back ics"></i>
@@ -58,6 +29,3 @@
         <i class = "icon ion-android-person ics"></i>
     </md-button>
 </md-toolbar>
-
-</body>
-</html>

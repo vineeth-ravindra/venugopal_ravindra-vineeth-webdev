@@ -1,59 +1,26 @@
-<!DOCTYPE html>
-<html lang="en" ng-app="loginApp">
-<head>
-    <meta name="viewport" content="width=device-width">
-    <meta charset="UTF-8">
-    <title>My App</title>
-    <script src="https://code.angularjs.org/1.5.0-rc.2/angular.min.js"></script>
-    <script src="https://code.angularjs.org/1.5.0-rc.2/angular-animate.min.js"></script>
-    <script src="https://code.angularjs.org/1.5.0-rc.2/angular-aria.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-material/1.1.1/angular-material.min.js"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/angular-material/1.1.1/angular-material.min.css">
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400" rel="stylesheet">
-    <link rel="stylesheet" href="css/app.css">
-    <script>
-        angular.module("loginApp",['ngMaterial'])
-            .controller("xyz",function ($scope) {
+<md-content>
+<div  class = "center-box" layout-gt-xs="column" layout-xs="column" layout-padding>
+    <h1> LOG IN</h1>
+    <md-divider></md-divider>
+    <form  layout-gt-xs="column" layout-xs="column">
+        <div layout-gt-xs="column" layout-xs="column">
+            <md-input-container>
+                <label class="align-left">User Name</label>
+                <input ng-model="user.title" class="font-size-adjust">
+            </md-input-container>
 
-            }).
-            config(function($mdThemingProvider) {
-                $mdThemingProvider.theme('docs-dark', 'default')
-                        .primaryPalette('pink')
-                        .accentPalette('green')
-                        .dark();
-
-            });
-
-    </script>
-</head>
-<body ng-controller="xyz"  md-theme="docs-dark" layout-gt-xs="column" layout-xs="column">
-        <md-content>
-        <div  class = "center-box" layout-gt-xs="column" layout-xs="column" layout-padding>
-            <h1> LOG IN</h1>
-            <md-divider></md-divider>
-            <form  layout-gt-xs="column" layout-xs="column">
-                <div layout-gt-xs="column" layout-xs="column">
-                    <md-input-container>
-                        <label class="align-left">User Name</label>
-                        <input ng-model="user.title" class="font-size-adjust">
-                    </md-input-container>
-
-                    <md-input-container>
-                        <label class="align-left">Password</label>
-                        <input ng-model="user.email" type="password" class="font-size-adjust">
-                    </md-input-container>
-                    <md-button class="md-accent md-raised" layout-gt-xs="column" layout-xs="column" href="profile.html">
-                        Login
-                    </md-button>
-                    <md-button class="md-primary md-raised" layout-gt-xs="column" layout-xs="column" href="register.html">
-                        Register
-                    </md-button>
-                </div>
-
-            </form>
+            <md-input-container>
+                <label class="align-left">Password</label>
+                <input ng-model="user.email" type="password" class="font-size-adjust">
+            </md-input-container>
+            <md-button class="md-accent md-raised" layout-gt-xs="column" layout-xs="column" href="profile.html">
+                Login
+            </md-button>
+            <md-button class="md-primary md-raised" layout-gt-xs="column" layout-xs="column" href="register.html">
+                Register
+            </md-button>
         </div>
-        </md-content>
 
-
-</body>
-</html>
+    </form>
+</div>
+</md-content>

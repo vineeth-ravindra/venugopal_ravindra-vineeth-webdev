@@ -1,94 +1,26 @@
-<!DOCTYPE html>
-<html lang="en" ng-app="registerApp">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width">
-    <title>My App</title>
-    <script src="https://code.angularjs.org/1.5.0-rc.2/angular.min.js"></script>
-    <script src="https://code.angularjs.org/1.5.0-rc.2/angular-animate.min.js"></script>
-    <script src="https://code.angularjs.org/1.5.0-rc.2/angular-aria.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-material/1.1.1/angular-material.min.js"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/angular-material/1.1.1/angular-material.min.css">
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400" rel="stylesheet">
-    <link rel="stylesheet" href="./css/app.css">
-    <script>
-        angular.module("registerApp",['ngMaterial'])
-                .controller("xyz",function ($scope) {
-                    $scope.user = {};
-                    $scope.validateEmail = function() {
-                        if ($scope.user.password != $scope.user.password2) {
-                            $scope.IsMatch=true;
-                            return false;
-                        }
-                        $scope.IsMatch=false;
-                    }
-                }).
-                config(function($mdThemingProvider) {
-                    $mdThemingProvider.theme('docs-dark', 'default')
-                            .primaryPalette('pink')
-                            .accentPalette('green')
-                            .dark();
+<md-content>
+    <div  class = "center-box" layout-gt-xs="column" layout-xs="column" layout-padding>
+        <h1>REGISTER</h1>
+        <md-divider></md-divider>
+        <form name="form"  layout-gt-xs="column" layout-xs="column">
+            <md-input-container>
+                <label class="align-left">User Name</label>
+                <input ng-model="user.username" class="font-size-adjust" required>
+            </md-input-container>
 
-                }).
-                directive("passwordVerify", function() {
-                    return {
-                        require: "ngModel",
-                        scope: {
-                            passwordVerify: '='
-                        },
-                        link: function(scope, element, attrs, ctrl) {
-                            scope.$watch(function() {
-                                var combined;
+            <md-input-container>
+                <label class="align-left">Password</label>
+                <input ng-model="user.password"  type="password" class="font-size-adjust" name="password" required>
+            </md-input-container>
 
-                                if (scope.passwordVerify || ctrl.$viewValue) {
-                                    combined = scope.passwordVerify + '_' + ctrl.$viewValue;
-                                }
-                                return combined;
-                            }, function(value) {
-                                if (value) {
-                                    ctrl.$parsers.unshift(function(viewValue) {
-                                        var origin = scope.passwordVerify;
-                                        if (origin !== viewValue) {
-                                            ctrl.$setValidity("passwordVerify", false);
-                                            return undefined;
-                                        } else {
-                                            ctrl.$setValidity("passwordVerify", true);
-                                            return viewValue;
-                                        }
-                                    });
-                                }
-                            });
-                        }
-                    };
-                });
-    </script>
-</head>
-<body ng-controller="xyz"  md-theme="docs-dark" layout-gt-xs="column" layout-xs="column">
-    <md-content>
-        <div  class = "center-box" layout-gt-xs="column" layout-xs="column" layout-padding>
-            <h1>REGISTER</h1>
-            <md-divider></md-divider>
-            <form name="form"  layout-gt-xs="column" layout-xs="column">
-                <md-input-container>
-                    <label class="align-left">User Name</label>
-                    <input ng-model="user.username" class="font-size-adjust" required>
-                </md-input-container>
-
-                <md-input-container>
-                    <label class="align-left">Password</label>
-                    <input ng-model="user.password"  type="password" class="font-size-adjust" name="password" required>
-                </md-input-container>
-
-                <md-input-container>
-                    <label class="align-left">Verify Password</label>
-                    <input ng-model="user.password_verify" type="password" class="font-size-adjust" name="confirm" pw-check='pw1'
-                           required data-password-verify="user.password">
-                </md-input-container>
-                <md-button ng-show='!form.confirm.$error.passwordVerify'
-                           class="md-accent md-raised"  href="profile.html"> Register </md-button>
-                <md-button class="md-warn md-raised" href="login.html"> Cancel </md-button>
-            </form>
-        </div>
-    </md-content>
-</body>
-</html>
+            <md-input-container>
+                <label class="align-left">Verify Password</label>
+                <input ng-model="user.password_verify" type="password" class="font-size-adjust" name="confirm" pw-check='pw1'
+                       required data-password-verify="user.password">
+            </md-input-container>
+            <md-button ng-show='!form.confirm.$error.passwordVerify'
+                       class="md-accent md-raised"  href="profile.html"> Register </md-button>
+            <md-button class="md-warn md-raised" href="login.html"> Cancel </md-button>
+        </form>
+    </div>
+</md-content>
