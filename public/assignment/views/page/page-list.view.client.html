@@ -1,71 +1,34 @@
-<body ng-controller="xyz"  md-theme="docs-dark" layout-gt-xs="column" layout-xs="column">
 <md-toolbar class="tool-bar-color">
-    <md-button class="button-with-icon-fix button-with-icon-fix-left" href="website-list.html">
+    <md-button class="button-with-icon-fix button-with-icon-fix-left"
+               ng-click="model.backClicked()"  aria-label="back to website list">
         <i class="icon ion-ios-arrow-back ics"></i>
     </md-button>
     <h1>Pages</h1>
-    <md-button class="ics-right button-with-icon-fix" href="page-new.html">
+    <md-button class="ics-right button-with-icon-fix" ng-click="model.addNewClicked()"
+               aria-label="create new page">
         <i class = "icon ion-plus ics"></i>
     </md-button>
 </md-toolbar>
 <md-content>
     <div class="large-box" layout-gt-xs="column" layout-xs="column" >
         <md-list>
-            <md-list-item>
+            <md-list-item ng-repeat="post in model.websitePages">
                 <p>
-                    <md-button class="transform-text" href="widget-list.html">
-                        Blog Post
+                    <md-button class="transform-text" ng-click="model.openWidget(post)">
+                        {{post.name}}
                     </md-button>
                 </p>
-                <md-button href="page-edit.html">
-                    <i class="icon ion-gear-a ics ics-right"></i>
-                </md-button>
-            </md-list-item>
-            <md-list-item>
-                <p>
-                    <md-button class="transform-text" href="widget-list.html">
-                        Blogs
-                    </md-button>
-                </p>
-                <md-button href="page-edit.html">
-                    <i class="icon ion-gear-a ics ics-right"></i>
-                </md-button>
-            </md-list-item>
-            <md-list-item>
-                <p>
-                    <md-button class="transform-text" href="widget-list.html">
-                        Home
-                    </md-button>
-                </p>
-                <md-button href="page-edit.html">
-                    <i class="icon ion-gear-a ics ics-right"></i>
-                </md-button>
-            </md-list-item>
-            <md-list-item>
-                <p>
-                    <md-button class="transform-text" href="widget-list.html">
-                        About Us
-                    </md-button>
-                </p>
-                <md-button href="page-edit.html">
-                    <i class="icon ion-gear-a ics ics-right"></i>
-                </md-button>
-            </md-list-item>
-            <md-list-item>
-                <p>
-                    <md-button class="transform-text" href="widget-list.html">
-                        Contact Us
-                    </md-button>
-                </p>
-                <md-button href="page-edit.html">
+                <md-button aria-label="site settings" ng-click="model.pageSettingsClicked(post)">
                     <i class="icon ion-gear-a ics ics-right"></i>
                 </md-button>
             </md-list-item>
         </md-list>
+
     </div>
 </md-content>
 <md-toolbar   class="tool-bar-color bottom-bar " >
-    <md-button href="profile.html" class="ics-right button-with-icon-fix">
+    <md-button ng-click="model.profileClicked()" class="ics-right button-with-icon-fix"
+               aria-label="go to profile page">
         <i class = "icon ion-android-person ics"></i>
     </md-button>
 </md-toolbar>

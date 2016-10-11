@@ -58,7 +58,7 @@
             return false;
         }
         function updateUser(userId,user) {
-            var u = getUserbyId(userId);
+            var u = findUserById(userId);
             if(user) {
                 u = user;
             }

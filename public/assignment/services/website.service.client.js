@@ -37,8 +37,7 @@
                 if(website[i].developerId == userId)
                     returnList.push(website[i])
             }
-            if(returnList.length>0) return returnList;
-            else return false;
+            return returnList;
         }
         function findWebsiteById(websiteId){
             for(var i=0;i<website.length;i++){

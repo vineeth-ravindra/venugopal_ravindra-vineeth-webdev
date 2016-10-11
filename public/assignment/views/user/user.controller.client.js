@@ -83,8 +83,12 @@
             vm.person = person;
             vm.goToWebsite = goToWebsite;
             vm.logout = logout;
-
+            function init(){
+                vm.user = UserService.findUserById($routeParams.uid);
+                console.log(vm.user);
+            }
             function ok(){
+                UserService.updateUser($routeParams.uid,vm.user);
                 $location.url("/user/" +$routeParams.uid);
             }
             function person(){
@@ -96,5 +100,6 @@
             function logout() {
                 $location.url("/login");
             }
+            init();
         }
 })();

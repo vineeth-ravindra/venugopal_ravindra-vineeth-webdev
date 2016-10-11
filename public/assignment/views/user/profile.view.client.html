@@ -9,21 +9,21 @@
         <form name="form"  layout-gt-xs="column" layout-xs="column">
             <md-input-container layout-gt-xs="column" layout-xs="column">
                 <label class="align-left">User Name</label>
-                <input ng-model="user.username" class="font-size-adjust">
+                <input ng-model="model.user.username" class="font-size-adjust">
             </md-input-container>
 
             <md-input-container layout-gt-xs="column" layout-xs="column">
                 <label class="align-left">Email</label>
-                <input ng-model="user.email" class="font-size-adjust">
+                <input ng-model="model.user.email" class="font-size-adjust">
             </md-input-container>
 
             <md-input-container layout-gt-xs="column" layout-xs="column">
                 <label class="align-left">First Name</label>
-                <input ng-model="user.first_name" class="font-size-adjust">
+                <input ng-model="model.user.firstName" class="font-size-adjust">
             </md-input-container>
             <md-input-container layout-gt-xs="column" layout-xs="column">
                 <label class="align-left">Last Name</label>
-                <input ng-model="user.last_name" class="font-size-adjust">
+                <input ng-model="model.user.lastName" class="font-size-adjust">
             </md-input-container>
             <md-button class="md-accent md-raised"  ng-click="model.goToWebsite()"> Websites </md-button>
             <md-button class="md-warn md-raised" ng-click="model.logout()"> Logout </md-button>
