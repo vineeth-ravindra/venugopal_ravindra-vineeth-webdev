@@ -34,23 +34,26 @@
                 controller:"WebsiteListController",
                 controllerAs:"model"
             })
+            .when("/user/:uid/website/new", {
+                templateUrl: "views/website/website-new.view.client.html",
+                controller:"NewWebsiteController",
+                controllerAs:"model"
+            })
+            .when("/user/:uid/website/:wid/page", {
+                templateUrl: "views/page/page-list.view.client.html",
+                controller:"PageListController",
+                controllerAs:"model"
+            })
+            .when("/user/:uid/website/:wid", {
+                templateUrl: "views/website/website-edit.view.client.html",
+                controller: "EditWebsiteController",
+                controllerAs: "model"
+            })
             .otherwise({
                 redirectTo: "views/user/login.view.client.html",
                 controller: "LoginController",
                 controllerAs: "model"
             });
-            // .when("/user/:uid/website", {
-            //     templateUrl: "/views/website/website-list.view.client.html"
-            // })
-            // .when("/user/:uid/website/new", {
-            //     templateUrl: "/views/website/website-new.view.client.html"
-            // })
-            // .when("/user/:uid/website/:wid", {
-            //     templateUrl: "/views/website/website-edit.view.client.html"
-            // })
-            // .when("/user/:uid/website/:wid/page", {
-            //     templateUrl: "/views/page/page-list.view.client.html"
-            // })
             // .when("/user/:uid/website/:wid/page/new", {
             //     templateUrl: "/views/page/page-new.view.client.html"
             // })

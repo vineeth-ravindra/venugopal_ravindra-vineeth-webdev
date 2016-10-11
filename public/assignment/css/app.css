@@ -97,14 +97,13 @@ md-button {
 }
 .transform-text{
     text-transform: capitalize!important;
-    text-align: left;
+    text-align: left!important;
 }
 
 /****************
 Profile.html
 ****************/
 .large-box {
-    /*min-height: calc(100vh - 20px);*/
     margin: auto;
     padding: 10px;
     margin-bottom: 15% ;

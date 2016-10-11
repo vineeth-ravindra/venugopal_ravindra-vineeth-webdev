@@ -1,54 +1,26 @@
 <div layout="row"  flex>
-    <md-sidenav md-component-id="left" class="side-nav" md-is-locked-open="$mdMedia('gt-sm')" md-component-id="left" class="md-whiteframe-4dp" >
+    <md-sidenav md-component-id="left" class="side-nav" md-is-locked-open="$mdMedia('gt-sm')" md-component-id="left"
+                class="md-whiteframe-4dp" >
         <md-toolbar class="tool-bar-color">
-            <md-button class="button-with-icon-fix button-with-icon-fix-left" href="website-list.html">
+            <md-button class="button-with-icon-fix button-with-icon-fix-left" ng-click="model.backClicked()"
+                       aria-label="website list">
                 <i class="icon ics ion-ios-arrow-back "></i>
             </md-button>
             <h1>Website</h1>
-            <md-button class="ics-right button-with-icon-fix"  href="website-list.html">
+            <md-button class="ics-right button-with-icon-fix"  ng-click="model.addNewClicked()"
+                       aria-label="confirm new website">
                 <i class = "icon ion-plus ics"></i>
             </md-button>
         </md-toolbar>
-        <md-list>
             <md-list>
-                <md-list-item>
+                <md-list-item ng-repeat="website in model.userWebsites">
                     <p>
-                        <md-button href="page-list.html" class="transform-text">
-                            Address book app
+                        <md-button class="transform-text" ng-click="model.openPage(website)">
+                            {{website.name}}
                         </md-button>
                     </p>
-                    <md-button href="website-edit.html">
-                        <i class="icon ion-gear-a ics"></i>
-                    </md-button>
-                </md-list-item>
-                <md-list-item>
-                    <p>
-                        <md-button href="page-list.html" class="transform-text">
-                            Blogger
-                        </md-button>
-                    </p>
-                    <md-button href="website-edit.html">
-                        <i class="icon ion-gear-a ics"></i>
-                    </md-button>
-                </md-list-item>
-                <md-list-item>
-                    <p>
-                        <md-button href="page-list.html" class="transform-text">
-                            Blogging App
-                        </md-button>
-                    </p>
-                    <md-button href="website-edit.html">
-                        <i class="icon ion-gear-a ics"></i>
-                    </md-button>
-                </md-list-item>
-                <md-list-item>
-                    <p>
-                        <md-button href="page-list.html" class="transform-text">
-                            Scrpit Testing
-                        </md-button>
-                    </p>
-                    <md-button href="website-edit.html">
-                        <i class="icon ion-gear-a ics"></i>
+                    <md-button ng-click="model.webSiteSettings(website)" aria-label="site settings">
+                        <i class="icon ion-gear-a ics ics-right"></i>
                     </md-button>
                 </md-list-item>
             </md-list>
@@ -56,11 +28,13 @@
     </md-sidenav>
     <div layout="column" flex>
         <md-toolbar class="tool-bar-color">
-            <md-button class="button-with-icon-fix button-with-icon-fix-left" href="website-list.html" hide-gt-sm>
+            <md-button class="button-with-icon-fix button-with-icon-fix-left" ng-click="model.backClicked()"
+                       aria-label="back to website list" hide-gt-sm>
                 <i class="icon ics ion-ios-arrow-back "></i>
             </md-button>
             <h1> New Website</h1>
-            <md-button class="ics-right button-with-icon-fix"  href="website-list.html">
+            <md-button class="ics-right button-with-icon-fix" aria-label="xyz"
+                       ng-click="model.checkClicked(model.newWebsite)">
                 <i class = "icon ion-checkmark ics"></i>
             </md-button>
         </md-toolbar>
@@ -68,18 +42,19 @@
             <div class="large-box padd-div-content" layout-gt-xs="column" layout-xs="column" >
                 <md-input-container>
                     <label>Name</label>
-                    <input type="text" class="font-size-adjust">
+                    <input type="text" ng-model="model.newWebsite.name" class="font-size-adjust">
                 </md-input-container>
                 <md-input-container class="md-block">
                     <label>Biography</label>
-                    <textarea rows="5" md-select-on-focus="" class="font-size-adjust"></textarea>
+                    <textarea rows="5" ng-model="model.newWebsite.biography" class="font-size-adjust"></textarea>
                 </md-input-container>
             </div>
         </md-content>
     </div>
 </div>
 <md-toolbar   class="tool-bar-color bottom-bar " >
-    <md-button class="ics-right button-with-icon-fix" href="profile.html">
+    <md-button class="ics-right button-with-icon-fix" ng-click="model.profileClicked()"
+               aria-label="go to profile page">
         <i class = "icon  ics ion-android-person"></i>
     </md-button>
 </md-toolbar>

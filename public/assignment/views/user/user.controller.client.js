@@ -83,14 +83,15 @@
             vm.person = person;
             vm.goToWebsite = goToWebsite;
             vm.logout = logout;
+
             function ok(){
-                $location.url("/user/" +$routeParams);
+                $location.url("/user/" +$routeParams.uid);
             }
             function person(){
-                $location.url("/user/" +$routeParams);
+                $location.url("/user/" +$routeParams.uid);
             }
             function goToWebsite(){
-                $location.url("/user/" +$routeParams+"/website");
+                $location.url("/user/" +$routeParams.uid+"/website");
             }
             function logout() {
                 $location.url("/login");

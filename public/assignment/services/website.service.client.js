@@ -15,23 +15,30 @@
             { "_id": "789", "name": "Chess",       "developerId": "234" }
         ];
         var api = {
-            "createWebsite" : "createWebsite",
-            "findWebsitesByUser" : "findWebsitesByUser",
-            "findWebsiteById":"findWebsiteById",
-            "updateWebsite":"updateWebsite",
-            "deleteWebsite":"deleteWebsite"
+            "createWebsite" : createWebsite,
+            "findWebsitesByUser" : findWebsitesByUser,
+            "findWebsiteById": findWebsiteById,
+            "updateWebsite": updateWebsite,
+            "deleteWebsite": deleteWebsite
         }
         return api;
         function createWebsite(userId,site){
             site.developedId = userId;
-            website.push(site);
+            var newSite = {};
+            newSite._id = Math.floor(Math.random()*999) + 1;
+            newSite.name = site.name;
+            newSite.developerId = userId;
+            website.push(newSite);
+            console.log(website);
         }
         function findWebsitesByUser(userId){
+            var returnList = []
             for(var i=0;i<website.length;i++){
-                if(website[i]._id == userId)
-                    return website[i];
+                if(website[i].developerId == userId)
+                    returnList.push(website[i])
             }
-            return false;
+            if(returnList.length>0) return returnList;
+            else return false;
         }
         function findWebsiteById(websiteId){
             for(var i=0;i<website.length;i++){
@@ -43,7 +50,7 @@
         function updateWebsite(websiteId,website) {
             var w = findWebsiteById(websiteId);
             if(w) {
-                w = website;
+                w.name = website.name;
             }
             return false;
         }
