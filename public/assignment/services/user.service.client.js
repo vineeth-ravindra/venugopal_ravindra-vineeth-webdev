@@ -13,33 +13,44 @@
             {_id: "456", username: "jannunzi", password: "jannunzi", firstName: "Jose",   lastName: "Annunzi" }
         ];
         var api = {
-            "createUser" : "createUser",
-            "findUserById" : "findUserById",
-            "findUserByName":"findUserName",
-            "findUserByCredential":"findUserByCredential",
-            "updateUser":"UpdateUser",
-            "deleteUser":"deleteUser"
+            "createUser" : createUser,
+            "findUserById" : findUserById,
+            "findUserByUsername":findUserByUsername,
+            "findUserByCredentials":findUserByCredentials,
+            "updateUser":updateUser,
+            "deleteUser":deleteUser
         }
         return api;
+        function trimUser(user){
+            user.username = user.username.trim();
+            user.firstName = user.firstName.trim();
+            user.lastName = user.lastName.trim();
+            return user;
+        }
         function createUser(user){
+            user = trimUser(user);
+            for(i=0;i<users.length;i++){
+                if(users[i].username === user.username)
+                    return false;
+            }
             users.push(user);
         }
-        function getUserbyId(userId){
+        function findUserById(userId){
             for(var i=0;i<users.length;i++){
                 if(users[i]._id == userId)
                     return users[i];
             }
             return false;
         }
-        function findUserByUserName(userName){
+        function findUserByUsername(userName){
             for(var i=0;i<users.length;i++){
-                if(users[i]._id == userId)
+                if(users[i].username == userName)
                     return users[i];
             }
             return false;
         }
         function findUserByCredentials(username,password) {
-            var user = findUserByUserName(username);
+            var user = findUserByUsername(username);
             if(user) {
                 if(user.password == password)
                     return user;

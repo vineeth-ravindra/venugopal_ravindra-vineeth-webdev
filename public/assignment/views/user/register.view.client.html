@@ -5,22 +5,21 @@
         <form name="form"  layout-gt-xs="column" layout-xs="column">
             <md-input-container>
                 <label class="align-left">User Name</label>
-                <input ng-model="user.username" class="font-size-adjust" required>
+                <input ng-model="model.user.username" class="font-size-adjust" required>
             </md-input-container>
 
             <md-input-container>
                 <label class="align-left">Password</label>
-                <input ng-model="user.password"  type="password" class="font-size-adjust" name="password" required>
+                <input ng-model="model.user.password"  type="password" class="font-size-adjust" required>
             </md-input-container>
 
             <md-input-container>
                 <label class="align-left">Verify Password</label>
-                <input ng-model="user.password_verify" type="password" class="font-size-adjust" name="confirm" pw-check='pw1'
-                       required data-password-verify="user.password">
+                <input ng-model="model.user.password_verify"  type="password" class="font-size-adjust" required>
             </md-input-container>
-            <md-button ng-show='!form.confirm.$error.passwordVerify'
-                       class="md-accent md-raised"  href="profile.html"> Register </md-button>
-            <md-button class="md-warn md-raised" href="login.html"> Cancel </md-button>
+
+            <md-button class="md-accent md-raised"  ng-click="model.register(model.user)"> Register </md-button>
+            <md-button class="md-warn md-raised" href="#login"> Cancel </md-button>
         </form>
     </div>
 </md-content>
