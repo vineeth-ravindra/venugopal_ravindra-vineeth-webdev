@@ -2,12 +2,12 @@
     <md-sidenav md-component-id="left" class="side-nav" md-is-locked-open="$mdMedia('gt-sm')" md-component-id="left"
                 class="md-whiteframe-4dp" >
         <md-toolbar class="tool-bar-color">
-            <md-button class="button-with-icon-fix button-with-icon-fix-left" ng-click="model.backClicked()"
+            <md-button class="button-with-icon-fix button-with-icon-fix-left" ng-click="model.clickEvent('back','')"
                        aria-label="website list">
                 <i class="icon ics ion-ios-arrow-back "></i>
             </md-button>
             <h1>Website</h1>
-            <md-button class="ics-right button-with-icon-fix"  ng-click="model.addNewClicked()"
+            <md-button class="ics-right button-with-icon-fix"  ng-click="model.clickEvent('add',model.newWebsite)"
                        aria-label="confirm new website">
                 <i class = "icon ion-plus ics"></i>
             </md-button>
@@ -15,11 +15,11 @@
             <md-list>
                 <md-list-item ng-repeat="website in model.userWebsites">
                     <p>
-                        <md-button class="transform-text" ng-click="model.openPage(website)">
+                        <md-button class="transform-text" ng-click="model.clickEvent('open',website)">
                             {{website.name}}
                         </md-button>
                     </p>
-                    <md-button ng-click="model.webSiteSettings(website)" aria-label="site settings">
+                    <md-button ng-click="model.clickEvent('settings',website)" aria-label="site settings">
                         <i class="icon ion-gear-a ics ics-right"></i>
                     </md-button>
                 </md-list-item>
@@ -28,13 +28,13 @@
     </md-sidenav>
     <div layout="column" flex>
         <md-toolbar class="tool-bar-color">
-            <md-button class="button-with-icon-fix button-with-icon-fix-left" ng-click="model.backClicked()"
+            <md-button class="button-with-icon-fix button-with-icon-fix-left" ng-click="model.clickEvent('back','')"
                        aria-label="back to website list" hide-gt-sm>
                 <i class="icon ics ion-ios-arrow-back "></i>
             </md-button>
             <h1> New Website</h1>
             <md-button class="ics-right button-with-icon-fix" aria-label="xyz"
-                       ng-click="model.checkClicked(model.newWebsite)">
+                       ng-click="model.clickEvent('new',model.newWebsite)">
                 <i class = "icon ion-checkmark ics"></i>
             </md-button>
         </md-toolbar>
@@ -53,7 +53,7 @@
     </div>
 </div>
 <md-toolbar   class="tool-bar-color bottom-bar " >
-    <md-button class="ics-right button-with-icon-fix" ng-click="model.profileClicked()"
+    <md-button class="ics-right button-with-icon-fix" ng-click="model.clickEvent('profile','')"
                aria-label="go to profile page">
         <i class = "icon  ics ion-android-person"></i>
     </md-button>

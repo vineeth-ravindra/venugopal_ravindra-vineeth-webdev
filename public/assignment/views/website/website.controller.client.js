@@ -9,107 +9,101 @@
         .controller("NewWebsiteController",NewWebsiteController)
         .controller("EditWebsiteController",EditWebsiteController)
 
-        function WebsiteListController(WebsiteService,$routeParams,$location) {
-            var vm =this;
+        function WebsiteListController($routeParams,$location,WebsiteService,RouteService) {
+            var vm = this;
             var userId = $routeParams.uid;
-            vm.openPage = openPage;
-            vm.webSiteSettings = webSiteSettings;
-            vm.backClicked = backClicked;
-            vm.addNewClicked = addNewClicked;
-            vm.profileClicked = profileClicked;
+            vm.clickEvent = clickEvent;
             function init() {
                 vm.userWebsites = WebsiteService.findWebsitesByUser(userId);
             }
-            function webSiteSettings(website){
-                $location.url("/user/"+userId+"/website/"+website._id);
+            function clickEvent(type,website) {
+                if(type==='add'){
+                    $location.url(RouteService.getWebsiteNew(userId));
+                }
+                else if(type==='settings') {
+                    $location.url(RouteService.getWebsiteEdit(userId,website._id));
+                }
+                else if (type==='open'){
+                    $location.url(RouteService.getPageList(userId,website._id))
+                }
+                else if(type==='back'){
+                    $location.url(RouteService.getProfilePage(userId));
+                }
+                else if(type==='profile'){
+                    $location.url(RouteService.getProfilePage(userId));
+                }
             }
-            function openPage(website) {
-                $location.url("/user/"+userId+"/website/"+website._id+"/page");
-            }
-            function backClicked(){
-                $location.url("/user/" +userId);
-            }
-            function addNewClicked(){
-                $location.url("/user/"+userId+"/website/new");
-            }
-            function profileClicked(){
-                $location.url("/user/" +userId);
-            }
-            init()
+            init();
         }
-        function NewWebsiteController(WebsiteService,$routeParams,$location){
-            var vm =this;
+        function NewWebsiteController($routeParams,$location,WebsiteService,RouteService){
+            var vm = this;
             var userId = $routeParams.uid;
-            vm.openPage = openPage;
-            vm.webSiteSettings = webSiteSettings;
-            vm.backClicked = backClicked;
-            vm.addNewClicked = addNewClicked;
-            vm.profileClicked = profileClicked;
-            vm.checkClicked = checkClicked;
-
+            vm.clickEvent = clickEvent;
             function init() {
                 vm.userWebsites = WebsiteService.findWebsitesByUser(userId);
             }
-            function webSiteSettings(website){
-                $location.url("/user/"+userId+"/website/"+website._id);
-            }
-            function openPage(website) {
-                $location.url("/user/"+userId+"/website/"+website._id+"/page");
-            }
-            function backClicked(){
-                $location.url("/user/" +userId +"/website");
-            }
-            function addNewClicked(){
-                $location.url("/user/"+userId+"/website/new");
-            }
-            function profileClicked(){
-                $location.url("/user/" +userId);
-            }
-            function checkClicked(newWebsite){
-                WebsiteService.createWebsite(userId,newWebsite);
-                $location.url("/user/" +userId +"/website");
+            function clickEvent(type,website) {
+                if(type==='add'){
+                    $location.url(RouteService.getWebsiteNew(userId));
+                }
+                else if(type==='settings') {
+                    $location.url(RouteService.getWebsiteEdit(userId,website._id));
+                }
+                else if (type==='open') {
+                    $location.url(RouteService.getPageList(userId,website._id))
+                }
+                else if(type==='back') {
+                    $location.url(RouteService.getWebsiteList(userId));
+                }
+                else if(type==='profile'){
+                    $location.url(RouteService.getProfilePage(userId));
+                }
+                else if(type=='new') {
+                    if(website)
+                        WebsiteService.createWebsite(userId,website);
+                        $location.url(RouteService.getWebsiteList(userId));
+                }
             }
             init()
 
         }
-        function EditWebsiteController(WebsiteService,$routeParams,$location){
+        function EditWebsiteController($routeParams,$location,WebsiteService,RouteService){
             var vm =this;
             var userId = $routeParams.uid;
-            vm.openPage = openPage;
-            vm.webSiteSettings = webSiteSettings;
-            vm.backClicked = backClicked;
-            vm.addNewClicked = addNewClicked;
-            vm.profileClicked = profileClicked;
-            vm.checkClicked = checkClicked;
-            vm.deleteClicked = deleteClicked;
-
+            var websiteId = $routeParams.wid;
+            vm.clickEvent = clickEvent;
             function init() {
                 vm.userWebsites = WebsiteService.findWebsitesByUser(userId);
+                vm.currentWebsite = WebsiteService.findWebsiteById(websiteId);
             }
-            function webSiteSettings(website){
-                $location.url("/user/"+userId+"/website/"+website._id);
-            }
-            function openPage(website) {
-                $location.url("/user/"+userId+"/website/"+website._id+"/page");
-            }
-            function backClicked(){
-                $location.url("/user/" +userId +"/website");
-            }
-            function addNewClicked(){
-                console.log("Hel");
-                $location.url("/user/"+userId+"/website/new");
-            }
-            function profileClicked(){
-                $location.url("/user/" +userId);
-            }
-            function checkClicked(newWebsite) {
-                WebsiteService.updateWebsite($routeParams.wid,newWebsite);
-                $location.url("/user/" +userId +"/website");
-            }
-            function deleteClicked(newWebsite){
-                WebsiteService.deleteWebsite($routeParams.wid);
-                $location.url("/user/" +userId +"/website");
+            function clickEvent(type,website) {
+                if(type==='add'){
+                    $location.url(RouteService.getWebsiteNew(userId));
+                }
+                else if(type==='settings') {
+                    $location.url(RouteService.getWebsiteEdit(userId,website._id));
+                }
+                else if (type==='open') {
+                    $location.url(RouteService.getPageList(userId,website._id))
+                }
+                else if(type==='back') {
+                    $location.url(RouteService.getWebsiteList(userId));
+                }
+                else if(type==='profile'){
+                    $location.url(RouteService.getProfilePage(userId));
+                }
+                else if(type==='edit') {
+                    if(website){
+                        WebsiteService.updateWebsite($routeParams.wid,website);
+                    }
+                    $location.url(RouteService.getWebsiteList(userId));
+                }
+                else if(type==='delete'){
+                    WebsiteService.deleteWebsite($routeParams.wid);
+                    $location.url(RouteService.getWebsiteList(userId));  
+                }
             }
             init()
         }
 })();
+

@@ -3,12 +3,12 @@
                 md-component-id="left" class="md-whiteframe-4dp" >
         <md-toolbar class="tool-bar-color">
             <md-button class="button-with-icon-fix button-with-icon-fix-left"  aria-label="back to website list"
-                       ng-click="model.backClicked()">
+                       ng-click="model.clickEvent('back','')">
                 <i class="icon ics ion-ios-arrow-back "></i>
             </md-button>
             <h1>Website</h1>
             <md-button class="ics-right button-with-icon-fix" aria-label="add new site"
-                       ng-click="model.addNewClicked()">
+                       ng-click="model.clickEvent('add',model.newWebsite)">
                 <i class = "icon ion-plus ics"></i>
             </md-button>
         </md-toolbar>
@@ -16,11 +16,11 @@
             <md-list>
                 <md-list-item ng-repeat="website in model.userWebsites">
                     <p>
-                        <md-button class="transform-text" ng-click="model.openPage(website)">
+                        <md-button class="transform-text" ng-click="model.clickEvent('open',website)">
                             {{website.name}}
                         </md-button>
                     </p>
-                    <md-button ng-click="model.webSiteSettings(website)" aria-label="site settings">
+                    <md-button ng-click="model.clickEvent('settings',website)" aria-label="site settings">
                         <i class="icon ion-gear-a ics ics-right"></i>
                     </md-button>
                 </md-list-item>
@@ -29,13 +29,13 @@
     <div layout="column" flex>
         <md-toolbar class="tool-bar-color">
             <md-button class="button-with-icon-fix button-with-icon-fix-left" aria-label="back to website list"
-                       ng-click="model.backClicked()" hide-gt-sm>
+                       ng-click="model.clickEvent('back','')" hide-gt-sm>
                 <i class="icon ics ion-ios-arrow-back "></i>
             </md-button>
             <h1> Edit Website</h1>
 
             <md-button class="ics-right button-with-icon-fix"  aria-label="back to website list"
-                       ng-click="model.checkClicked(model.editWebsite)">
+                       ng-click="model.clickEvent('edit',model.editWebsite)">
                 <i class = "icon ion-checkmark ics"></i>
             </md-button>
         </md-toolbar>
@@ -43,15 +43,16 @@
             <div class="large-box padd-div-content" layout-gt-xs="column" layout-xs="column" >
                 <md-input-container class="md-block">
                     <label>Name</label>
-                    <input ng-model="model.editWebsite.name" md-select-on-focus="" class="font-size-adjust">
+                    <input ng-model="model.editWebsite.name" md-select-on-focus="" class="font-size-adjust" 
+                    placeholder="{{model.currentWebsite.name}}">
                 </md-input-container>
                 <md-input-container class="md-block">
                     <label>Website Description</label>
                     <textarea rows="5" md-select-on-focus="" ng-model="model.editWebsite.description"
-                              class="font-size-adjust">Blogger is a blog publishing service that allows multiple...
+                              class="font-size-adjust">
                     </textarea>
                 </md-input-container>
-                <md-button class="md-warn md-raised" ng-click="model.deleteClicked()" "> Delete </md-button>
+                <md-button class="md-warn md-raised" ng-click="model.clickEvent('delete',model.editWebsite)" "> Delete </md-button>
             </div>
         </md-content>
     </div>
