@@ -1,8 +1,6 @@
 /**
  * Created by Vineeth on 10/8/16.
  */
-
-
 (function() {
     angular
         .module("WebAppMaker")
@@ -52,40 +50,26 @@
             .when("/user/:uid/website/:wid/page/new", {
                 templateUrl: "views/page/page-new.view.client.html",
                 controller:"NewPageController",
-                model:"model"
+                controllerAs:"model"
             })
             .when("/user/:uid/website/:wid/page/:pid", {
                 templateUrl: "views/page/page-edit.view.client.html",
                 controller:"EditPageController",
-                model:"model"
+                controllerAs:"model"
             })
             .when("/user/:uid/website/:wid/page/:pid/widget", {
                 templateUrl: "views/widget/widget-list.view.client.html",
                 controller:"WidgetListController",
-                model:"model"
+                controllerAs:"model"
             })
             .otherwise({
-                redirectTo: "views/user/login.view.client.html",
+                redirectTo: "/",
                 controller: "LoginController",
                 controllerAs: "model"
             });
-            // .when("/user/:uid/website/:wid/page/:pid/widget/new", {
-            //     templateUrl: "/views/widget/widget-chooser.view.client.html"
-            // })
-            // .when("/user/:uid/website/:wid/page/:pid/widget/:wgid", {
-            //     templateUrl: "/views/widget/widget-edit.view.client.html"
-            // })
-
         $mdThemingProvider.theme('docs-dark', 'default')
             .primaryPalette('pink')
             .accentPalette('green')
             .dark();
     }
 })();
-
-
-// Add
-//     .when("/login", {
-//         templateUrl: "/views/user/login.view.client.html"
-//     })
-// and default
