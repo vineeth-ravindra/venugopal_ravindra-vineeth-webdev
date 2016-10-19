@@ -1,75 +1,37 @@
 <div layout="row"  flex>
     <md-sidenav md-component-id="left" class="side-nav" md-is-locked-open="$mdMedia('gt-sm')" md-component-id="left" class="md-whiteframe-4dp" >
         <md-toolbar class="tool-bar-color">
-            <md-button class="button-with-icon-fix button-with-icon-fix-left" href="page-list.html">
+            <md-button class="button-with-icon-fix button-with-icon-fix-left" ng-click="model.clickEvent('back','')"
+                       aria-label="back to page list">
                 <i class="icon ics ion-ios-arrow-back "></i>
             </md-button>
             <h1>Pages</h1>
-            <md-button class="ics-right button-with-icon-fix"  href="page-new.html">
+            <md-button class="ics-right button-with-icon-fix"  ng-click="model.clickEvent('add','')"
+                       aria-label="add new website">
                 <i class = "icon ion-plus ics"></i>
             </md-button>
         </md-toolbar>
         <md-list>
-            <md-list>
-                <md-list-item>
-                    <p>
-                        <md-button class="transform-text" href="widget-list.html">
-                            Blog Post
-                        </md-button>
-                    </p>
-                    <md-button href="page-edit.html">
-                        <i class="icon ion-gear-a ics ics-right"></i>
+            <md-list-item ng-repeat="post in model.websitePages">
+                <p>
+                    <md-button class="transform-text" ng-click="model.clickEvent('open',post)">
+                        {{post.name}}
                     </md-button>
-                </md-list-item>
-                <md-list-item>
-                    <p>
-                        <md-button class="transform-text" href="widget-list.html">
-                            Blogs
-                        </md-button>
-                    </p>
-                    <md-button href="page-edit.html">
-                        <i class="icon ion-gear-a ics ics-right"></i>
-                    </md-button>
-                </md-list-item>
-                <md-list-item>
-                    <p>
-                        <md-button class="transform-text" href="widget-list.html">
-                            Home
-                        </md-button>
-                    </p>
-                    <md-button href="page-edit.html">
-                        <i class="icon ion-gear-a ics ics-right"></i>
-                    </md-button>
-                </md-list-item>
-                <md-list-item>
-                    <p>
-                        <md-button class="transform-text" href="widget-list.html">
-                            About Us
-                        </md-button>
-                    </p>
-                    <md-button href="page-edit.html">
-                        <i class="icon ion-gear-a ics ics-right"></i>
-                    </md-button>
-                </md-list-item>
-                <md-list-item>
-                    <p>
-                        <md-button class="transform-text" href="widget-list.html">
-                            Contact Us
-                        </md-button>
-                    </p>
-                    <md-button href="page-edit.html">
-                        <i class="icon ion-gear-a ics ics-right"></i>
-                    </md-button>
-                </md-list-item>
-            </md-list>
+                </p>
+                <md-button aria-label="site settings" ng-click="model.clickEvent('settings',post)">
+                    <i class="icon ion-gear-a ics ics-right"></i>
+                </md-button>
+            </md-list-item>
+        </md-list>
     </md-sidenav>
     <div layout="column" flex>
         <md-toolbar class="tool-bar-color">
-            <md-button class="button-with-icon-fix button-with-icon-fix-left" href="page-list.html"  hide-gt-sm>
+            <md-button class="button-with-icon-fix button-with-icon-fix-left" ng-click="model.clickEvent('back','')"
+                       aria-label="back to page list" hide-gt-sm>
                 <i class="icon ion-ios-arrow-back ics"></i>
             </md-button>
             <h1>Edit Page</h1>
-            <md-button class="ics-right button-with-icon-fix" href="page-list.html">
+            <md-button class="ics-right button-with-icon-fix" ng-click="model.clickEvent('check','')" aria-label="confirm">
                 <i class = "icon ion-checkmark ics"></i>
             </md-button>
         </md-toolbar>
@@ -77,19 +39,20 @@
             <div class="large-box" layout-gt-xs="column" layout-xs="column" >
                 <md-input-container>
                     <label>Name</label>
-                    <input ng-model="name" placeholder="Page Name" class="font-size-adjust">
+                    <input ng-model="model.data.name" placeholder="Page Name" class="font-size-adjust">
                 </md-input-container>
                 <md-input-container>
                     <label>Title</label>
-                    <input ng-model="title" placeholder="Page Title" class="font-size-adjust">
+                    <input ng-model="model.x.title" placeholder="Page Title" class="font-size-adjust">
                 </md-input-container>
-                <md-button class="md-warn md-raised" href="page-list.html"> Delete </md-button>
+                <md-button class="md-warn md-raised" ng-click="model.clickEvent('delete','')"> Delete </md-button>
             </div>
         </md-content>
     </div>
 </div>
 <md-toolbar   class="tool-bar-color bottom-bar " >
-    <md-button class="ics-right button-with-icon-fix" href="profile.html">
+    <md-button class="ics-right button-with-icon-fix" aria-label="go to profile page"
+               ng-click="model.clickEvent('profile','')">
         <i class = "icon  ics ion-android-person"></i>
     </md-button>
 </md-toolbar>

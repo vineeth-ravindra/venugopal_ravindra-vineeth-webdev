@@ -20,8 +20,13 @@
         };
         return api;
         function createPage(websiteId,page){
+            var obj = {};
+            obj.name = page.name;
+            obj.websiteId = websiteId;
+            obj._id = Math.floor(Math.random()*999) + 1;
             page.websiteId = websiteId;
-            pages.push(page);
+            pages.push(obj);
+            console.log(pages);
         }
         function findPageByWebsiteId(websiteId){
             var returnList = []
@@ -32,8 +37,8 @@
             return returnList;
         }
         function findPageById(pageId){
-            for(var i=0;i<page.length;i++){
-                if(page[i]._id == pageId)
+            for(var i=0;i<pages.length;i++){
+                if(pages[i]._id == pageId)
                     return pages[i];
             }
             return false;

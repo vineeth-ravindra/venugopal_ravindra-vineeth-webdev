@@ -1,10 +1,10 @@
 <md-toolbar class="tool-bar-color">
     <md-button class="button-with-icon-fix button-with-icon-fix-left"
-               ng-click="model.backClicked()"  aria-label="back to website list">
+               ng-click="model.clickEvent('back','')"  aria-label="back to website list">
         <i class="icon ion-ios-arrow-back ics"></i>
     </md-button>
     <h1>Pages</h1>
-    <md-button class="ics-right button-with-icon-fix" ng-click="model.addNewClicked()"
+    <md-button class="ics-right button-with-icon-fix" ng-click="model.clickEvent('add','')"
                aria-label="create new page">
         <i class = "icon ion-plus ics"></i>
     </md-button>
@@ -14,20 +14,19 @@
         <md-list>
             <md-list-item ng-repeat="post in model.websitePages">
                 <p>
-                    <md-button class="transform-text" ng-click="model.openWidget(post)">
+                    <md-button class="transform-text" ng-click="model.clickEvent('open',post)">
                         {{post.name}}
                     </md-button>
                 </p>
-                <md-button aria-label="site settings" ng-click="model.pageSettingsClicked(post)">
+                <md-button aria-label="site settings" ng-click="model.clickEvent('settings',post)">
                     <i class="icon ion-gear-a ics ics-right"></i>
                 </md-button>
             </md-list-item>
         </md-list>
-
     </div>
 </md-content>
 <md-toolbar   class="tool-bar-color bottom-bar " >
-    <md-button ng-click="model.profileClicked()" class="ics-right button-with-icon-fix"
+    <md-button ng-click="model.clickEvent('profile','')" class="ics-right button-with-icon-fix"
                aria-label="go to profile page">
         <i class = "icon ion-android-person ics"></i>
     </md-button>
