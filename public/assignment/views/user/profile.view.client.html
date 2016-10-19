@@ -1,6 +1,6 @@
 <md-toolbar class="tool-bar-color">
     <h1>Profile</h1>
-    <md-button class="ics-right button-with-icon-fix" ng-click="model.ok()" aria-label="Profile button">
+    <md-button class="ics-right button-with-icon-fix"  aria-label="Update profile" ng-click="model.pageButtonClicks('ok')">
         <i class = "icon ics ion-checkmark"></i>
     </md-button>
 </md-toolbar>
@@ -25,13 +25,14 @@
                 <label class="align-left">Last Name</label>
                 <input ng-model="model.user.lastName" class="font-size-adjust">
             </md-input-container>
-            <md-button class="md-accent md-raised"  ng-click="model.goToWebsite()"> Websites </md-button>
-            <md-button class="md-warn md-raised" ng-click="model.logout()"> Logout </md-button>
+            <md-button class="md-accent md-raised"  ng-click="model.pageButtonClicks('websites')"> Websites </md-button>
+            <md-button class="md-warn md-raised" ng-click="model.pageButtonClicks('logout')"> Logout </md-button>
         </form>
     </div>
 </md-content>
 <md-toolbar   class="tool-bar-color bottom-bar" >
-    <md-button ng-click="model.person()" class="ics-right button-with-icon-fix" aria-label="Profile button">
+    <md-button class="ics-right button-with-icon-fix" aria-label="go to profile"
+        ng-click="model.pageButtonClicks('profile')">
         <i class = "icon ics ion-android-person"></i>
     </md-button>
 </md-toolbar>

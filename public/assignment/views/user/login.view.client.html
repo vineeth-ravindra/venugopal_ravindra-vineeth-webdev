@@ -13,11 +13,11 @@
                 <label class="align-left">Password</label>
                 <input  type="password" class="font-size-adjust" ng-model="model.user.password">
             </md-input-container>
-            <md-button class="md-accent md-raised" layout-gt-xs="column" ng-click="model.login(model.user)"
+            <md-button class="md-accent md-raised" layout-gt-xs="column" ng-click="model.clickEvent('login')"
                        layout-xs="column">
                 Login
             </md-button>
-            <md-button class="md-primary md-raised" layout-gt-xs="column" layout-xs="column" href="#register">
+            <md-button class="md-primary md-raised" layout-gt-xs="column" layout-xs="column" ng-click="model.clickEvent('register')">
                 Register
             </md-button>
         </div>

@@ -23,17 +23,28 @@
         return api;
         function trimUser(user){
             user.username = user.username.trim();
-            user.firstName = user.firstName.trim();
-            user.lastName = user.lastName.trim();
+            user.paswrod = user.password.trim();
+            user.password_verify = user.password_verify.trim();
             return user;
         }
         function createUser(user){
             user = trimUser(user);
             for(i=0;i<users.length;i++){
-                if(users[i].username === user.username)
+                if(users[i].username === user.username){
                     return false;
+                }
             }
-            users.push(user);
+            var id = Math.floor(Math.random() * 999);
+            id = id.toString();
+            var obj = {
+                _id: id,
+                username:user.username,
+                password:user.password,
+                firstName:"",
+                lastName:""
+            }
+            users.push(obj);
+            return obj;
         }
         function findUserById(userId){
             for(var i=0;i<users.length;i++){

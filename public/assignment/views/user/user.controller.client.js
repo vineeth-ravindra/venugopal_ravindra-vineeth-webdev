@@ -7,28 +7,35 @@
         .controller("LoginController", LoginController)
         .controller("RegisterController",RegisterController)
         .controller("ProfileController",ProfileController);
-        function LoginController($location, UserService,$mdDialog) {
+        function LoginController($location,$mdDialog, UserService, RouteService) {
             var vm = this;
-            vm.login = login;
-            function login(user) {
-                if(!user) {
-                    showAllert("Please enter username and password");
-                    return
+            vm.clickEvent = pageButtonClicks;
+            vm.user = {
+                username:"",
+                password:""
+            };
+            function pageButtonClicks(type){
+                if(type==='register'){
+                    $location.url(RouteService.getRegister());
                 }
-                if(!user.username) {
-                    showAllert("Please enter username");
-                    return
-                }
-                if(!user.password){
-                    showAllert("Please enter password");
-                    return;
-                }
-                user = UserService.findUserByCredentials(user.username.trim(), user.password);
-                if(user) {
-                    $location.url("/user/" + user._id);
-                } else {
-                    vm.alert = "Unable to login";
-                    showAllert("Username/Password not found");
+                else if(type==='login'){
+                    if(vm.user.username.length===0){
+                        showAllert("Please username");
+                        return
+                    }
+                    else if(vm.user.password.length===0){
+                        showAllert("Please enter username and password");
+                        return
+                    }
+                    else {
+                        user = UserService.findUserByCredentials(vm.user.username.trim(), vm.user.password);
+                        if(user) {
+                            $location.url(RouteService.getProfilePage(user._id));
+                        } else {
+                            vm.alert = "Unable to login";
+                            showAllert("Username/Password not found");
+                        }
+                    }
                 }
             }
             function showAllert(message) {
@@ -43,26 +50,33 @@
             };
         }
 
-        function RegisterController($location,UserService,$mdDialog) {
+        function RegisterController($location,$mdDialog,UserService,RouteService) {
             var vm = this;
-            vm.register = register;
-            function  register(user) {
-                console.log(user);
-                if(!user) {
-                    showAllert("Please enter required fields")
+            vm.pageButtonClicks = pageButtonClicks;
+            vm.user = {
+                username:"",
+                password:"",
+                password_verify:""
+            }
+            function pageButtonClicks(type){
+                if(type==='cancel') {
+                    $location.url(RouteService.getLogin);
                 }
-                else if(!user.username || !user.password || !user.password_verify) {
-                    showAllert("Please enter required fields");
-                }
-                else if(user.password != user.password_verify){
-                    showAllert("Passwords do not match try again");
-                }
-                else {
-                    var result = UserService.createUser(user);
-                    if(!result)
-                        showAllert("Username already exists! try another one")
-                    else
-                        $location.url("/user/" + user._id);
+                if(type==='register'){
+                    if(vm.user.username.length === 0 || vm.user.password.length === 0 || 
+                        vm.user.password_verify.length === 0) {
+                        showAllert("Please enter required fields");
+                    }
+                    else if(vm.user.password != vm.user.password_verify){
+                        showAllert("Passwords do not match try again");
+                    }
+                    else {
+                        var result = UserService.createUser(vm.user);
+                        if(!result)
+                            showAllert("Username already exists! try another one")
+                        else
+                            $location.url(RouteService.getProfilePage(result._id));
+                    }
                 }
             }
             function showAllert(message) {
@@ -77,22 +91,26 @@
                 );
             };
         }
-        function ProfileController($location,UserService,$mdDialog,$routeParams){
+        function ProfileController($location,$mdDialog,$routeParams,UserService,RouteService){
             var vm = this;
-            vm.ok = ok;
-            vm.person = person;
-            vm.goToWebsite = goToWebsite;
-            vm.logout = logout;
+            vm.pageButtonClicks = pageButtonClicks;
             function init(){
                 vm.user = UserService.findUserById($routeParams.uid);
-                console.log(vm.user);
             }
-            function ok(){
-                UserService.updateUser($routeParams.uid,vm.user);
-                $location.url("/user/" +$routeParams.uid);
-            }
-            function person(){
-                $location.url("/user/" +$routeParams.uid);
+            function pageButtonClicks(type) {
+                if(type==='ok'){
+                    UserService.updateUser($routeParams.uid,vm.user);
+                    $location.url(RouteService.getProfilePage($routeParams.uid));    
+                }
+                else if(type==='profile'){
+                    $location.url(RouteService.getProfilePage($routeParams.uid));
+                }
+                else if(type==='websites'){
+                    $location.url(RouteService.getWebsiteList($routeParams.uid));
+                }
+                else if(type==='logout'){
+                    $location.url(RouteService.getLogin());
+                }
             }
             function goToWebsite(){
                 $location.url("/user/" +$routeParams.uid+"/website");
