@@ -25,8 +25,7 @@
             "deleteWidget": deleteWidget
         };
         return api;
-        function createWidget(pageId,widget){
-            widget.pageId = pageId;
+        function createWidget(widget){
             widgets.push(widget);
         }
         function findWidgetsByPageId(pageId){

@@ -40,7 +40,7 @@
                     $location.url(RouteService.getPageList(userId,websiteId));
                 }
                 else if(type==='add'){
-                    $location.url("RouteService.getwidgetChooser(userId,websiteId,pageId)");
+                    $location.url(RouteService.getwidgetChooser(userId,websiteId,pageId));
                 }
                 else if(type==='profile'){
                     $location.url(RouteService.getProfilePage(userId));
@@ -54,8 +54,21 @@
             var websiteId = $routeParams.wid;
             var userId = $routeParams.uid;
             var pageId = $routeParams.pid;
-            vm.widget = WidgetService.findWidgetById(widgitId);
             vm.clickEvent = clickEvent;
+
+            if (widgitId.match("^new")) {
+                widgitId = widgitId.split("-");
+                vm.widget = {
+                    widgetType: widgitId[1]
+                }
+                widgitId = -1;
+                vm.createNew = true;
+            }
+            else {
+                vm.widget = WidgetService.findWidgetById(widgitId);
+                vm.createNew = false;
+            }
+
             function clickEvent(type,data){
                 if(type==='back') {
                     $location.url(RouteService.getWidgetlist(userId,websiteId,pageId));
@@ -63,13 +76,48 @@
                 else if(type==='profile'){
                     $location.url(RouteService.getProfilePage(userId));
                 }
-                else if(type==='check'){
-                    WidgetService.updateWidget(widgitId,vm.widget);
+                else if(type==='check') {
+                    if(widgitId===-1) {
+                        widget = createWidget();
+                        WidgetService.createWidget(widget);
+                    }
+                    else
+                        WidgetService.updateWidget(widgitId,vm.widget);
                     $location.url(RouteService.getWidgetlist(userId,websiteId,pageId));
                 }
                 else if(type==='delete'){
                     WidgetService.deleteWidget(widgitId);
                     $location.url(RouteService.getWidgetlist(userId,websiteId,pageId));
+                }
+            }
+
+            function createWidget() {
+                if(vm.widget.widgetType.toLowerCase()==="header"){
+                    return {
+                        "_id": Math.floor(Math.random()*999).toString(),
+                        "widgetType": "HEADER",
+                        "pageId" :pageId,
+                        "size" : vm.widget.size,
+                        "text": vm.widget.text
+                     }
+                }
+                if(vm.widget.widgetType.toLowerCase()==="youtube"){
+                    return {
+                        "_id": Math.floor(Math.random()*999).toString(),
+                        "widgetType": "YOUTUBE",
+                        "pageId" :pageId,
+                        "width" : vm.widget.width,
+                        "url": vm.widget.url
+                    }
+                }
+                if(vm.widget.widgetType.toLowerCase()==="image"){
+                    return {
+                        "_id": Math.floor(Math.random()*999).toString(),
+                        "widgetType": "IMAGE",
+                        "pageId" :pageId,
+                        "width" : vm.widget.width,
+                        "url": vm.widget.url
+                    }
                 }
             }
         }
@@ -83,8 +131,22 @@
                 if(type==='back'){
                     $location.url(RouteService.getWidgetlist(userId,websiteId,pageId));
                 }
-                if(type==='profile'){
+                else if(type==='profile'){
                     $location.url(RouteService.getProfilePage(userId));
+                }
+                else if(type==='listItem') {
+                    handleListEvent(data);
+                }
+            }
+            function handleListEvent(data){
+                if(data==='HEADER'){
+                    $location.url(RouteService.getWidgetedit(userId,websiteId,pageId,"new-header"));
+                }
+                else if(data==='YOUTUBE'){
+                    $location.url(RouteService.getWidgetedit(userId,websiteId,pageId,"new-youtube"));
+                }
+                else if(data==='IMAGE'){
+                    $location.url(RouteService.getWidgetedit(userId,websiteId,pageId,"new-image"));
                 }
             }
         }

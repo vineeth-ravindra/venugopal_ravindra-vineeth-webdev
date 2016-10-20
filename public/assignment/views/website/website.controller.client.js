@@ -76,7 +76,7 @@
                 vm.userWebsites = WebsiteService.findWebsitesByUser(userId);
                 vm.currentWebsite = WebsiteService.findWebsiteById(websiteId);
             }
-            function clickEvent(type,website) {
+            function clickEvent(type,website) { 
                 if(type==='add'){
                     $location.url(RouteService.getWebsiteNew(userId));
                 }

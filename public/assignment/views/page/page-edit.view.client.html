@@ -39,11 +39,11 @@
             <div class="large-box" layout-gt-xs="column" layout-xs="column" >
                 <md-input-container>
                     <label>Name</label>
-                    <input ng-model="model.data.name" placeholder="Page Name" class="font-size-adjust">
+                    <input ng-model="model.edit.name" placeholder="{{model.data.name}}" class="font-size-adjust">
                 </md-input-container>
                 <md-input-container>
                     <label>Title</label>
-                    <input ng-model="model.x.title" placeholder="Page Title" class="font-size-adjust">
+                    <input ng-model="model.edit.title" placeholder="Page Title" class="font-size-adjust">
                 </md-input-container>
                 <md-button class="md-warn md-raised" ng-click="model.clickEvent('delete','')"> Delete </md-button>
             </div>

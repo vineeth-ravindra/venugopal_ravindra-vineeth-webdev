@@ -90,6 +90,7 @@
         function EditPageController($location,$routeParams,PageService,RouteService) {
             var vm = this;
             vm.clickEvent = clickEvent;
+            vm.edit ={ name:"",title:""};
             var userId = $routeParams.uid;
             var websiteId = $routeParams.wid;
             var pageId = $routeParams.pid;
@@ -117,6 +118,7 @@
                         $location.url(RouteService.getPageNew(userId,websiteId));
                 }
                 else if(type==='check'){
+                    vm.data.name = vm.edit.name;
                     PageService.updatePage(pageId,vm.data)
                     $location.url(RouteService.getPageList(userId,websiteId));
                 }

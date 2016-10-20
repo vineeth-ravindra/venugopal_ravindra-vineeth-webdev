@@ -23,7 +23,10 @@
             <label>Size</label>
             <input ng-model="model.widget.size" type="number" min="1"  class="font-size-adjust">
         </md-input-container>
-        <md-button class="md-warn md-raised" ng-click="model.clickEvent('delete','')" > Delete </md-button>
+        <md-button ng-hide="{{model.createNew}}" class="md-warn md-raised" 
+            ng-click="model.clickEvent('delete','')" > 
+            Delete 
+        </md-button>
     </div>
 </md-content>
 <md-toolbar   class="tool-bar-color bottom-bar " >
