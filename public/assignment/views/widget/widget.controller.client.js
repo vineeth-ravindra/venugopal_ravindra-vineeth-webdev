@@ -6,6 +6,7 @@
         .module("WebAppMaker")
         .controller("WidgetListController",WidgetListController)
         .controller("EditWidgetController",EditWidgetController)
+        .controller("NewWidgetController",NewWidgetController)
         function WidgetListController($routeParams,$location,$sce,WidgetService,RouteService) {
             var vm = this;
             var pageId = $routeParams.pid;
@@ -39,12 +40,11 @@
                     $location.url(RouteService.getPageList(userId,websiteId));
                 }
                 else if(type==='add'){
-
+                    $location.url("RouteService.getwidgetChooser(userId,websiteId,pageId)");
                 }
                 else if(type==='profile'){
                     $location.url(RouteService.getProfilePage(userId));
                 }
-
             }
             init();
         }
@@ -70,6 +70,21 @@
                 else if(type==='delete'){
                     WidgetService.deleteWidget(widgitId);
                     $location.url(RouteService.getWidgetlist(userId,websiteId,pageId));
+                }
+            }
+        }
+        function NewWidgetController($routeParams,$location,$sce,WidgetService,RouteService) {
+            var vm = this;
+            var websiteId = $routeParams.wid;
+            var userId = $routeParams.uid;
+            var pageId = $routeParams.pid;
+            vm.clickEvent = clickEvent;
+            function clickEvent(type,data){
+                if(type==='back'){
+                    $location.url(RouteService.getWidgetlist(userId,websiteId,pageId));
+                }
+                if(type==='profile'){
+                    $location.url(RouteService.getProfilePage(userId));
                 }
             }
         }

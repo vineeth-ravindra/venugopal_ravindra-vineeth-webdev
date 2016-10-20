@@ -1,5 +1,6 @@
 <md-toolbar class="tool-bar-color">
-    <md-button class="button-with-icon-fix button-with-icon-fix-left"  href="widget-list.html">
+    <md-button class="button-with-icon-fix button-with-icon-fix-left" 
+            aria-label="back to list" ng-click="model.clickEvent('back','')">
         <i class="icon ion-ios-arrow-back ics"></i>
     </md-button>
     <h1>Choose Widget</h1>
@@ -9,7 +10,7 @@
         <md-list>
             <md-list-item>
                 <p>
-                    <md-button class="transform-text" href="widget-heading.html">
+                    <md-button class="transform-text" href="#">
                         Header
                     </md-button>
                 </p>
@@ -51,14 +52,14 @@
             </md-list-item>
             <md-list-item>
                 <p>
-                    <md-button class="transform-text" href="widget-image.html">
+                    <md-button class="transform-text" href="#">
                         Image
                     </md-button>
                 </p>
             </md-list-item>
             <md-list-item>
                 <p>
-                    <md-button class="transform-text" href="widget-youtube.html">
+                    <md-button class="transform-text" href="#">
                         You Tube
                     </md-button>
                 </p>
@@ -81,7 +82,8 @@
     </div>
 </md-content>
 <md-toolbar   class="tool-bar-color bottom-bar " >
-    <md-button class="ics-right button-with-icon-fix" href="profile.html">
+    <md-button class="ics-right button-with-icon-fix" ng-click="model.clickEvent('profile','')"
+            aria-label="nav to profile">
         <i class = "icon ion-android-person ics"></i>
     </md-button>
 </md-toolbar>
