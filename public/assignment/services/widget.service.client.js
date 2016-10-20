@@ -5,7 +5,7 @@
     angular
         .module("WebAppMaker")
         .factory("WidgetService",WidgetService);
-    function PageService(){
+    function WidgetService(){
         var widgets = [
             { "_id": "123", "widgetType": "HEADER", "pageId": "321", "size": 2, "text": "GIZMODO"},
             { "_id": "234", "widgetType": "HEADER", "pageId": "321", "size": 4, "text": "Lorem ipsum"},
@@ -18,11 +18,11 @@
             { "_id": "789", "widgetType": "HTML", "pageId": "321", "text": "<p>Lorem ipsum</p>"}
         ];
         var api = {
-            "createWidget" : "createWidget",
-            "findWidgetsByPageId" : "findWidgetsByPageId",
-            "findWidgetById":"findWidgetById",
-            "updateWidget":"updateWidget",
-            "deleteWidget":"deleteWidget"
+            "createWidget" : createWidget,
+            "findWidgetsByPageId" : findWidgetsByPageId,
+            "findWidgetById": findWidgetById,
+            "updateWidget": updateWidget,
+            "deleteWidget": deleteWidget
         };
         return api;
         function createWidget(pageId,widget){
@@ -30,11 +30,15 @@
             widgets.push(widget);
         }
         function findWidgetsByPageId(pageId){
+            var obj = [];
             for(var i=0;i<widgets.length;i++){
                 if(widgets[i].pageId == pageId)
-                    return widgets[i];
+                    obj.push(widgets[i]);
             }
-            return false;
+            if(obj.length===0)
+                return false;
+            else 
+                return obj;
         }
         function findWidgetById(widgetId){
             for(var i=0;i<widgets.length;i++){

@@ -7,54 +7,54 @@
         .factory("RouteService",RouteService);
     function RouteService(){
         var api = {
-            getLogin  : loginPage,
-            getRegister  : registerPage,
-            getProfilePage  : profilePage,
-            getWebsiteList : websiteList,
-            getWebsiteNew : websiteNew,
-            getWebsiteEdit : websiteEdit,
-            getPageList : pageList,
-            getPageNew : pageNew,
-            getPageEdit :pageEdit,
-            getWidgetlist : widgetlist,
-            getwidgetChooser :widgetChooser,
-            getWidgetedit : widgetEdit
+            getLogin  : getLogin,
+            getRegister  : getRegister,
+            getProfilePage  : getProfilePage,
+            getWebsiteList : getWebsiteList,
+            getWebsiteNew : getWebsiteNew,
+            getWebsiteEdit : getWebsiteEdit,
+            getPageList : getPageList,
+            getPageNew : getPageNew,
+            getPageEdit :getPageEdit,
+            getWidgetlist : getWidgetlist,
+            getwidgetChooser :getwidgetChooser,
+            getWidgetedit : getWidgetedit
         };
         return api;
-        function loginPage() {
+        function getLogin() {
             return "/login";
         }
-        function registerPage() {
+        function getRegister() {
             return "/register";
         }
-        function profilePage(uid){
+        function getProfilePage(uid){
             return "/user/"+uid;
         }
-        function websiteList(uid){
+        function getWebsiteList(uid){
             return "/user/"+uid+"/website";
         }
-        function websiteNew(uid){
+        function getWebsiteNew(uid){
             return "/user/"+uid+"/website/new";
         }
-        function websiteEdit(uid,wid){
+        function getWebsiteEdit(uid,wid){
             return "/user/"+uid+"/website/"+wid;
         }
-        function pageList(uid,wid){
+        function getPageList(uid,wid){
             return "/user/"+uid+"/website/"+wid+"/page";
         }
-        function pageNew(uid,wid){
+        function getPageNew(uid,wid){
             return "/user/"+uid+"/website/"+wid+"/page/new";
         }
-        function pageEdit(uid,wid,pid){
+        function getPageEdit(uid,wid,pid){
             return "/user/"+uid+"/website/"+wid+"/page/"+pid;
         }
-        function widgetlist(uid,wid,pid){
+        function getWidgetlist(uid,wid,pid){
             return "/user/"+uid+"/website/"+wid+"/page/"+pid+"/widget";
         }
-        function widgetChooser(uid,wid,pid){
+        function getwidgetChooser(uid,wid,pid){
             return "/user/"+uid+"/website/"+wid+"/page/"+pid+"/widget/new";
         }
-        function widgetEdit(uid,wid,pid,wgid){
+        function getWidgetedit(uid,wid,pid,wgid){
             return "/user/"+uid+"/website/"+wid+"/page/"+pid+"/widget/"+wgid;
         }
     }

@@ -1,9 +1,11 @@
 <md-toolbar class="tool-bar-color">
-    <md-button class="button-with-icon-fix button-with-icon-fix-left" href="widget-list.html">
+    <md-button class="button-with-icon-fix button-with-icon-fix-left" 
+        ng-click="model.clickEvent('back','')" aria-label="back to widget list">
         <i class="icon ion-ios-arrow-back ics"></i>
     </md-button>
     <h1>Widget Edit</h1>
-    <md-button class="ics-right button-with-icon-fix" href="widget-list.html">
+    <md-button class="ics-right button-with-icon-fix" aria-label="confirm change" 
+            ng-click="model.clickEvent('check','')">
         <i class = "icon ion-checkmark ics"></i>
     </md-button>
 </md-toolbar>
@@ -11,33 +13,34 @@
     <div class="large-box" layout-gt-xs="column" layout-xs="column" >
         <md-input-container>
             <label>Name</label>
-            <input ng-model="name"  class="font-size-adjust">
+            <input ng-model="model.widget.widgetType"  class="font-size-adjust">
         </md-input-container>
         <md-input-container>
             <label>Text</label>
-            <input ng-model="title"  class="font-size-adjust">
+            <input ng-model="model.widget.text"  class="font-size-adjust">
         </md-input-container>
         <md-input-container>
             <label>Url</label>
-            <input ng-model="title"  class="font-size-adjust">
+            <input ng-model="model.widget.url"  class="font-size-adjust">
         </md-input-container>
         <md-input-container>
             <label>Width</label>
-            <input ng-model="size" type="number" min="1"  class="font-size-adjust">
+            <input ng-model="model.widget.width" min="1"  class="font-size-adjust">
         </md-input-container>
-
-        <md-button class="md-default md-raised">
+        <md-button class="md-default md-raised" aria-label="choose file">
             <input ng-model="file" type="file">
         </md-button>
 
-        <md-button class="md-accent  md-raised" href="widget-list.html"> Upload Image </md-button>
-        <md-button class="md-warn md-raised" href="widget-list.html"> Delete </md-button>
-
+        <md-button class="md-accent  md-raised"> Upload Image </md-button>
+        <md-button class="md-warn md-raised" ng-click="model.clickEvent('delete','')" >
+            Delete 
+        </md-button>
 
     </div>
 </md-content>
 <md-toolbar   class="tool-bar-color bottom-bar " >
-    <md-button class="ics-right button-with-icon-fix" href="profile.html">
+    <md-button class="ics-right button-with-icon-fix" ng-click="model.clickEvent('profile','')"
+            aria-label="nav to profile">
         <i class = "icon ion-android-person ics"></i>
     </md-button>
 </md-toolbar>

@@ -1,106 +1,51 @@
 <md-toolbar class="tool-bar-color">
-    <md-button class="button-with-icon-fix button-with-icon-fix-left"  href="page-list.html">
+    <md-button class="button-with-icon-fix button-with-icon-fix-left"  
+        aria-label="back to page list" ng-click="model.clickEvent('back' ,'')">
         <i class="icon ion-ios-arrow-back ics"></i>
     </md-button>
     <h1>Widgets</h1>
-    <md-button class="ics-right button-with-icon-fix" href="widget-chooser.html">
+    <md-button class="ics-right button-with-icon-fix" ng-click="model.clickEvent( 'add' ,'')"
+            aria-label="add-new">
         <i class = "icon ion-plus ics"></i>
     </md-button>
 </md-toolbar>
 <md-content>
     <div class="large-box" layout-gt-xs="column" layout-xs="column">
-        <div class="widget-box" layout-gt-xs="column" layout-xs="column" >
-            <div class="myButton">
-                <md-button class="button-with-icon-fix" href="widget-heading.html">
-                    <i class="icon ion-navicon ics"></i>
-                    <i class="icon ion-gear-a ics"></i>
-                </md-button>
-            </div>
-            <h1> Superman</h1>
-        </div>
-        <div class="widget-box" layout-gt-xs="column" layout-xs="column" >
-            <div class="myButton">
-                <md-button class="button-with-icon-fix" href="#">
-                    <i class="icon ion-navicon ics"></i>
-                    <i class="icon ion-gear-a ics"></i>
-                </md-button>
-            </div>
-            <p>
-                Comic books and the worlds that they depict seem perfectly suited for collectors. With various artists,
-                filmmakers, and writers constantly putting new spins on iconic characters, there's no shortage of
-                awesome memorabilia to go along with anyone's favorite superhero mythos. Now it's time to definitely
-                get excited once again, DC collectors, because a seriously awesome Limited Edition of Batman V Superman:
-                Dawn of Justice is going to hit shelves this holiday season. Trust me, it's even cooler than you would expect.
-
-            </p>
-        </div>
-        <div class="widget-box" layout-gt-xs="column" layout-xs="column" >
-            <div class="myButton">
-                <md-button class="button-with-icon-fix" href="widget-image.html">
-                    <i class="icon ion-navicon ics"></i>
-                    <i class="icon ion-gear-a ics"></i>
-                </md-button>
-            </div>
-            <img src="http://media.dcentertainment.com/sites/default/files/DCVol2Marquee_57466713405381.60938022.jpg"
-                 alt="DC Universe" class="responsive-image"/>
-        </div>
-        <div class="widget-box" layout-gt-xs="column" layout-xs="column" >
-            <div class="myButton">
-                <md-button class="button-with-icon-fix" href="#">
-                    <i class="icon ion-navicon ics"></i>
-                    <i class="icon ion-gear-a ics"></i>
-                </md-button>
-            </div>
-            <p>
-                Superman is a fictional superhero appearing in American comic books
-                published by DC Comics. The character was created by writer Jerry Siegel and artist Joe Shuster,
-                high school students living in Cleveland, Ohio, in 1933.
-
-            </p>
-        </div>
-        <div class="widget-box" layout-gt-xs="column" layout-xs="column" >
-            <div class="myButton">
-                <md-button class="button-with-icon-fix" href="widget-heading.html">
-                    <i class="icon ion-navicon ics"></i>
-                    <i class="icon ion-gear-a ics"></i>
-                </md-button>
-            </div>
-            <h1>
-                Deadpool News
-            </h1>
-        </div>
-        <div class="widget-box" layout-gt-xs="column" layout-xs="column" >
-            <div class="myButton">
-                <md-button class="button-with-icon-fix" href="widget-youtube.html">
-                    <i class="icon ion-navicon ics"></i>
-                    <i class="icon ion-gear-a ics"></i>
-                </md-button>
-            </div>
-            <iframe class="responsive-image" src="https://www.youtube.com/embed/pewUuJeIf_g" frameborder="0"
+        <div ng-switch="widget.widgetType" ng-repeat="widget in model.widgetList">
+            <div class="widget-box" layout-gt-xs="column" layout-xs="column" >
+                <div class="myButton">
+                    <md-button class="button-with-icon-fix" ng-click="model.clickEvent('edit',widget)" aria-label="link to profile page">
+                        <i class="icon ion-navicon ics"></i>
+                        <i class="icon ion-gear-a ics"></i>
+                    </md-button>
+                </div>
+                <div ng-switch="widget.size" ng-switch-when="HEADER">
+                    <h1 ng-switch-when="1">{{widget.text}}</h1>
+                    <h2 ng-switch-when="2">{{widget.text}}</h2>
+                    <h3 ng-switch-when="3">{{widget.text}}</h3>
+                    <h4 ng-switch-when="4">{{widget.text}}</h4>
+                    <h5 ng-switch-when="5">{{widget.text}}</h5>
+                    <h6 ng-switch-when="6">{{widget.text}}</h6>
+                </div>
+                <div ng-switch-when="IMAGE">
+                    <img ng-src="{{model.checkSafeUrlImage(widget.url)}}" class="responsive-image" alt="xxx"/>
+                </div>
+                <div ng-switch-when="YOUTUBE">
+                    <iframe class="responsive-image" ng-src="{{model.checkSafeUrlYoutube(widget.url)}}" frameborder="0"
                     allowfullscreen></iframe>
-        </div>
-        <div class="widget-box" layout-gt-xs="column" layout-xs="column" >
-            <div class="myButton">
-                <md-button class="button-with-icon-fix" href="#">
-                    <i class="icon ion-navicon ics"></i>
-                    <i class="icon ion-gear-a ics"></i>
-                </md-button>
+                </div>
+                <div ng-switch-when="HTML" ng-bind-html="model.checkSafeHtml(widget.text)">
+                </div>
             </div>
-            <p>
-                From the zany misadventures of his solo series to numerous awkward guest spots, there's hardly a stone
-                or enchanted realm Deadpool's antics have left unturned. With that in mind, we've decided to compile
-                27 of the weirdest,most ludicrous, most Deadpool-ish covers in existence. Some are twisted, most are
-                ridiculous, but all are really, really fun.
-            </p>
         </div>
     </div>
 </md-content>
 <md-toolbar   class="tool-bar-color bottom-bar " >
-    <md-button class="button-with-icon-fix button-with-icon-fix-left"  href="profile.html">
+    <md-button class="button-with-icon-fix button-with-icon-fix-left"  href="profile.html" aria-label="I dont know">
         <i class="icon ics ion-ios-eye"></i>
         <i class="icon ics ion-ios-play-outline"></i>
     </md-button>
-    <md-button class="ics-right button-with-icon-fix" href="profile.html">
+    <md-button class="ics-right button-with-icon-fix" ng-click="model.clickEvent( 'profile' ,'')" aria-label="go to profile">
         <i class = "icon ion-android-person ics "></i>
     </md-button>
 </md-toolbar>
