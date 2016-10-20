@@ -58,10 +58,10 @@
                     $location.url(RouteService.getProfilePage(userId));
                 }
                 else if (type==='open') {
-                    $location.url(RouteService.getWidgetlist(userId,websiteId,page._id));
+                    $location.url(RouteService.getWidgetlist(userId,websiteId,data._id));
                 }
                 else if(type==='settings') {
-                    $location.url(RouteService.getPageEdit(userId,websiteId,page._id));
+                    $location.url(RouteService.getPageEdit(userId,websiteId,data._id));
                 }               
                 else if(type=='new') {
                         $location.url(RouteService.getPageNew(userId,websiteId));
