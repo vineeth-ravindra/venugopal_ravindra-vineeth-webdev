@@ -26,7 +26,6 @@
             obj._id = Math.floor(Math.random()*999) + 1;
             page.websiteId = websiteId;
             pages.push(obj);
-            console.log(pages);
         }
         function findPageByWebsiteId(websiteId){
             var returnList = []

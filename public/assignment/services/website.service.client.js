@@ -29,7 +29,6 @@
             newSite.name = site.name;
             newSite.developerId = userId;
             website.push(newSite);
-            console.log(website);
         }
         function findWebsitesByUser(userId){
             var returnList = []
