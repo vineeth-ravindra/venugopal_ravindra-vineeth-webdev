@@ -27,7 +27,8 @@
             <label>Width</label>
             <input ng-model="model.widget.width"   class="font-size-adjust">
         </md-input-container>
-        <md-button class="md-warn md-raised" ng-click="model.clickEvent('delete','')"> 
+        <md-button class="md-warn md-raised" ng-hide="{{model.createNew}}"  
+                ng-click="model.clickEvent('delete','')"> 
             Delete 
         </md-button>
     </div>
