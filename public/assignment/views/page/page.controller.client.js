@@ -14,9 +14,15 @@
             var websiteId = $routeParams.wid;
             vm.clickEvent = clickEvent;
             function init() {
-                vm.websitePages = PageService.findPageByWebsiteId(websiteId);
-            }
+                var promise = PageService.findPageByWebsiteId(websiteId);
+                promise
+                    .success(function(res){
+                        vm.websitePages = res;
+                    })
+                    .error(function(res){
 
+                    });
+            }
             function clickEvent(type,page) {
                 if(type==='add'){
                     $location.url(RouteService.getPageNew(userId,websiteId));
@@ -45,7 +51,14 @@
             var websiteId = $routeParams.wid;
             vm.clickEvent = clickEvent;
             function init() {
-                vm.websitePages = PageService.findPageByWebsiteId($routeParams.wid);
+                var promise = PageService.findPageByWebsiteId(websiteId);
+                promise
+                    .success(function(res){
+                        vm.websitePages = res;
+                    })
+                    .error(function(res){
+
+                    });
             }
             function clickEvent(type,data) {
                 if(type==='add'){
@@ -68,11 +81,18 @@
                 }
                 else if(type==='check'){
                     if (!data || !data.name) {
-                    showAllert("Please enter valid data");
-                    return;
+                        showAllert("Please enter valid data");
+                        return;
                     }
-                    PageService.createPage(websiteId, data);
-                    $location.url(RouteService.getPageList(userId,websiteId));
+                    var promise = PageService.createPage(websiteId, data);
+                    promise
+                        .success(function(res){
+                            $location.url(RouteService.getPageList(userId,websiteId));
+                        })
+                        .error(function(res){
+
+                        });
+
                 }
             }
             function showAllert(message) {
@@ -95,8 +115,22 @@
             var websiteId = $routeParams.wid;
             var pageId = $routeParams.pid;
             function init() {
-                vm.websitePages = PageService.findPageByWebsiteId($routeParams.wid);
-                vm.data = PageService.findPageById(pageId);
+                var promise = PageService.findPageByWebsiteId(websiteId);
+                promise
+                    .success(function(res){
+                        vm.websitePages = res;
+                    })
+                    .error(function(res){
+
+                    });
+                var promise2 = PageService.findPageById(pageId);
+                promise2
+                    .success(function(res){
+                        vm.data = res;
+                    })
+                    .error(function(res){
+
+                    });
             }
             function clickEvent(type,page) {
                 if(type==='add'){
@@ -123,8 +157,14 @@
                     $location.url(RouteService.getPageList(userId,websiteId));
                 }
                 else if(type==='delete'){
-                    PageService.deletePage(pageId);
-                    $location.url(RouteService.getPageList(userId,websiteId));
+                    var promise = PageService.deletePage(pageId);
+                    promise
+                        .success(function(res){
+                            $location.url(RouteService.getPageList(userId,websiteId));
+                        })
+                        .error(function(res){
+
+                        });
                 }
             }
             init();
