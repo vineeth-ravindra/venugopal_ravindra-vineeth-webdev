@@ -5,13 +5,7 @@
     angular
         .module("WebAppMaker")
         .factory("UserService",UserService);
-    function UserService(){
-        var users = [
-            {_id: "123", username: "alice",    password: "alice",    firstName: "Alice",  lastName: "Wonder"  },
-            {_id: "234", username: "bob",      password: "bob",      firstName: "Bob",    lastName: "Marley"  },
-            {_id: "345", username: "charly",   password: "charly",   firstName: "Charly", lastName: "Garcia"  },
-            {_id: "456", username: "jannunzi", password: "jannunzi", firstName: "Jose",   lastName: "Annunzi" }
-        ];
+    function UserService($http){
         var api = {
             "createUser" : createUser,
             "findUserById" : findUserById,
@@ -21,65 +15,26 @@
             "deleteUser":deleteUser
         }
         return api;
-        function trimUser(user){
-            user.username = user.username.trim();
-            user.paswrod = user.password.trim();
-            user.password_verify = user.password_verify.trim();
-            return user;
-        }
         function createUser(user){
-            user = trimUser(user);
-            for(i=0;i<users.length;i++){
-                if(users[i].username === user.username){
-                    return false;
-                }
-            }
-            var id = Math.floor(Math.random() * 999);
-            id = id.toString();
-            var obj = {
-                _id: id,
-                username:user.username,
-                password:user.password,
-                firstName:"",
-                lastName:""
-            }
-            users.push(obj);
-            return obj;
+            return $http.post("/api/user", user);
         }
-        function findUserById(userId){
-            for(var i=0;i<users.length;i++){
-                if(users[i]._id == userId)
-                    return users[i];
-            }
-            return false;
+        function findUserById(userId) {
+            return $http.get("/api/user/"+userId);
         }
-        function findUserByUsername(userName){
-            for(var i=0;i<users.length;i++){
-                if(users[i].username == userName)
-                    return users[i];
-            }
-            return false;
+        function findUserByUsername(username){
+            var url = '/api/user?username='+username;
+            return $http.get(url);
         }
         function findUserByCredentials(username,password) {
-            var user = findUserByUsername(username);
-            if(user) {
-                if(user.password == password)
-                    return user;
-            }
-            return false;
+            var url = '/api/user?username='+username+'&password='+password;
+            return $http.get(url);
         }
         function updateUser(userId,user) {
-            var u = findUserById(userId);
-            if(user) {
-                u = user;
-            }
-            return false;
+            var url = '/api/user/'+userId;
+            return $http.put(url,user);
         }
-        function deleteUser(user) {
-            for(var i=0;i<users.length;i++){
-                if(users[i]._id == userId)
-                    users.splice(i,1);
-            }
+        function deleteUser(userId) {
+            return $http.delete('/api/user/'+userId);
         }
     }
 })();

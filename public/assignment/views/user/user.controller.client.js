@@ -28,13 +28,20 @@
                         return
                     }
                     else {
-                        user = UserService.findUserByCredentials(vm.user.username.trim(), vm.user.password);
-                        if(user) {
-                            $location.url(RouteService.getProfilePage(user._id));
-                        } else {
-                            vm.alert = "Unable to login";
-                            showAllert("Username/Password not found");
-                        }
+                        var promise = UserService.findUserByCredentials(vm.user.username.trim(), vm.user.password);
+                        promise
+                            .success(function(res){
+                                if(res){
+                                    $location.url(RouteService.getProfilePage(res._id));
+                                }
+                                else {
+                                    vm.alert = "Unable to login";
+                                    showAllert("Username/Password not found");
+                                }
+                            })
+                            .error(function(res){
+
+                            });
                     }
                 }
             }
@@ -71,11 +78,15 @@
                         showAllert("Passwords do not match try again");
                     }
                     else {
-                        var result = UserService.createUser(vm.user);
-                        if(!result)
-                            showAllert("Username already exists! try another one")
-                        else
-                            $location.url(RouteService.getProfilePage(result._id));
+                        var promise = UserService.createUser(vm.user);
+                        promise
+                            .success(function(res){
+                                $location.url(RouteService.getProfilePage(res._id));
+                            })
+                            .error(function(res){
+                                console.log("Error");
+                            })
+
                     }
                 }
             }
@@ -95,12 +106,25 @@
             var vm = this;
             vm.pageButtonClicks = pageButtonClicks;
             function init(){
-                vm.user = UserService.findUserById($routeParams.uid);
+                var promise = UserService.findUserById($routeParams.uid);
+                promise
+                    .success(function (res) {
+                        vm.user = res;
+                    })
+                    .error(function (res) {
+
+                    });
             }
             function pageButtonClicks(type) {
                 if(type==='ok'){
-                    UserService.updateUser($routeParams.uid,vm.user);
-                    $location.url(RouteService.getProfilePage($routeParams.uid));    
+                    var promise = UserService.updateUser($routeParams.uid,vm.user);
+                    promise
+                        .success(function(res){
+                            $location.url(RouteService.getProfilePage($routeParams.uid));
+                        })
+                        .error(function (res) {
+                            
+                        });
                 }
                 else if(type==='profile'){
                     $location.url(RouteService.getProfilePage($routeParams.uid));
