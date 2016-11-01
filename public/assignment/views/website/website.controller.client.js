@@ -14,7 +14,14 @@
             var userId = $routeParams.uid;
             vm.clickEvent = clickEvent;
             function init() {
-                vm.userWebsites = WebsiteService.findWebsitesByUser(userId);
+                var promise = WebsiteService.findWebsitesByUser(userId);
+                promise
+                    .success(function(res){
+                        vm.userWebsites = res;
+                    })
+                    .error(function(res){
+
+                    });
             }
             function clickEvent(type,website) {
                 if(type==='add'){
@@ -40,7 +47,14 @@
             var userId = $routeParams.uid;
             vm.clickEvent = clickEvent;
             function init() {
-                vm.userWebsites = WebsiteService.findWebsitesByUser(userId);
+                var promise = WebsiteService.findWebsitesByUser(userId);
+                promise
+                    .success(function(res){
+                        vm.userWebsites = res;
+                    })
+                    .error(function(res){
+
+                    });
             }
             function clickEvent(type,website) {
                 if(type==='add'){
@@ -59,9 +73,16 @@
                     $location.url(RouteService.getProfilePage(userId));
                 }
                 else if(type=='new') {
-                    if(website)
-                        WebsiteService.createWebsite(userId,website);
-                        $location.url(RouteService.getWebsiteList(userId));
+                    if (website) {
+                        var promise = WebsiteService.createWebsite(userId, website);
+                    promise
+                        .success(function (res) {
+                            $location.url(RouteService.getWebsiteList(userId));
+                        })
+                        .error(function (res) {
+
+                        });
+                    }
                 }
             }
             init()
@@ -73,8 +94,22 @@
             var websiteId = $routeParams.wid;
             vm.clickEvent = clickEvent;
             function init() {
-                vm.userWebsites = WebsiteService.findWebsitesByUser(userId);
-                vm.currentWebsite = WebsiteService.findWebsiteById(websiteId);
+                var promise = WebsiteService.findWebsitesByUser(userId);
+                promise
+                    .success(function(res){
+                        vm.userWebsites = res;
+                    })
+                    .error(function(res){
+
+                    });
+                var promise2 = WebsiteService.findWebsiteById(websiteId);
+                promise2
+                    .success(function(res){
+                        vm.currentWebsite = res;
+                    })
+                    .error(function(){
+
+                    });
             }
             function clickEvent(type,website) { 
                 if(type==='add'){
@@ -94,13 +129,26 @@
                 }
                 else if(type==='edit') {
                     if(website){
-                        WebsiteService.updateWebsite($routeParams.wid,website);
+                        var promise = WebsiteService.updateWebsite($routeParams.wid,website);
+                        promise
+                            .success(function(res){
+                                $location.url(RouteService.getWebsiteList(userId));
+                            })
+                            .error(function(res){
+
+                            });
                     }
-                    $location.url(RouteService.getWebsiteList(userId));
+
                 }
                 else if(type==='delete'){
-                    WebsiteService.deleteWebsite($routeParams.wid);
-                    $location.url(RouteService.getWebsiteList(userId));  
+                    var promise = WebsiteService.deleteWebsite($routeParams.wid);
+                    promise
+                        .success(function(){
+                            $location.url(RouteService.getWebsiteList(userId));
+                        })
+                        .error(function(){
+
+                        });
                 }
             }
             init()

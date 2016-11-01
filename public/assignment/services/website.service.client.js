@@ -5,7 +5,7 @@
     angular
         .module("WebAppMaker")
         .factory("WebsiteService",WebsiteService);
-    function WebsiteService(){
+    function WebsiteService($http){
         var website = [
             { "_id": "123", "name": "Facebook",    "developerId": "456" },
             { "_id": "234", "name": "Tweeter",     "developerId": "456" },
@@ -23,40 +23,19 @@
         }
         return api;
         function createWebsite(userId,site){
-            site.developedId = userId;
-            var newSite = {};
-            newSite._id = Math.floor(Math.random()*999) + 1;
-            newSite.name = site.name;
-            newSite.developerId = userId;
-            website.push(newSite);
+            return $http.post("/api/user/"+userId+"/website",site);
         }
         function findWebsitesByUser(userId){
-            var returnList = []
-            for(var i=0;i<website.length;i++){
-                if(website[i].developerId == userId)
-                    returnList.push(website[i])
-            }
-            return returnList;
+            return $http.get("/api/user/"+userId+"/website");
         }
         function findWebsiteById(websiteId){
-            for(var i=0;i<website.length;i++){
-                if(website[i]._id == websiteId)
-                    return website[i];
-            }
-            return false;
+            return $http.get("/api/website/"+websiteId);
         }
         function updateWebsite(websiteId,website) {
-            var w = findWebsiteById(websiteId);
-            if(w) {
-                w.name = website.name;
-            }
-            return false;
+            return $http.put("/api/website/"+websiteId,website);
         }
         function deleteWebsite(websiteId) {
-            for(var i=0;i<website.length;i++){
-                if(website[i]._id == websiteId)
-                    website.splice(i,1);
-            }
+            return $http.delete("/api/website/"+websiteId);
         }
     }
 })();
