@@ -11,30 +11,36 @@
 </md-toolbar>
 <md-content>
     <div class="large-box" layout-gt-xs="column" layout-xs="column" >
+
+        <md-input-container>
+            <label>Name</label>
+            <input ng-model="model.widget.widgetType" readonly="readonly" class="font-size-adjust">
+        </md-input-container>
+        <md-input-container>
+            <label>Text</label>
+            <input ng-model="model.widget.text"  class="font-size-adjust">
+        </md-input-container>
+        <md-input-container>
+            <label>Url</label>
+            <input ng-model="model.widget.url"  class="font-size-adjust">
+        </md-input-container>
+        <md-input-container>
+            <label>Width</label>
+            <input ng-model="model.widget.width" min="1"  class="font-size-adjust">
+        </md-input-container>
         <form action="/api/upload"  method="post" enctype="multipart/form-data" layout="column">
-            <md-input-container>
-                <label>Name</label>
-                <input ng-model="model.widget.widgetType" readonly="readonly" class="font-size-adjust">
-            </md-input-container>
-            <md-input-container>
-                <label>Text</label>
-                <input ng-model="model.widget.text"  class="font-size-adjust">
-            </md-input-container>
-            <md-input-container>
-                <label>Url</label>
-                <input ng-model="model.widget.url"  class="font-size-adjust">
-            </md-input-container>
-            <md-input-container>
-                <label>Width</label>
-                <input ng-model="model.widget.width" min="1"  class="font-size-adjust">
-            </md-input-container>
             <md-button class="md-default md-raised" aria-label="choose file">
                 <input name="myFile"  ng-model="file" type="file">
             </md-button>
-
+            <input  name="width"     value="{{model.widget.width}}" style="display: none"/>
+            <input  name="name"      value="{{model.widget.name}}"  style="display: none"/>
+            <input  name="text"      value="{{model.widget.text}}"  style="display: none"/>
+            <input  name="widgetId"  value="{{model.widget._id}}"   style="display: none"/>
+            <input  name="userId"    value="{{model.userId}}"       style="display: none"/>
+            <input  name="websiteId" value="{{model.websiteId}}"    style="display: none"/>
+            <input  name="pageId"    value="{{model.pageId}}"       style="display: none"/>
             <md-button type="submit" class="md-accent  md-raised"> Upload Image </md-button>
-            <md-button class="md-warn md-raised" ng-hide="model.createNew"
-                        ng-click="model.clickEvent('delete','')" >
+            <md-button class="md-warn md-raised" ng-click="model.clickEvent('delete','')" >
                 Delete
             </md-button>
         </form>

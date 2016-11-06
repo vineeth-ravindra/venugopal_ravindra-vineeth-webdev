@@ -56,33 +56,29 @@
         init();
     }
     function EditWidgetController($routeParams,$location,$sce,WidgetService,RouteService) {
-        console.log("Hello");
         var vm = this;
         var widgitId = $routeParams.wgid;
         var websiteId = $routeParams.wid;
         var userId = $routeParams.uid;
         var pageId = $routeParams.pid;
+        vm.widgitId = $routeParams.wgid;
+        vm.websiteId = $routeParams.wid;
+        vm.userId = $routeParams.uid;
+        vm.pageId = $routeParams.pid;
         vm.clickEvent = clickEvent;
 
-        if (widgitId.match("^new")) {
-            widgitId = widgitId.split("-");
-            vm.widget = {
-                widgetType: widgitId[1]
-            }
-            widgitId = -1;
-            vm.createNew = true;
-        }
-        else {
+        function init() {
             var promise = WidgetService.findWidgetById(widgitId);
             promise
                 .success(function (res) {
                     vm.widget = res;
-                    vm.createNew = false;
                 })
-                .error(function (res){
+                .error(function (res) {
 
                 });
         }
+        init();
+
         function clickEvent(type,data){
             if(type==='back') {
                 $location.url(RouteService.getWidgetlist(userId,websiteId,pageId));
@@ -125,35 +121,6 @@
                     });
             }
         }
-        function createWidget() {
-            if(vm.widget.widgetType.toLowerCase()==="header"){
-                return {
-                    "_id": Math.floor(Math.random()*999).toString(),
-                    "widgetType": "HEADER",
-                    "pageId" :pageId,
-                    "size" : vm.widget.size,
-                    "text": vm.widget.text
-                }
-            }
-            if(vm.widget.widgetType.toLowerCase()==="youtube"){
-                return {
-                    "_id": Math.floor(Math.random()*999).toString(),
-                    "widgetType": "YOUTUBE",
-                    "pageId" :pageId,
-                    "width" : vm.widget.width,
-                    "url": vm.widget.url
-                }
-            }
-            if(vm.widget.widgetType.toLowerCase()==="image"){
-                return {
-                    "_id": Math.floor(Math.random()*999).toString(),
-                    "widgetType": "IMAGE",
-                    "pageId" :pageId,
-                    "width" : vm.widget.width,
-                    "url": vm.widget.url
-                }
-            }
-        }
     }
 
 
@@ -171,18 +138,46 @@
                 $location.url(RouteService.getProfilePage(userId));
             }
             else if(type==='listItem') {
-                handleListEvent(data);
+                var widget = createWidget(data);
+                console.log(widget);
+                var promise = WidgetService.createWidget(widget,pageId);
+                promise
+                    .success(function(res){
+                        $location.url(RouteService.getWidgetedit(userId,websiteId,pageId,widget._id));
+                    })
+                    .error(function(){
+
+                    });
             }
         }
-        function handleListEvent(data){
-            if(data==='HEADER'){
-                $location.url(RouteService.getWidgetedit(userId,websiteId,pageId,"new-header"));
+        function createWidget(widgetType) {
+            widgetType = widgetType.toLowerCase();
+            if(widgetType==="header"){
+                return {
+                    "_id": Math.floor(Math.random()*999).toString(),
+                    "widgetType": "HEADER",
+                    "pageId" :pageId,
+                    "size" : 0,
+                    "text": ""
+                }
             }
-            else if(data==='YOUTUBE'){
-                $location.url(RouteService.getWidgetedit(userId,websiteId,pageId,"new-youtube"));
+            if(widgetType==="youtube"){
+                return {
+                    "_id": Math.floor(Math.random()*999).toString(),
+                    "widgetType": "YOUTUBE",
+                    "pageId" :pageId,
+                    "width" : "",
+                    "url": ""
+                }
             }
-            else if(data==='IMAGE'){
-                $location.url(RouteService.getWidgetedit(userId,websiteId,pageId,"new-image"));
+            if(widgetType==="image"){
+                return {
+                    "_id": Math.floor(Math.random()*999).toString(),
+                    "widgetType": "IMAGE",
+                    "pageId" :pageId,
+                    "width" : "",
+                    "url": ""
+                }
             }
         }
     }

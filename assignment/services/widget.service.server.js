@@ -19,20 +19,24 @@ module.exports = function(app) {
     app.put("/api/widget/:widgetId",updateWidget);
     app.delete("/api/widget/:widgetId",deleteWidget);
     var multer = require('multer'); // npm install multer --save
-    var upload = multer({ dest: __dirname+'/../../public/uploads' });
+    var upload = multer({dest: __dirname+'/../../public/assignment/uploads'});
     app.post ("/api/upload", upload.single('myFile'), uploadImage);
-
     function uploadImage(req, res) {
         var widgetId      = req.body.widgetId;
-        var width         = req.body.width;
-        var myFile        = req.file;
-        var originalname  = myFile.originalname; // file name on user's computer
-        var filename      = myFile.filename;     // new file name in upload folder
-        var path          = myFile.path;         // full path of uploaded file
-        var destination   = myFile.destination;  // folder where file is saved to
-        var size          = myFile.size;
-        var mimetype      = myFile.mimetype;
-        res.send(myFile);
+        var userId        = req.body.userId;
+        var websiteId     = req.body.websiteId;
+        var pageId        = req.body.pageId;
+        var widgetId      = req.body.widgetId;
+        updateImageWidget(widgetId,req.file.filename);
+        res.redirect("/assignment/index.html#/user/"+userId+"/website/"+websiteId+"/page/"+pageId+"/widget/"+widgetId);
+    }
+    function updateImageWidget(widgetId,filename) {
+        for (var i = 0; i < widgets.length; i++) {
+            if (widgets[i]._id == widgetId) {
+                widgets[i].url = "uploads/"+filename;
+                break;
+            }
+        }
     }
     function createWidget(req,res){
         var widget = req.body;
@@ -60,6 +64,7 @@ module.exports = function(app) {
     }
     function updateWidget(req,res){
         var widgetId = req.params.widgetId;
+        var widget = req.body;
         for(var i=0;i<widgets.length;i++){
             if(widgets[i]._id == widgetId) {
                 widgets[i] = widget;
