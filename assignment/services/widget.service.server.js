@@ -92,7 +92,6 @@ module.exports = function(app) {
         var pos1  = getIndex(pageId,startIndex);
         var pos2 = getIndex(pageId,endIndex);
         widgets.splice(pos2, 0, widgets.splice(pos1, 1)[0]);
-        // console.log(widgets);
         res.send("ok");
     }
     function getIndex(pageId,ind){
