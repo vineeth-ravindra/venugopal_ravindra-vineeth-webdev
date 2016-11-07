@@ -18,9 +18,11 @@ module.exports = function(app) {
     app.get("/api/widget/:widgetId",findWidgetById);
     app.put("/api/widget/:widgetId",updateWidget);
     app.delete("/api/widget/:widgetId",deleteWidget);
+    app.put("/page/:pageId/widget",sort);
     var multer = require('multer'); // npm install multer --save
     var upload = multer({dest: __dirname+'/../../public/assignment/uploads'});
     app.post ("/api/upload", upload.single('myFile'), uploadImage);
+
     function uploadImage(req, res) {
         var widgetId      = req.body.widgetId;
         var userId        = req.body.userId;
@@ -82,5 +84,24 @@ module.exports = function(app) {
             }
         }
         res.send("ok");
+    }
+    function sort(req,res) {
+        var startIndex  = req.query.initial;
+        var endIndex = req.query.final;
+        var pageId = req.params.pageId;
+        var pos1  = getIndex(pageId,startIndex);
+        var pos2 = getIndex(pageId,endIndex);
+        widgets.splice(pos2, 0, widgets.splice(pos1, 1)[0]);
+        // console.log(widgets);
+        res.send("ok");
+    }
+    function getIndex(pageId,ind){
+        var res = [];
+        for(var i=0;i<widgets.length;i++) {
+            if(pageId == widgets[i].pageId){
+                res.push(i);
+            }
+        }
+        return res[ind];
     }
 }
