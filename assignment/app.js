@@ -2,7 +2,8 @@
  * Created by Vineeth on 10/31/16.
  */
 module.exports = function(app) {
-    require("./services/user.service.server.js")(app);
+    var models = require("./models/model.server")();
+    require("./services/user.service.server.js")(app,models);
     require("./services/website.service.server.js")(app);
     require("./services/page.service.server.js")(app);
     require("./services/widget.service.server.js")(app);

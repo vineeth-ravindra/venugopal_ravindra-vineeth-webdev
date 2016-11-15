@@ -31,12 +31,12 @@
                         var promise = UserService.findUserByCredentials(vm.user.username.trim(), vm.user.password);
                         promise
                             .success(function(res){
-                                if(res){
-                                    $location.url(RouteService.getProfilePage(res._id));
-                                }
-                                else {
+                                if(res==='0'){
                                     vm.alert = "Unable to login";
                                     showAllert("Username/Password not found");
+                                }
+                                else {
+                                    $location.url(RouteService.getProfilePage(res._id));
                                 }
                             })
                             .error(function(res){
