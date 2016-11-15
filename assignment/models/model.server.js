@@ -6,9 +6,11 @@ module.exports = function() {
     mongoose.connect('mongodb://localhost/wam-fall2016');
     var userModel = require("./user/user.model.server.js")();
     var websiteModel = require("./website/website.model.server")();
+    var pageModel = require("./page/page.model.server")();
     var model = {
         "userModel" : userModel,
-        "websiteModel": websiteModel
+        "websiteModel": websiteModel,
+        "pageModel":pageModel
     };
     return model;
 };
