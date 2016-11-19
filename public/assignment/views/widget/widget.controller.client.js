@@ -131,7 +131,7 @@
         var pageId = $routeParams.pid;
         vm.clickEvent = clickEvent;
         function clickEvent(type,data){
-            if(type==='back'){
+            if(type==='back') {
                 $location.url(RouteService.getWidgetlist(userId,websiteId,pageId));
             }
             else if(type==='profile'){
@@ -139,10 +139,9 @@
             }
             else if(type==='listItem') {
                 var widget = createWidget(data);
-                console.log(widget);
                 var promise = WidgetService.createWidget(widget,pageId);
                 promise
-                    .success(function(res){
+                    .success(function(widget){
                         $location.url(RouteService.getWidgetedit(userId,websiteId,pageId,widget._id));
                     })
                     .error(function(){
@@ -154,7 +153,6 @@
             widgetType = widgetType.toLowerCase();
             if(widgetType==="header"){
                 return {
-                    "_id": Math.floor(Math.random()*999).toString(),
                     "widgetType": "HEADER",
                     "pageId" :pageId,
                     "size" : 0,
@@ -163,7 +161,6 @@
             }
             if(widgetType==="youtube"){
                 return {
-                    "_id": Math.floor(Math.random()*999).toString(),
                     "widgetType": "YOUTUBE",
                     "pageId" :pageId,
                     "width" : "",
@@ -172,7 +169,6 @@
             }
             if(widgetType==="image"){
                 return {
-                    "_id": Math.floor(Math.random()*999).toString(),
                     "widgetType": "IMAGE",
                     "pageId" :pageId,
                     "width" : "",

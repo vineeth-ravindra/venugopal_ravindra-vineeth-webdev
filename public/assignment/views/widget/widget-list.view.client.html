@@ -11,7 +11,7 @@
 </md-toolbar>
 <md-content>
     <div jga-sortable class="large-box" layout-gt-xs="column" layout-xs="column">
-        <div ng-switch="widget.widgetType" ng-repeat="widget in model.widgetList">
+        <div ng-switch="widget.widgetType" ng-repeat="widget in model.widgetList |orderBy :'pos' ">
             <div class="widget-box" layout-gt-xs="column" layout-xs="column" >
                 <div class="myButton">
                     <md-button class="button-with-icon-fix" ng-click="model.clickEvent('edit',widget)" aria-label="link to profile page">

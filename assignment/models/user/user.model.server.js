@@ -4,6 +4,7 @@
 
 module.exports  = function() {
     var mongoose = require('mongoose');
+    var ObjectId = require('mongodb').ObjectId;
     var userSchema = require("./user.schema.server")();
     var userModel = mongoose.model("UserModel",userSchema);
     var api = {
@@ -25,6 +26,7 @@ module.exports  = function() {
         return userModel.create(user);
     }
     function findUserById(userId){
+        userId = new ObjectId(userId);
         return userModel.find({_id:userId});
     }
     function updateUser(userId,user) {
