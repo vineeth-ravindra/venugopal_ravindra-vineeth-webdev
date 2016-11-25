@@ -49,18 +49,15 @@ module.exports = function(app,models) {
         }
     }
     function findUserByCredentials(username,password,res) {
-        findUserByUsername(username)
-            .then(function(succ){
-                if(succ.length>0) {
-                    if(succ[0].password === password)
-                        res.send(succ[0]);
-                    else
-                        res.send("0");
-                } else
+        models.userModel.findUserByCredentials(username,password)
+            .then(function (succ) {
+                if(succ.length>0)
+                    res.send(succ[0]);
+                else
                     res.send("0");
-            },function(err){
+            },function (err) {
                 res.sendStatus(404).send(err);
-            });
+        });
     }
 
     function findUserByUsername(username){

@@ -7,6 +7,7 @@ module.exports = function(app,models) {
     app.get("/api/website/:websiteId",findWebsiteById);
     app.put("/api/website/:websiteId",updateWebsite);
     app.delete("/api/website/:websiteId",deleteWebsite);
+    (function(){models.websiteModel.setModels(models);})()
 
     function createWebsite(req,res) {
         var userId = req.params.userId;
@@ -15,12 +16,22 @@ module.exports = function(app,models) {
         var newSite = {};
         newSite.name = site.name;
         newSite.developerId = userId;
-        models.websiteModel.createWebsite(newSite)
-            .then(function(dbSite){
-                res.sendStatus(200).send(dbSite);
-            },function(err){
-                res.sendStatus(404).send(err);
-            });
+        models.websiteModel.createWebsiteForUser(userId,newSite)
+            .then(function (newWebSite) {
+                models.userModel.findUserById(userId)
+                    .then(function (userObj) {
+                        userObj = userObj[0];
+                        userObj.websites.push(newWebSite._id);
+                        userObj.save();
+                        newWebSite._user = userObj._id;
+                        newWebSite.save();
+                        res.sendStatus(200).send(dbSite);
+                    },function (err) {
+                        res.sendStatus(404).send("0")
+                });
+            },function (err) {
+                res.sendStatus(404).send("0")
+        });
     }
 
     function findAllWebsitesForUser(req,res) {
@@ -55,11 +66,29 @@ module.exports = function(app,models) {
     }
     function deleteWebsite(req,res) {
         var websiteId = req.params.websiteId;
-        models.websiteModel.deleteWebsite(websiteId)
-            .then(function(succ){
-                res.sendStatus(200).send("ok");
-            },function(err){
-                res.sendStatus(404).send(err);
-        });
+        models.websiteModel.findWebsiteById(websiteId)
+            .then(function (websiteObj) {
+                websiteObj = websiteObj[0];
+                userId = websiteObj._user;
+                models.websiteModel.deleteWebsite(websiteId)
+                    .then(function(succ){
+                        models.userModel.findUserById(userId)
+                            .then(function (userObj) {
+                                userObj = userObj[0];
+                                for(var i=0;i<userObj.websites.length;i++) {
+                                    if (userObj.websites[i] == websiteId) {
+                                        userObj.websites.splice(i, 1);
+                                        break;
+                                    }
+                                }
+                                userObj.save();
+                                res.sendStatus(200).send("ok");
+                            },function (err) {
+                                res.sendStatus(404).send(err);
+                            });
+                    },function(err){
+                        res.sendStatus(404).send(err);
+                    });
+            });
     }
-}
+};

@@ -7,11 +7,11 @@ module.exports  = function() {
     var pageSchema = require("./page.schema.server")();
     var pageModel = mongoose.model("PageModel", pageSchema);
     var api = {
-        "createPage": createPage,
-        "deletePage":deletePage,
-        "findPageById":findPageById,
-        "findAllPagesForWebsite":findAllPagesForWebsite,
-        "updatePage":updatePage
+        "createPage"            : createPage,
+        "deletePage"            : deletePage,
+        "findPageById"          : findPageById,
+        "findAllPagesForWebsite": findAllPagesForWebsite,
+        "updatePage"            : updatePage
     };
     return api;
     function createPage(page) {

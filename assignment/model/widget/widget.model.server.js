@@ -7,12 +7,12 @@ module.exports  = function() {
     var widgetSchema = require("./widget.schema.server")();
     var widgetModel = mongoose.model("WidgetModel", widgetSchema);
     var api = {
-        "createWidget": createWidget,
-        "findAllWidgetsForPage":findAllWidgetsForPage,
-        "findWidgetById":findWidgetById,
-        "updateWidget":updateWidget,
-        "deleteWidget":deleteWidget,
-        "findWidgetByPos":findWidgetByPos
+        "createWidget"              : createWidget,
+        "findAllWidgetsForPage"     : findAllWidgetsForPage,
+        "findWidgetById"            : findWidgetById,
+        "updateWidget"              : updateWidget,
+        "deleteWidget"              : deleteWidget,
+        "findWidgetByPos"           : findWidgetByPos
     };
     return api;
     function createWidget(widget){

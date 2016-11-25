@@ -21,6 +21,7 @@ module.exports = function(app,models) {
         updateImageWidget(widgetId,req.file.filename);
         res.redirect("/assignment/index.html#/user/"+userId+"/website/"+websiteId+"/page/"+pageId+"/widget/"+widgetId);
     }
+
     function updateImageWidget(widgetId,filename) {
         models.widgetModel.findWidgetById(widgetId)
             .then(function (widget) {

@@ -8,11 +8,13 @@ module.exports  = function() {
     var userSchema = require("./user.schema.server")();
     var userModel = mongoose.model("UserModel",userSchema);
     var api = {
-        "createUser": createUser,
-        "findUserById":findUserById,
-        "updateUser":updateUser,
-        "deleteUser":deleteUser,
-        "findUserByUsername":findUserByUsername
+        "createUser"            : createUser,
+        "findUserById"          :findUserById,
+        "updateUser"            :updateUser,
+        "deleteUser"            :deleteUser,
+        "findUserByUsername"    :findUserByUsername,
+        "findUserByCredentials" :findUserByCredentials
+
     };
     return api;
 
@@ -34,6 +36,12 @@ module.exports  = function() {
             {_id:userId},
             user
         );
+    }
+    function findUserByCredentials(username,password){
+        return userModel.find({
+            username:username,
+            password:password
+        });
     }
 };
 
