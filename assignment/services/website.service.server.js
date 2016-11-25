@@ -33,7 +33,6 @@ module.exports = function(app,models) {
                 res.sendStatus(404).send("0")
         });
     }
-
     function findAllWebsitesForUser(req,res) {
         var userId = req.params.userId;
         models.websiteModel.findAllWebsitesForUser(userId)

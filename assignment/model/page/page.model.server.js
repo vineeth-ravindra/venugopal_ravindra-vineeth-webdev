@@ -6,7 +6,9 @@ module.exports  = function() {
     var ObjectId = require('mongodb').ObjectId;
     var pageSchema = require("./page.schema.server")();
     var pageModel = mongoose.model("PageModel", pageSchema);
+    model = null;
     var api = {
+        "setModel"              : setModel,
         "createPage"            : createPage,
         "deletePage"            : deletePage,
         "findPageById"          : findPageById,
@@ -14,7 +16,10 @@ module.exports  = function() {
         "updatePage"            : updatePage
     };
     return api;
-    function createPage(page) {
+    function setModel(m) {
+        model = m;
+    }
+    function createPage(websiteId,page) {
         return pageModel.create(page);
     }
     function deletePage(pageId) {
@@ -25,9 +30,10 @@ module.exports  = function() {
         return pageModel.find({_id:pageId});
     }
     function findAllPagesForWebsite(wid) {
-        return pageModel.find({websiteId:wid});
+        return pageModel.find({_website:wid});
     }
     function updatePage(pageId,newPage){
         return pageModel.update({_id:pageId},newPage);
     }
 }
+

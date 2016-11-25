@@ -9,11 +9,11 @@ module.exports  = function() {
     var userModel = mongoose.model("UserModel",userSchema);
     var api = {
         "createUser"            : createUser,
-        "findUserById"          :findUserById,
-        "updateUser"            :updateUser,
-        "deleteUser"            :deleteUser,
-        "findUserByUsername"    :findUserByUsername,
-        "findUserByCredentials" :findUserByCredentials
+        "findUserById"          : findUserById,
+        "updateUser"            : updateUser,
+        "deleteUser"            : deleteUser,
+        "findUserByUsername"    : findUserByUsername,
+        "findUserByCredentials" : findUserByCredentials
 
     };
     return api;
