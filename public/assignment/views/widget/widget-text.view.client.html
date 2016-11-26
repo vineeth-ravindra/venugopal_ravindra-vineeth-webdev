@@ -1,0 +1,39 @@
+<md-toolbar class="tool-bar-color">
+    <md-button class="button-with-icon-fix button-with-icon-fix-left"
+               aria-label="back to page list" ng-click="model.clickEvent('back','')">
+        <i class="icon ion-ios-arrow-back ics"></i>
+    </md-button>
+    <h1>Widget Edit</h1>
+    <md-button class="ics-right button-with-icon-fix" aria-label="confirm change"
+               ng-click="model.clickEvent('check','')">
+        <i class = "icon ion-checkmark ics"></i>
+    </md-button>
+</md-toolbar>
+<md-content>
+    <div class="large-box" layout-gt-xs="column" layout-xs="column" >
+        <md-input-container>
+            <label>Text</label>
+            <input ng-model="model.widget.text" class="font-size-adjust">
+        </md-input-container>
+        <md-input-container>
+            <label>Rows</label>
+            <input ng-model="model.widget.rows"  type="number" class="font-size-adjust">
+        </md-input-container>
+        <md-input-container>
+            <label>Placeholder</label>
+            <input ng-model="model.widget.placeholder"  class="font-size-adjust">
+        </md-input-container>
+        <md-checkbox ng-model="model.widget.formatted" aria-label="Formatted">
+            Formatted
+        </md-checkbox>
+        <md-button class="md-warn md-raised"
+                   ng-click="model.clickEvent('delete','')" >
+            Delete
+        </md-button>
+    </div>
+</md-content>
+<md-toolbar   class="tool-bar-color bottom-bar " >
+    <md-button class="ics-right button-with-icon-fix" aria-label="nav to profile" ng-click="model.clickEvent('profile','')">
+        <i class = "icon ion-android-person ics"></i>
+    </md-button>
+</md-toolbar>

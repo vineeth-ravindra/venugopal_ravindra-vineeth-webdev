@@ -11,10 +11,11 @@
 </md-toolbar>
 <md-content>
     <div jga-sortable class="large-box" layout-gt-xs="column" layout-xs="column">
-        <div ng-switch="widget.widgetType" ng-repeat="widget in model.widgetList |orderBy :'pos' ">
+        <div ng-switch="widget.type" ng-repeat="widget in model.widgetList">
             <div class="widget-box" layout-gt-xs="column" layout-xs="column" >
                 <div class="myButton">
-                    <md-button class="button-with-icon-fix" ng-click="model.clickEvent('edit',widget)" aria-label="link to profile page">
+                    <md-button class="button-with-icon-fix" ng-click="model.clickEvent('edit',widget)"
+                               aria-label="link to profile page">
                         <i class="icon ion-navicon ics"></i>
                         <i class="icon ion-gear-a ics"></i>
                     </md-button>
@@ -30,11 +31,21 @@
                 <div ng-switch-when="IMAGE">
                     <img ng-src="{{model.checkSafeUrlImage(widget.url)}}" class="responsive-image" alt="xxx"/>
                 </div>
-                <div ng-switch-when="YOUTUBE">
-                    <iframe class="responsive-image" ng-src="{{model.checkSafeUrlYoutube(widget.url)}}" frameborder="0"
+                <div ng-switch-when="YOUTUBE" class="youtube-widget">
+                    <iframe class="responsive-image " ng-src="{{model.checkSafeUrlYoutube(widget.url)}}" frameborder="0"
                     allowfullscreen></iframe>
                 </div>
                 <div ng-switch-when="HTML" ng-bind-html="model.checkSafeHtml(widget.text)">
+                </div>
+                <div ng-switch-when="TEXT">
+                    <div ng-if="widget.formatted" ng-model="widget.text" text-angular
+                         ta-toolbar="[['h1','h2','h3'],['bold','italics','underline','strikeThrough'],['ul','ol'],
+                 ['justifyLeft','justifyCenter','justifyRight','justifyFull'],['indent','outdent'],['html']]"></div>
+                    <input ng-if="!widget.formatted && (!widget.rows || widget.rows===1)" class="form-control"
+                           ng-model="widget.text" placeholder="{{widget.placeholder}}"/>
+                    <textarea ng-if="!widget.formatted && (widget.rows > 1)"
+                              rows="{{widget.rows}}" placeholder="{{widget.placeholder}}"
+                              class="form-control">{{widget.text}}</textarea>
                 </div>
             </div>
         </div>

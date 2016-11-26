@@ -6,23 +6,28 @@ module.exports  = function() {
     var ObjectId = require('mongodb').ObjectId;
     var widgetSchema = require("./widget.schema.server")();
     var widgetModel = mongoose.model("WidgetModel", widgetSchema);
+    var models = null;
     var api = {
+        "setModel"                   : setModel,
         "createWidget"              : createWidget,
         "findAllWidgetsForPage"     : findAllWidgetsForPage,
         "findWidgetById"            : findWidgetById,
         "updateWidget"              : updateWidget,
         "deleteWidget"              : deleteWidget,
-        "findWidgetByPos"           : findWidgetByPos
+        "reorderWidget"             : reorderWidget
     };
     return api;
-    function createWidget(widget){
+    function setModel(m) {
+        models = m;
+    }
+    function createWidget(pageId,widget){
         return widgetModel.create(widget);
     }
     function findAllWidgetsForPage(pageId){
-        return widgetModel.find({pageId:pageId});
+        return widgetModel.find({_page:pageId});
     }
     function findWidgetById(widId){
-        widId = new ObjectId(widId)
+        widId = new ObjectId(widId);
         return widgetModel.find({_id:widId});
     }
     function updateWidget(wid,widget){
@@ -31,7 +36,9 @@ module.exports  = function() {
     function deleteWidget(wid){
         return widgetModel.remove({_id:wid});
     }
-    function  findWidgetByPos(pos) {
-        return widgetModel.find({"pos":pos});
+    function reorderWidget(pageId, start, end) {
+        return models.pageModel.findPageById(pageId);
+
     }
 };
+

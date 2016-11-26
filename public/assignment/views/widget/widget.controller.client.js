@@ -153,24 +153,40 @@
             widgetType = widgetType.toLowerCase();
             if(widgetType==="header"){
                 return {
-                    "widgetType": "HEADER",
-                    "pageId" :pageId,
+                    "type": "HEADER",
+                    "_page" :pageId,
                     "size" : 0,
                     "text": ""
                 }
             }
             if(widgetType==="youtube"){
                 return {
-                    "widgetType": "YOUTUBE",
-                    "pageId" :pageId,
+                    "type": "YOUTUBE",
+                    "_page" :pageId,
                     "width" : "",
                     "url": ""
                 }
             }
             if(widgetType==="image"){
                 return {
-                    "widgetType": "IMAGE",
-                    "pageId" :pageId,
+                    "type": "IMAGE",
+                    "_page" :pageId,
+                    "width" : "",
+                    "url": ""
+                }
+            }
+            if(widgetType==="html"){
+                return {
+                    "type": "HTML",
+                    "_page" :pageId,
+                    "width" : "",
+                    "url": ""
+                }
+            }
+            if(widgetType==="text"){
+                return {
+                    "type": "TEXT",
+                    "_page" :pageId,
                     "width" : "",
                     "url": ""
                 }

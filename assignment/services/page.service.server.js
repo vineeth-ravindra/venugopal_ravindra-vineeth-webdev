@@ -13,7 +13,7 @@ module.exports = function(app,models) {
     app.get("/api/page/:pageId",findPageById);
     app.delete("/api/page/:pageId",deletePage);
     app.put("/api/page/:pageId",updatePage);
-    (function(){models.pageModel.setModels(models);})();
+    (function(){models.pageModel.setModel(models);})();
 
     function findAllPagesForWebsite(req,res) {
         var websiteId = req.params.websiteId;

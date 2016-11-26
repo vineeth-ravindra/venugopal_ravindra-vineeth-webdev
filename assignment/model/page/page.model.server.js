@@ -13,7 +13,8 @@ module.exports  = function() {
         "deletePage"            : deletePage,
         "findPageById"          : findPageById,
         "findAllPagesForWebsite": findAllPagesForWebsite,
-        "updatePage"            : updatePage
+        "updatePage"            : updatePage,
+        "findAllWidgets"        : findAllWidgets
     };
     return api;
     function setModel(m) {
@@ -35,5 +36,10 @@ module.exports  = function() {
     function updatePage(pageId,newPage){
         return pageModel.update({_id:pageId},newPage);
     }
-}
+    function findAllWidgets(pageId) {
+        return pageModel.findById(pageId)
+            .populate('widgets')
+            .select({'widgets':1, '_id':0});
+    }
+};
 
