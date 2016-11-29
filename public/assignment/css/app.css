@@ -73,6 +73,17 @@ Custom tool bar
     color:#fff;
     width: 100%;
 }
+.tool-bar-color-image{
+    background-color: #009292 !important;
+    box-shadow: 0 1px 6px rgba(0,0,0,.3)!important;
+    display: inline-block!important;
+    height: 10px !important;
+    padding-left: 10px!important;
+    padding-right: 0px!important;
+    color:#fff;
+    width: 100%;
+    position: fixed;
+}
 .bottom-bar{
     position: fixed;
     bottom: 0!important;
@@ -171,4 +182,7 @@ widget list
 .padd-div-content{
     position: relative;
     margin-top: 70px;
+}
+.top-space{
+    top: 70px
 }

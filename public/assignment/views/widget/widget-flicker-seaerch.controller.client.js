@@ -37,7 +37,6 @@
                     data = data.substring(0,data.length - 1);
                     data = JSON.parse(data);
                     vm.photos = data.photos;
-                    console.log(vm.photos);
                 });
         }
         function selectPhoto(photo) {
