@@ -18,7 +18,8 @@
             getPageEdit :getPageEdit,
             getWidgetlist : getWidgetlist,
             getwidgetChooser :getwidgetChooser,
-            getWidgetedit : getWidgetedit
+            getWidgetedit : getWidgetedit,
+            getFlicker :getFlicker
         };
         return api;
         function getLogin() {
@@ -56,6 +57,9 @@
         }
         function getWidgetedit(uid,wid,pid,wgid){
             return "/user/"+uid+"/website/"+wid+"/page/"+pid+"/widget/"+wgid;
+        }
+        function getFlicker(uid,wid,pid,wgid){
+            return "/user/"+uid+"/website/"+wid+"/page/"+pid+"/widget/"+wgid+"/flicker";
         }
     }
 })();

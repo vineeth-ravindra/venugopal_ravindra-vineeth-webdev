@@ -71,7 +71,12 @@
                 templateUrl: "views/widget/widget-edit.view.client.html", 
                 controller: "EditWidgetController", 
                 controllerAs:"model"
-            })   
+            })
+            .when("/user/:uid/website/:wid/page/:pid/widget/:wgid/flicker", {
+                templateUrl: "views/widget/widget-flickr-search.view.cleint.html",
+                controller: "FlickerImageSearchController",
+                controllerAs:"model"
+            })
             .otherwise({
                 redirectTo: "/",
                 controller: "LoginController",

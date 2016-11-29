@@ -86,6 +86,9 @@
             else if(type==='profile'){
                 $location.url(RouteService.getProfilePage(userId));
             }
+            else if(type==='flicker'){
+                $location.url(RouteService.getFlicker(vm.userId,vm.websiteId,vm.pageId,vm.widgitId));
+            }
             else if(type==='check') {
                 if(widgitId===-1) {
                     widget = createWidget();
