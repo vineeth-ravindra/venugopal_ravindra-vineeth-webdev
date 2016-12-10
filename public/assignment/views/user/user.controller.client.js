@@ -28,20 +28,14 @@
                         return
                     }
                     else {
-                        var promise = UserService.findUserByCredentials(vm.user.username.trim(), vm.user.password);
-                        promise
-                            .success(function(res){
-                                if(res==='0'){
-                                    vm.alert = "Unable to login";
-                                    showAllert("Username/Password not found");
-                                }
-                                else {
-                                    $location.url(RouteService.getProfilePage(res._id));
-                                }
-                            })
-                            .error(function(res){
-
-                            });
+                        vm.user.username = vm.user.username.trim();
+                        UserService
+                            .login(vm.user)
+                            .then(function(response) {
+                                    var user = response.data;
+                                    vm.user = user;
+                                    $location.url(RouteService.getProfilePage(user._id));
+                                });
                     }
                 }
             }
@@ -78,7 +72,7 @@
                         showAllert("Passwords do not match try again");
                     }
                     else {
-                        var promise = UserService.createUser(vm.user);
+                        var promise = UserService.register(vm.user);
                         promise
                             .success(function(res){
                                 $location.url(RouteService.getProfilePage(res._id));
@@ -106,7 +100,7 @@
             var vm = this;
             vm.pageButtonClicks = pageButtonClicks;
             function init(){
-                var promise = UserService.findUserById($routeParams.uid);
+                var promise = UserService.findCurrentUser();
                 promise
                     .success(function (res) {
                         vm.user = res;
@@ -115,6 +109,7 @@
 
                     });
             }
+            init();
             function pageButtonClicks(type) {
                 if(type==='ok'){
                     var promise = UserService.updateUser($routeParams.uid,vm.user);
@@ -133,6 +128,7 @@
                     $location.url(RouteService.getWebsiteList($routeParams.uid));
                 }
                 else if(type==='logout'){
+                    UserService.logout(vm.user);
                     $location.url(RouteService.getLogin());
                 }
             }
@@ -142,6 +138,5 @@
             function logout() {
                 $location.url("/login");
             }
-            init();
         }
 })();

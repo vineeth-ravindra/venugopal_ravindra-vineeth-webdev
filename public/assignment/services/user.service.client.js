@@ -7,14 +7,34 @@
         .factory("UserService",UserService);
     function UserService($http){
         var api = {
+            "findCurrentUser" : findCurrentUser,
             "createUser" : createUser,
             "findUserById" : findUserById,
             "findUserByUsername":findUserByUsername,
             "findUserByCredentials":findUserByCredentials,
             "updateUser":updateUser,
-            "deleteUser":deleteUser
+            "deleteUser":deleteUser,
+            "login":login,
+            "logout" : logout,
+            "register" : register,
+            "checkLoggedIn" :checkLoggedIn
         }
         return api;
+        function findCurrentUser() {
+            return $http.get("/api/user");
+        }
+        function checkLoggedIn() {
+            return $http.get("/api/loggedin");
+        }
+        function register(user) {
+            return $http.post("/api/register", user);
+        }
+        function login(user) {
+            return $http.post("/api/login", user);
+        }
+        function logout(user) {
+            return $http.post("/api/logout", user);
+        }
         function createUser(user){
             return $http.post("/api/user", user);
         }

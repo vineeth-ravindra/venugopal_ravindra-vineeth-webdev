@@ -3,6 +3,7 @@
  */
 var passport         = require('passport');
 var LocalStrategy    =  require('passport-local').Strategy;
+var FacebookStrategy = require('passport-facebook').Strategy;
 
 module.exports = function(app,models) {
 
@@ -14,25 +15,79 @@ module.exports = function(app,models) {
     app.post('/api/login', passport.authenticate('local'), login);
     app.post  ('/api/logout', logout);
     app.post  ('/api/register',register);
+    app.get   ('/api/loggedin', loggedin);
 
+    var facebookConfig = {
+        clientID        : process.env.FACEBOOK_CLIENT_ID,
+        clientSecret    : process.env.FACEBOOK_CLIENT_SECRET,
+        callbackURL     : process.env.FACEBOOK_CALLBACK_URL
+    };
 
+    passport.use(new FacebookStrategy(facebookConfig, facebookStrategy));
     passport.use(new LocalStrategy(localStrategy));
     passport.serializeUser(serializeUser);
     passport.deserializeUser(deserializeUser);
 
+    app.get   ('/auth/facebook', passport.authenticate('facebook', { scope : 'email' }));
+    app.get('/auth/facebook/callback',
+        passport.authenticate('facebook', {
+            successRedirect: '/assignment/#/user',
+            failureRedirect: '/assignment/#/login'
+        }));
+
+
     function localStrategy(username, password, done) {
         models.userModel
-            .findUserByCredentials({username: username, password: password})
+            .findUserByUsername(username)
             .then(
                 function(user) {
+                    user = user[0]
                     if (!user) { return done(null, false); }
-                    return done(null, user);
+                    if (user.password === password)
+                        return done(null, user);
+                    else
+                        return done(null, false);
                 },
                 function(err) {
                     if (err) { return done(err); }
                 }
             );
     }
+
+    function facebookStrategy(token, refreshToken, profile, done) {
+        models.userModel
+            .findUserByFacebookId(profile.id)
+            .then(
+                function(user) {
+                    if(user) {
+                        return done(null, user);
+                    } else {
+                        var names = profile.displayName.split(" ");
+                        var newFacebookUser = {
+                            lastName:  names[1],
+                            firstName: names[0],
+                            email:     profile.emails ? profile.emails[0].value:"",
+                            facebook: {
+                                id:    profile.id,
+                                token: token
+                            }
+                        };
+                        models.userModel.createUser(newFacebookUser)
+                            .then(
+                                function(user){
+                                    return done(null, user);
+                                },
+                                function(err){
+                                    if (err) { return done(err); }
+                            });
+                    }
+                },
+                function(err) {
+                    if (err) { return done(err); }
+                }
+            )
+    }
+
     function serializeUser(user, done) {
         done(null, user);
     }
@@ -61,38 +116,33 @@ module.exports = function(app,models) {
         res.send(200);
     }
 
+    function loggedin(req, res) {
+        console.log(req.user);
+        res.send(req.isAuthenticated() ? req.user : '0');
+    }
     function register(req, res) {
-        var newUser = req.body;
-        models.userModel
-            .findUserByUsername(newUser.username)
-            .then(
-                function(user){
-                    if(user) {
-                        res.json(null);
-                    } else {
-                        return models.userModel.createUser(newUser);
-                    }
-                },
-                function(err){
-                    res.status(400).send(err);
+        var user = req.body;
+        user = trimUser(user);
+        var obj = {
+            username: user.username,
+            password: user.password,
+            firstName: "",
+            lastName: ""
+        };
+        models.userModel.findUserByUsername(user.username)
+            .then(function (user) {
+                if(user.length>0)
+                    res.sendStatus(400).send(error);
+                else {
+                    models.userModel.createUser(obj)
+                        .then(function(user) {
+                            res.send(user);
+                        }, function(err) {
+                            res.sendStatus(400).send(error);
+                    });
                 }
-            )
-            .then(
-                function(user){
-                    if(user) {
-                        req.login(user, function(err) {
-                            if(err) {
-                                res.status(400).send(err);
-                            } else {
-                                res.json(user);
-                            }
-                        });
-                    }
-                },
-                function(err){
-                    res.status(400).send(err);
-                }
-            );
+
+            });
     }
     function trimUser(user){
         user.username = user.username.trim();
@@ -131,6 +181,8 @@ module.exports = function(app,models) {
             else
                 res.send(result);
         }
+        else
+            res.send(req.user);
     }
     function findUserByCredentials(username,password,res) {
         models.userModel.findUserByCredentials(username,password)
@@ -151,7 +203,7 @@ module.exports = function(app,models) {
         var userId = req.params.userId;
         models.userModel.findUserById(userId)
             .then(function(user){
-                res.send(user[0]);
+                res.send(user);
             },function(err){
                 res.sendStatus(404).send(err);
         });

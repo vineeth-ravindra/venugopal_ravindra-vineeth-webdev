@@ -13,11 +13,14 @@ module.exports  = function() {
         "updateUser"            : updateUser,
         "deleteUser"            : deleteUser,
         "findUserByUsername"    : findUserByUsername,
-        "findUserByCredentials" : findUserByCredentials
+        "findUserByCredentials" : findUserByCredentials,
+        "findUserByFacebookId"  : findUserByFacebookId
 
     };
     return api;
-
+    function findUserByFacebookId(facebookId) {
+        return userModel.findOne({'facebook.id': facebookId});
+    }
     function findUserByUsername(userName){
         return userModel.find({username:userName});
     }
@@ -28,8 +31,7 @@ module.exports  = function() {
         return userModel.create(user);
     }
     function findUserById(userId){
-        userId = new ObjectId(userId);
-        return userModel.find({_id:userId});
+        return userModel.findOne({_id:userId});
     }
     function updateUser(userId,user) {
         return userModel.update(
