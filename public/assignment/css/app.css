@@ -26,6 +26,15 @@ a{
 md-input-container label{
     font-size: 70%;
 }
+.alert{
+    width: 100%;
+    padding: 0px;
+    padding-left: 5px;
+    margin: 0px;
+    margin-bottom: 5px;
+    font-size: 80%;
+    background-color: #e74c3c;
+}
 md-content {
     padding: 0px !important;
     background-color: #263238!important;
@@ -110,7 +119,14 @@ md-button {
     text-transform: capitalize!important;
     text-align: left!important;
 }
-
+.facebook{
+    font-size: 20px;
+}
+.facebook-button{
+    background-color: #0060ff !important;
+    color: #FFFFFF!important;
+    text-align: center !important;
+}
 /****************
 Profile.html
 ****************/

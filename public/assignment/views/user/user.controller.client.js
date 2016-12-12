@@ -7,7 +7,7 @@
         .controller("LoginController", LoginController)
         .controller("RegisterController",RegisterController)
         .controller("ProfileController",ProfileController);
-        function LoginController($location,$mdDialog, UserService, RouteService) {
+        function LoginController($location,$mdDialog, UserService, RouteService,ToastService) {
             var vm = this;
             vm.clickEvent = pageButtonClicks;
             vm.user = {
@@ -19,12 +19,14 @@
                     $location.url(RouteService.getRegister());
                 }
                 else if(type==='login'){
-                    if(vm.user.username.length===0){
+                    if(!vm.user.username || vm.user.username.length===0){
                         showAllert("Please username");
+                        vm.user.username = "";
                         return
                     }
-                    else if(vm.user.password.length===0){
-                        showAllert("Please enter username and password");
+                    else if(!vm.user.password || vm.user.password.length===0){
+                        showAllert("Please enter password");
+                        vm.user.password = "";
                         return
                     }
                     else {
@@ -35,23 +37,19 @@
                                     var user = response.data;
                                     vm.user = user;
                                     $location.url(RouteService.getProfilePage(user._id));
-                                });
+                                },function (err) {
+                                    showAllert("Invalid username/password")
+                                    return;
+                            });
                     }
                 }
             }
             function showAllert(message) {
-                $mdDialog.show(
-                    $mdDialog.alert()
-                        .clickOutsideToClose(true)
-                        .textContent(message)
-                        .ariaLabel(message)
-                        .ok('Got it!')
-
-                );
+                ToastService.showToast(message);
             };
         }
 
-        function RegisterController($location,$mdDialog,UserService,RouteService) {
+        function RegisterController($location,$mdDialog,UserService,RouteService,ToastService) {
             var vm = this;
             vm.pageButtonClicks = pageButtonClicks;
             vm.user = {
@@ -85,15 +83,7 @@
                 }
             }
             function showAllert(message) {
-                $mdDialog.show(
-                    $mdDialog.alert()
-                        .parent(angular.element(document.querySelector('#popupContainer')))
-                        .clickOutsideToClose(true)
-                        .textContent(message)
-                        .ariaLabel(message)
-                        .ok('Got it!')
-
-                );
+                ToastService.showToast(message);
             };
         }
         function ProfileController($location,$mdDialog,$routeParams,UserService,RouteService){
@@ -122,10 +112,10 @@
                         });
                 }
                 else if(type==='profile'){
-                    $location.url(RouteService.getProfilePage($routeParams.uid));
+                    $location.url(RouteService.getProfilePage(vm.user._id));
                 }
                 else if(type==='websites'){
-                    $location.url(RouteService.getWebsiteList($routeParams.uid));
+                    $location.url(RouteService.getWebsiteList(vm.user._id));
                 }
                 else if(type==='logout'){
                     UserService.logout(vm.user);
@@ -140,3 +130,4 @@
             }
         }
 })();
+

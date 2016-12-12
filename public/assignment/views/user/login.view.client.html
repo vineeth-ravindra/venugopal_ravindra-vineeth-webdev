@@ -6,26 +6,25 @@
         <div layout-gt-xs="column" layout-xs="column">
             <md-input-container>
                 <label class="align-left">User Name</label>
-                <input class="font-size-adjust" ng-model="model.user.username">
+                <input class="font-size-adjust" ng-model="model.user.username" required>
             </md-input-container>
 
             <md-input-container>
                 <label class="align-left">Password</label>
-                <input  type="password" class="font-size-adjust" ng-model="model.user.password">
+                <input  type="password" class="font-size-adjust" ng-model="model.user.password" required>
             </md-input-container>
             <md-button class="md-accent md-raised" layout-gt-xs="column" ng-click="model.clickEvent('login')"
                        layout-xs="column">
                 Login
             </md-button>
-            <md-button class="md-default md-raised" layout-gt-xs="column" href="/auth/facebook"
-                       layout-xs="column">
+            <md-button class="md-default md-raised facebook-button" layout-gt-xs="column" layout-xs="column" href="/auth/facebook"
+                       layout="row" >
                 Facebook
             </md-button>
             <md-button class="md-primary md-raised" layout-gt-xs="column" layout-xs="column" ng-click="model.clickEvent('register')">
                 Register
             </md-button>
         </div>
-
     </form>
 </div>
 </md-content>

@@ -40,9 +40,12 @@
         </md-toolbar>
         <md-content id="content" flex>
             <div class="large-box" layout-gt-xs="column" layout-xs="column" >
+                <div class="alert" ng-show="model.show">
+                    Enter a Name mate!
+                </div>
                 <md-input-container>
                     <label>Name</label>
-                    <input type="text" ng-model="model.newWebsite.name" class="font-size-adjust">
+                    <input type="text" ng-model="model.newWebsite.name" class="font-size-adjust" required>
                 </md-input-container>
                 <md-input-container>
                     <label>Biography</label>

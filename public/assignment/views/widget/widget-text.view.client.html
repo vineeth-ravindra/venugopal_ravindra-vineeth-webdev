@@ -11,9 +11,12 @@
 </md-toolbar>
 <md-content>
     <div class="large-box" layout-gt-xs="column" layout-xs="column" >
+        <div class="alert" ng-show="model.show">
+            Enter some text mate!
+        </div>
         <md-input-container>
             <label>Text</label>
-            <input ng-model="model.widget.text" class="font-size-adjust">
+            <input ng-model="model.widget.text" class="font-size-adjust" required>
         </md-input-container>
         <md-input-container>
             <label>Rows</label>

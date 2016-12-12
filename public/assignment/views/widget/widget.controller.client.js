@@ -102,6 +102,11 @@
                         });
                 }
                 else {
+                    if(!vm.widget.text || vm.widget.text.length === 0) {
+                        vm.show = true;
+                        return;
+                    }
+
                     var promise = WidgetService.updateWidget(widgitId, vm.widget);
                     promise
                         .success(function (res) {
@@ -125,8 +130,6 @@
             }
         }
     }
-
-
     function NewWidgetController($routeParams,$location,$sce,WidgetService,RouteService) {
         var vm = this;
         var websiteId = $routeParams.wid;

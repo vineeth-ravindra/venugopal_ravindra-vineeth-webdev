@@ -39,10 +39,13 @@
             </md-button>
         </md-toolbar>
         <md-content id="content" flex>
+            <div class="alert" ng-show="model.show">
+                Enter a Name mate!
+            </div>
             <div class="large-box" layout-gt-xs="column" layout-xs="column" >
                 <md-input-container>
                     <label>Name</label>
-                    <input ng-model="model.data.name" placeholder="Page Name" class="font-size-adjust">
+                    <input ng-model="model.data.name" placeholder="Page Name" class="font-size-adjust" required>
                 </md-input-container>
                 <md-input-container>
                     <label>Title</label>

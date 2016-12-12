@@ -42,7 +42,7 @@
             }
             init();
         }
-        function NewWebsiteController($routeParams,$location,WebsiteService,RouteService){
+        function NewWebsiteController($routeParams,$location,WebsiteService,RouteService,ToastService){
             var vm = this;
             var userId = $routeParams.uid;
             vm.clickEvent = clickEvent;
@@ -73,7 +73,7 @@
                     $location.url(RouteService.getProfilePage(userId));
                 }
                 else if(type=='new') {
-                    if (website) {
+                    if (website && website.name) {
                         var promise = WebsiteService.createWebsite(userId, website);
                     promise
                         .success(function (res) {
@@ -83,9 +83,16 @@
 
                         });
                     }
+                    else {
+                        vm.show = true;
+                        return;
+                    }
                 }
             }
-            init()
+            init();
+            function showAllert(message) {
+                ToastService.showToast(message);
+            };
 
         }
         function EditWebsiteController($routeParams,$location,WebsiteService,RouteService){
@@ -128,7 +135,7 @@
                     $location.url(RouteService.getProfilePage(userId));
                 }
                 else if(type==='edit') {
-                    if(website){
+                    if (website && website.name) {
                         var promise = WebsiteService.updateWebsite($routeParams.wid,website);
                         promise
                             .success(function(res){
@@ -138,6 +145,11 @@
 
                             });
                     }
+                    else {
+                        vm.show = true;
+                        return;
+                    }
+
 
                 }
                 else if(type==='delete'){

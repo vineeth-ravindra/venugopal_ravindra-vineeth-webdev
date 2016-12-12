@@ -11,13 +11,16 @@
 </md-toolbar>
 <md-content>
     <div class="large-box" layout-gt-xs="column" layout-xs="column" >
+        <div class="alert" ng-show="model.show">
+            Enter some text mate!
+        </div>
         <md-input-container>
             <label>Name</label>
             <input ng-model="model.widget.type" readonly="readonly" class="font-size-adjust">
         </md-input-container>
         <md-input-container>
             <label>Text</label>
-            <input ng-model="x"  class="font-size-adjust">
+            <input ng-model="x"  class="font-size-adjust" required>
         </md-input-container>
         <md-input-container>
             <label>Url</label>

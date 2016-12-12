@@ -20,7 +20,6 @@ module.exports = function(app,models) {
             .then(function (newWebSite) {
                 models.userModel.findUserById(userId)
                     .then(function (userObj) {
-                        userObj = userObj[0];
                         userObj.websites.push(newWebSite._id);
                         userObj.save();
                         newWebSite._user = userObj._id;
